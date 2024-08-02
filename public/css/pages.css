@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:root {
+    --bg-color: #0d6efd;
+    --second-color: rgb(255, 255, 255);
+    --text-colo: black;
+}
+@media (max-width: 991px) {
+    .sidebar {
+        background-color: var(--bg-color);
+        color: white;
+    }
+}
+.logo {
+    font-size: 20px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: cursive;
+}
+.navbar {
+    background-color: var(--bg-color);
+}
+.dropdown-menu {
+    border-radius: 15px;
+}
+.greetings {
+    text-align: center;
+    justify-content: center;
+    display: fixed;
+    font-size: 20px;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(https://images.unsplash.com/photo-1582087152266-3fbaf83bc952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+}
+.greetings-content {
+    font-size: 50px;
+    color: white;
+}
+.latest {
+    justify-content: center;
+    margin: 25px 0 0 150px;
+    display: fixed;
+    text-align: center;
+    width: 70%;
+    height: auto;
+    background-color: grey;
+}
+.card {
+    border-radius: 10px;
+}
+.card-title {
+    font-weight: bold;
+}
+
+.card-time {
+    font-size: 13px;
+    font-weight: lighter;
+    font-style: oblique;
+    padding-top: 20px;
+}
+
+span {
+    color: black;
+    font-style: italic;
+}
+p {
+    font-weight: bold;
+    font-style: italic;
+    font-family: cursive;
+    margin-top: 20px;
+}
+.search {
+    width: 500px;
+    border-radius: 5px;
+    margin-right: 180px;
+}

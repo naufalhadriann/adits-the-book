@@ -1,0 +1,64 @@
+body {
+    height: 100px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(https://images.unsplash.com/photo-1582087152266-3fbaf83bc952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-page {
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-right: 300px;
+}
+
+.auth a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-left: 25px;
+}
+.auth a:hover {
+    color: blue;
+}
+.auth .btn:hover {
+    border: 1px solid blue;
+    background: transparent;
+    color: white;
+}
+.welcome-text {
+    font-family: "Baskervville SC", serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 650px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+.welcome-text span {
+    letter-spacing: 5px;
+}
+.welcome-text h1 {
+    font-size: 3.5em;
+}
+.welcome-text button {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #fff;
+    letter-spacing: 5px;
+    transition: 0.4s;
+}
+.welcome-text button:hover {
+    border: 1px solid blue;
+    background: transparent;
+}
