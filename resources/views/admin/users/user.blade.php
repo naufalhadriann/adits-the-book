@@ -4,20 +4,11 @@
 
 @section('content')
 
-<div class="head-title">
-				<div class="left">
+<div class="mx-5">
 					<h1>User</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">User</p>
-						</li>
-					</ul>
-				</div>
-			</div>
+         
+				{{ Breadcrumbs::render('user')}}
+        </div>
 
             <div class="container mt-4">
         <div class="row">
@@ -26,10 +17,16 @@
                     <div class="card-body">
                     <button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalForm" 
         data-entity="user" data-action="add">
-                     Add User
+        <i class='bx bx-user-plus'></i>  Add User
                         </button>
                         <x-modal modalType="user"></x-modal>
-                    
+                        <div class="  mb-5 inputs">
+					<form method="GET" action="{{route('user.index')}}">
+				<i class="bx bx-search"></i>
+				<input type="text" class="search" placeholder="Search User..." name="query" value="{{ request('query')}}">
+				</form>
+
+				</div>
                         <table class="table table-responsive text-center">
                             <thead>
                               <tr>
@@ -51,7 +48,7 @@
                                     <td class="{{ $user ->role == 1 ? " fw-bold text-danger" : "fw-bold text-success" }}">{{ $user->role_label}}</td>
                                     <td class="text-center">    
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{route('user.destroy',$user->id)}}" method="POST">
-                                            <!-- <button href="#" class="btn btn-sm btn-dark">Show</button> -->
+                                        
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm" 
                                                     data-entity="user" data-action="edit" data-id="{{$user->id}}">
                                                     <i class='bx bxs-edit'></i>
@@ -64,7 +61,7 @@
                                 </tr>
                          
 
-                                    @empty
+                                @empty
                                   <div class="alert alert-danger">
                                       Data User belum Tersedia.
                                   </div>
@@ -73,8 +70,13 @@
                             </tbody>
                             @endforelse
                           </table> 
-            {{ $users->links('pagination::bootstrap-5') }}
+                        
+                          {{ $users->links('pagination::bootstrap-5') }}
+
+                          
+                          @include('sweetalert::alert')
                     </div>
+               
                 </div>
             </div>
         </div>

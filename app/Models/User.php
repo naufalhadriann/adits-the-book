@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
     protected $table='users';
 
-    protected $cast =['role'=>'boolean'];
+    protected $cast =['role'=>'integer'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,6 +47,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => 'integer',
         ];
     }
     public function getRoleLabelAttribute()

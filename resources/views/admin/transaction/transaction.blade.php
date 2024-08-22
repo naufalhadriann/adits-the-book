@@ -3,27 +3,18 @@
 @section('title' ,'Transaksi')
 
 @section('content')
-<div class="head-title">
-				<div class="left">
+<div class="mx-5">
 					<h1>Transaction</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">Transaction</p>
-						</li>
-					</ul>
-				</div>
-			</div>
+         
+				{{ Breadcrumbs::render('transaction')}}
+        </div>
 
             <div class="container">
 			<div class="row">
 			<div class="col-md-12">
 			<div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                         <x-modal-transaction></x-modal-transaction>
+                         @include('components.admin.modal-transaction')
                         <table class="table  text-center">
                             <thead>
                            
@@ -58,6 +49,7 @@
                                     <div class="alert alert-danger">
                                       Data Transaction belum Tersedia.
                                   </div>
+                                  @include('sweetalert::alert')
 								</tbody>
               
 								</table>

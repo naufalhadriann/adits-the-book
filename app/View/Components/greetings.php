@@ -5,22 +5,24 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Book;
 
-class greetings extends Component
+class navbar extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    public $categories;
+    public $users;
+  
+
     public function __construct()
     {
-        //
+        $this->categories = Category::all(); // Fetch all categories
+        $this->users = User::all(); // Fetch all categories
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
-        return view('components.greetings');
+        return view('components.modal');
     }
 }

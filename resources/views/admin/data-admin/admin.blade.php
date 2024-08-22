@@ -1,20 +1,11 @@
 @extends('admin.layouts.app')
 @section('title', 'Admin')
 @section('content')
-<div class="head-title">
-				<div class="left">
+<div class="mx-4">
 					<h1>Admin</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">Admin</p>
-						</li>
-					</ul>
-				</div>
-			</div>
+         
+				{{ Breadcrumbs::render('admin')}}
+        </div>
             <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
@@ -25,6 +16,14 @@
                      Add Admin
                         </button>
                     <x-modal modalType="admin"></x-modal> 
+                    <div class="  mb-5 inputs">
+					<form method="GET" action="{{route('user.index')}}">
+				<i class="bx bx-search"></i>
+				<input type="text" class="search   " placeholder="Search Admin..." name="query" value="{{ request('query')}}">
+				</form>
+
+				</div>
+                
                         <table class="table table-responsive text-center">
                             <thead>
                               <tr>
@@ -42,7 +41,7 @@
                                     <td>{{ $user->email}}</td>
                                     <td class="fw-bold text-danger">{{ $user->role_label}}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="#" method="POST">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.destroy',$user->id)}}" method="POST">
                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm" 
                                                     data-entity="admin" data-action="edit" data-id="{{$user->id}}">
                                                     <i class='bx bxs-edit'></i>
@@ -56,7 +55,7 @@
                             </tbody>
                             @endforeach
                           </table>  
-                      
+                          @include('sweetalert::alert')
                     </div>
                 </div>
             </div>

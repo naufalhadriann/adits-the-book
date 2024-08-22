@@ -4,20 +4,10 @@
 
 @section('content')
 
-<div class="head-title">
-				<div class="left">
-					<h1>Product</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">Product</p>
-						</li>
-					</ul>
-				</div>
-			</div>
+<div class="mx-5">
+		<h1>Product</h1>		
+{{ Breadcrumbs::render('product') }}
+</div>
 
 	
                     <div class="container">
@@ -25,13 +15,25 @@
                      Add Book
                         </button>
 						<x-modal modalType="book" />
+						<div class="d-flex  ms-5 justify-content-between align-items-center">
 
-                    <div class="card-header ms-5 text-center">
-                        <h2>List of Book</h2>
-                        </div>
+				<span class="font-weight-bold fs-3">List of Book</span>
+				</div>
+
+				<div class="mt-3 ms-5 inputs">
+					<form method="GET" action="{{route('book.index')}}">
+				<i class="bx bx-search"></i>
+				<input type="text" class="search " placeholder="Search Book..." name="query" value="{{ request('query')}}">
+				</form>
+
+				</div>
+			
+
                         <div class="row ms-4 ">
-                        @include('admin.product.book')
-                      
+                        @include('components.admin.book')
+					{{$books->links('pagination::bootstrap-5')}}
+						@include('sweetalert::alert')
+						
                     </div>
     </div>
 

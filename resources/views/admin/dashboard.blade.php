@@ -5,25 +5,18 @@
 
 @section('content')
 <div class="head-title">
-				<div class="left">
-					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">Dashboard</p>
-						</li>
-					</ul>
-				</div>
+	<div class="greetings">
+				<h1>Welcome <span>{{Auth::user()->name}}</span> </h1>
+				<p>Semoga Kabarmu baik baik saja </p>
 			</div>
 
-
+			</div>
+			
+		
 
 			<ul class="box-info">
 				<li>
-					<i class='bx bxs-calendar-check' ></i>
+				<i class='bx bxs-book'></i>
 					<span class="text">
 						<h3>{{ $totalBook}}</h3>
 						<p>Book</p>
@@ -40,8 +33,8 @@
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<h3>0</h3>
+						<p> Transaksi</p>
 					</span>
 				</li>
 

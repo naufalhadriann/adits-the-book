@@ -3,21 +3,12 @@
 @section('title','Category')
 
 @section('content')
-<div class="head-title">
-				<div class="left">
+			<div class="mx-5">
 					<h1>Category</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<p class="active" href="#">Category</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-
+         
+				{{ Breadcrumbs::render('categoryy')}}
+        </div>
+	
             <div class="container">
 			<div class="row">
 			<div class="col-md-12">
@@ -28,7 +19,13 @@
                      Add Category
                         </button>
                         <x-modal modalType="category"></x-modal>
-                    
+                        <div class="  mb-5 inputs">
+					<form method="GET" action="{{route('category.index')}}">
+				<i class="bx bx-search"></i>
+				<input type="text" class="search" placeholder="Search Category..." name="query" value="{{ request('query')}}">
+				</form>
+
+				</div>
                    
                         <table class="table table-responsive  text-center">
                             <thead>
@@ -59,7 +56,7 @@
 								</tbody>
 								</table>
                 {{ $categorys->links('pagination::bootstrap-5') }}
-                                
+                @include('sweetalert::alert') 
 			</div>
 			</div>
 		</div>

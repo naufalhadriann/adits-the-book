@@ -3,9 +3,34 @@ document.addEventListener("DOMContentLoaded", function () {
     var modalTitle = document.getElementById("modalFormLabel");
     var form = document.getElementById("form");
     var submitButton = document.getElementById("submitButton");
-    const userField = document.getElementById("userField");
+    var preview = document.getElementById("preview");
 
-    // Event listener for opening the modal
+    document
+        .getElementById("image")
+        .addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = "none";
+            }
+        });
+
+    function setExistingImage(imageUrl) {
+        if (imageUrl) {
+            preview.src = imageUrl;
+            preview.style.display = "block";
+        } else {
+            preview.src = "";
+            preview.style.display = "none";
+        }
+    }
+
     modal.addEventListener("show.bs.modal", function (event) {
         var button = event.relatedTarget;
         var entity = button.getAttribute("data-entity");
@@ -66,6 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
             : "none";
         document.getElementById("penerbitField").style.display =
             fields.includes("penerbit") ? "block" : "none";
+        document.getElementById("idField").style.display = fields.includes("id")
+            ? "block"
+            : "none";
         document.getElementById("categoryField").style.display =
             fields.includes("category") ? "block" : "none";
         document.getElementById("imageField").style.display = fields.includes(
@@ -73,13 +101,31 @@ document.addEventListener("DOMContentLoaded", function () {
         )
             ? "block"
             : "none";
+        document.getElementById("roleField").style.display = fields.includes(
+            "role"
+        )
+            ? "block"
+            : "none";
+        document.getElementById("publishField").style.display = fields.includes(
+            "publish"
+        )
+            ? "block"
+            : "none";
+        document.getElementById("discountField").style.display =
+            fields.includes("discount") ? "block" : "none";
     }
     // Handle user modal
     function handleUserModal(action, userId) {
         if (action === "edit") {
             modalTitle.textContent = "Edit User";
             submitButton.textContent = "Save Changes";
-            showFields(["name", "email", "password", "password_confirmation"]);
+            showFields([
+                "name",
+                "email",
+                "password",
+                "password_confirmation",
+                "role",
+            ]);
             fetch("/user/" + userId + "/edit")
                 .then((response) => response.json())
                 .then((data) => {
@@ -88,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("password").value = data.password;
                     document.getElementById("password_confirmation").value =
                         data.password_confirmation;
+                    document.getElementById("role").value = data.role;
                     form.setAttribute("action", "/user/" + userId);
                     form.setAttribute("method", "PUT");
                 });
@@ -95,7 +142,13 @@ document.addEventListener("DOMContentLoaded", function () {
             modalTitle.textContent = "Add User";
             submitButton.textContent = "Add";
             clearFormFields();
-            showFields(["name", "email", "password", "password_confirmation"]);
+            showFields([
+                "name",
+                "email",
+                "password",
+                "password_confirmation",
+                "role",
+            ]);
             form.setAttribute("action", "/user");
             form.setAttribute("method", "POST");
         }
@@ -131,28 +184,35 @@ document.addEventListener("DOMContentLoaded", function () {
             modalTitle.textContent = "Edit Book";
             submitButton.textContent = "Save Changes";
             showFields([
+                "id",
                 "title",
                 "description",
                 "author",
                 "penerbit",
                 "price",
                 "stock",
+                "discount",
+                "publish",
                 "category",
                 "image",
             ]);
             fetch("/product/" + bookId + "/edit")
                 .then((response) => response.json())
                 .then((data) => {
+                    document.getElementById("id").value = data.id;
                     document.getElementById("title").value = data.title;
                     document.getElementById("author").value = data.author;
                     document.getElementById("description").value =
                         data.description;
                     document.getElementById("penerbit").value = data.penerbit;
                     document.getElementById("price").value = data.price;
+                    document.getElementById("discount").value = data.discount;
                     document.getElementById("stock").value = data.stock;
+                    document.getElementById("publish").value =
+                        data.publish_date;
                     document.getElementById("category").value =
                         data.category_id;
-                    document.getElementById("image").value = data.image;
+                    setExistingImage("/storage/" + data.image);
                     form.setAttribute("action", "/product/" + bookId);
                     form.setAttribute("method", "PUT");
                 });
@@ -167,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "penerbit",
                 "price",
                 "stock",
+                "publish",
+                "discount",
                 "category",
                 "image",
             ]);
@@ -193,6 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("password").value = data.password;
                     document.getElementById("password_confirmation").value =
                         data.password_confirmation;
+                    document.getElementById("role").value = data.role;
                     form.setAttribute("action", "/admin/" + userId);
                     form.setAttribute("method", "PUT");
                 });
@@ -212,14 +275,17 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("price").value = "";
         document.getElementById("stock").value = "";
         document.getElementById("category").value = "";
+        document.getElementById("publish").value = "";
         document.getElementById("image").value = "";
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
+        document.getElementById("discount").value = "";
         document.getElementById("password").value = "";
         document.getElementById("password_confirmation").value = "";
         document.getElementById("title").value = "";
         document.getElementById("author").value = "";
         document.getElementById("genre").value = "";
+        document.getElementById("role").value = "";
     }
 
     // Handle form submission
@@ -251,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.success) {
                     window.location.reload();
                 } else {
-                    console.log(data.errors);
+                    console.log("ERRRORRRR");
                 }
             });
     });
