@@ -96,20 +96,19 @@ class CartController extends Controller
         $userId = Auth::id();
         $bookId = $request->input('book_id');
     
-        // Find the cart item for the given user and book
         $cartItem = UserBooks::where('user_id', $userId)
                               ->where('book_id', $bookId)
                               ->first();
     
         if ($cartItem) {
-            // Remove the item from the cart
+
             $cartItem->delete();
             $message = 'Item removed from cart.';
         } else {
             $message = 'Item not found in cart.';
         }
     
-        // Redirect back with a success message
+     
         return redirect()->back()->with('success', $message);
     }
     public function removeAll(Request $request)
