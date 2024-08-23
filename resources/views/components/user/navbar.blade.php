@@ -16,7 +16,7 @@
                     
                 <ul class="navbar-nav">
     <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false" >
             Kategori
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -41,9 +41,9 @@
                 </div>
                 <div class="col-lg-6 ">
                   <div class="inputs">
-                    <form class="form-inline my-2 my-lg-0">
+                    <form class="form-inline my-2 my-lg-0" action="{{route('search')}}" method="GET">
                         <i class="bx bx-search"></i>
-                        <input type="text" class="search form-control mr-sm-2" placeholder="Search Book...." aria-label="Search">
+                        <input type="text" class="search form-control mr-sm-2" placeholder="Search Book...." aria-label="Search" name="query" value="{{ request('query')}}">
                     </form>
                     </div>
                 </div>

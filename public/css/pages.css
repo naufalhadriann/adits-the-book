@@ -21,7 +21,6 @@ body {
     margin-left: -1px;
     border-radius: 0.25rem;
 }
-/* Menampilkan submenu saat item diklik */
 .dropdown-menu .submenu {
     display: none;
 }
@@ -69,7 +68,7 @@ body {
     color: var(--maroon);
 }
 .search {
-    background-color: #e9ecef;
+    background-color: white;
     border: none;
     color: #333;
     padding: 0.5rem 1rem;
@@ -187,7 +186,8 @@ body {
 .card-img-top {
     width: 165px;
     height: 300px;
-    padding-left: 20px;
+    margin-left: 3px;
+    padding-left: 22px;
     object-fit: contain;
     margin-top: 10px;
 }
@@ -279,7 +279,7 @@ a {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0px;
+    border-radius: 10px;
 }
 .cart-header-title {
     padding-bottom: 15px;
@@ -400,12 +400,22 @@ a {
 }
 .btn-back-home {
     display: block;
-    width: 100%;
+    width: 20%;
     margin-top: 2rem;
     font-size: 1rem;
     font-weight: bold;
 }
-
+.search-title {
+    margin-top: 70px;
+    font-size: 20px;
+}
+.search-title select {
+    margin-left: 360px;
+    font-size: 20px;
+}
+.filters {
+    margin-top: 45px;
+}
 @media (max-width: 768px) {
     .navbar-nav {
         flex-direction: column;

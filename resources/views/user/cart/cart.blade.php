@@ -23,14 +23,12 @@
   
       
 
-    <!-- "Remove All" button form -->
     <form id="remove-all-form" action="{{ route('cart.removeAll') }}" method="POST" style="display: none;">
         @csrf
         <input type="hidden" id="status-field" name="status">
         <button type="submit" class="btn text-danger fw-bold btn-sm ms-2">Remove All</button>
     </form>
 
-    <!-- Total price display -->
    
 
                 </div>
@@ -121,7 +119,7 @@
                     </form>
                 </div>
             </div>
-            <a href="/pages" class="btn btn-dark "> <- Back to Shop</a>
+            <a href="/" class="btn btn-dark "> <- Back to Shop</a>
 
         </aside>
 

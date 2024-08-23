@@ -16,7 +16,7 @@
             </div>
             <div class="order-item-total">Total: $30.00</div>
         </div>
-        <a href="/pages" class="btn btn-primary btn-back-home">Back to Home</a>
+        <a href="/" class="btn btn-dark  btn-back-home">Back to Home</a>
     </div>
 
 

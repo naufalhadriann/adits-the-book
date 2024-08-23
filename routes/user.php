@@ -21,14 +21,12 @@ Route::middleware('auth')->group(function(){
         Route::get('/', 'viewCart');
         Route::post('/','cart')->name('cart');
     });
-    Route::get('/search',  function(){
-        return view('user.search.search');
-    });
+    Route::get('/search',[UserController::class,'search'])->name('search');
     Route::get('/diskon',[BookController::class,'more'])->name('diskon');
 
     Route::get('/recommend',[BookController::class,'load'])->name('load');
 
-  
+    
     Route::get('/history', function(){
         return view('user.history.history');
     });
