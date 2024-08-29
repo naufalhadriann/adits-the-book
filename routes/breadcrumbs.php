@@ -43,6 +43,14 @@ Breadcrumbs::for('diskon', function(BreadcrumbTrail $trail){
     $trail->parent('home');
     $trail->push('Diskon', route('diskon'));
 });
+Breadcrumbs::for('cart', function(BreadcrumbTrail $trail){
+    $trail->parent('home');
+    $trail->push('Cart', route('cart.view'));
+});
+Breadcrumbs::for('payment', function(BreadcrumbTrail $trail){
+    $trail->parent('cart');
+    $trail->push('Payment', route('payment.index'));
+});
 
 // Home > Diskon > [title]
 Breadcrumbs::for('diskonbook', function ($trail, $book) {

@@ -114,20 +114,13 @@ class CartController extends Controller
     public function removeAll(Request $request)
     {
         $userId = Auth::id();
-        $bookIds = $request->input('book_ids', []);
     
-        if (!empty($bookIds)) {
-            UserBooks::where('user_id', $userId)
-                     ->whereIn('book_id', $bookIds)
-                     ->delete();
-            
-            Alert::toast('Selected items removed from cart', 'success');
-        } else {
-            Alert::toast('No items selected for removal', 'info');
-        }
+        UserBooks::where('user_id', $userId)->delete();
+    
+        Alert::toast('All items removed from cart', 'success');
     
         return redirect()->back();
-    }
+    }    
     private function calculateTotalPrice($cart)
     {
         $totalPrice = 0;

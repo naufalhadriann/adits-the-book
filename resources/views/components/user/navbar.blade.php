@@ -1,6 +1,7 @@
 @php
      $uniqueCategorys = $categorys->unique('name');
      $uniqueCart = $cart->pluck('book_id')->unique('user_id')->count();
+     $groupedCategories = $categorys->groupBy('category_id');
 @endphp
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="logo">
@@ -9,34 +10,37 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNav">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <div class="container">
             <div class="row w-100 align-items-center">
                 <div class="col-lg-3">
-                    
                 <ul class="navbar-nav">
-    <li class="nav-item dropdown">
-        <a class="nav-link" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+    <li class="menu-item">
+        <a href="#" class="menu-link" aria-expanded="false" aria-haspopup="true" id="toggle-menu">
             Kategori
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            @foreach ($uniqueCategorys as $category)
-                <div class="dropdown-submenu">
-                    <a class="dropdown-item" href="#">
-                        {{$category->name}}
-                    </a>
-                    <div class="dropdown-menu">
-                        @foreach ($categorys as $subCategory) 
-                            <a class="dropdown-item" href="#">
-                                {{$subCategory->genre}}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            @endforeach
+        <div class="sub-menu" id="sub-menu" aria-labelledby="toggle-menu">
+            <div class="sub-menu-header">
+                <ul >
+                    @foreach ($uniqueCategorys as $item)
+                        <li class="category"><a href="#">{{$item->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="sub-menu-item">
+                <p>Item 1</p>
+                <p>Item 2</p>
+                <p>Item 3</p>
+                <p>Item 4</p>
+                <p>Item 5</p>
+                <p>Item 6</p>
+                <p>Item 7</p>
+                <p>Item 8</p>
+            </div>
         </div>
     </li>
 </ul>
+
 
                 </div>
                 <div class="col-lg-6 ">

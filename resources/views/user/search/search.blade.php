@@ -4,42 +4,21 @@
                 
  <div class="container">
     <div class="row">
-        <div class="col-md-4 ">
-        <aside class="filters col-lg-6 ">
+        <div class="col-md-4">
+        <aside class="filters col-lg-6 ms-5 ">
             <div class="header-filter mb-4">
             <h3 >Filter</h3>
             </div>
                     <div class="category-filter mb-4">
-                   
-                        <h2>Kategori</h2>
-                        <select class="form-select" name="category">
-                            <option value="">All</option>
-                            <option value="book">Books</option>
-                            <option value="electronics">Electronics</option>
-                        </select>
+                    @include('user.search.partials.filter-category')
                     </div>
 
                     <div class="price-filter mb-4">
-                        <h2>Price</h2>
-                        <input type="number" class="form-control mb-2" name="min_price" placeholder="Min Price">
-                        <input type="number" class="form-control" name="max_price" placeholder="Max Price">
+                    @include('user.search.partials.filter-price')
                     </div>
 
                     <div class="stock-filter mb-4">
-                        <h2>Stock</h2>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="stock" value="in_stock" checked>
-                            <label class="form-check-label">In Stock</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="stock" value="out_of_stock">
-                            <label class="form-check-label">Out of Stock</label>
-                        </div>
-                    </div>
-
-                    <div class="keyword-filter mb-4">
-                        <h2>Keyword</h2>
-                        <input type="text" class="form-control" name="keyword" placeholder="Search by name...">
+                       @include('user.search.partials.filter-stock')
                     </div>
 
                     
@@ -48,12 +27,17 @@
         
         <div class="col-md-8      ">
             <div class="container search-container">
+            @if($books->isEmpty())
+                    <p class="search-title ms-5 ">
+                        Tidak ada hasil ditemukan untuk pencarian: "{{ $query }}"
+                        <div class="lottie  ">
+                        <dotlottie-player src="https://lottie.host/7ac12197-94d8-4d7e-9f10-f8c869f7a6e0/PNpnSSkYSW.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+                        </div>
+                    </p>
+                @else
             <p class="search-title ">
             {{count($books)}} dari {{$totalBooks}} Hasil Pencarian untuk: "{{ $query }}"
-            <!-- <select class="form-select-md " name="sort">
-                            <option value="latest">Latest</option>
-                            <option value="old">Old</option>
-                        </select> -->
+     
         </p>
       
                       
@@ -83,6 +67,7 @@
             {{ $books->links('pagination::bootstrap-5') }}
 
                 </div>
+                @endif
                 </div>
              </div>
          </div>

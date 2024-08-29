@@ -47,6 +47,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-       return redirect('/pages')->with('success','Kamu berhasil Register');
+       return redirect('/')->with('success','Kamu berhasil Register');
     }
 }

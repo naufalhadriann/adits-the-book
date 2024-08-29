@@ -1,21 +1,56 @@
-<div class="modal fade" id="modalTransaction" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+
+<div class="modal fade" id="modalTransaction" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-titlee" id="modalLabel">Transaction Detail</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-                <div class="modal-body">
-                    <h2>Name</h2>
-                    <h2>Book</h2>
-                    <h2>Status</h2>
-                    <h1>Pay Date</h1>
-                  
+            <div class="modal-body ">
+                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                
+                <div class="px-4 py-5">
+
+                    <h5 class="text-uppercase">Haji Thoriq</h5>
+
+
+
+                <h4 class="mt-5 theme-color mb-5">Thanks for your order</h4>
+
+                <span class="theme-color">Payment Summary</span>
+                <div class="mb-3">
+                    <hr class="new1">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <div class="d-flex justify-content-between">
+                    <span class="font-weight-bold">Cerita Laut(Qty:1)</span>
+                    <span class="text-muted">Rp 125.000</span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <small>Shipping</small>
+                    <small>Rp 120.000</small>
+                </div>
+
+
+              
+                
+                <div class="d-flex justify-content-between mt-3">
+                    <span class="font-weight-bold">Total</span>
+                    <span class="font-weight-bold theme-color">Rp  2125.00</span>
+                </div>  
+
+
+
+                <div class="text-center mt-5">
+
+
+                    <button class="btn btn-primary">Track your order</button>
                     
+
+
+                </div>                   
+
                 </div>
+
+
+            </div>
         </div>
     </div>
 </div>

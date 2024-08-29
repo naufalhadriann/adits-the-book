@@ -15,7 +15,7 @@
               
               <a class="col-md-3 mb-5" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
                   <div class="card book-card ">
-                  <span class="badge badge-discount">30%</span>
+                  <span class="badge badge-discount">{{ceil($item->discount)}}%</span>
                       <img src="{{ asset('storage/' . $item->image)}}" class="card-img-top" alt="Book 1">
                       <div class="card-body">
                           <h5 class="book-title">{{$item->title}}</h5>
