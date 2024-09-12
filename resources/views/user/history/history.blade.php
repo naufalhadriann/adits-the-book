@@ -8,6 +8,7 @@
             <div class="order-item-date">Date: August 1, 2024</div>
             <div class="order-item-details">
                 <p><strong>Items:</strong> Book Title 1, Book Title 2</p>
+                <p><strong>Payment:</strong> Gopay</p>
                 <div class="order-item-details-status">
                 <p ><strong>Status:</strong>
                
@@ -19,6 +20,7 @@
         <a href="/" class="btn btn-dark  btn-back-home">Back to Home</a>
     </div>
 
+    
 
 @endsection
         

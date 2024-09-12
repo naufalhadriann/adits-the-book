@@ -19,6 +19,7 @@ class BookController extends Controller
         if ($query) {
             $search = Book::where('title', 'like', "%{$query}%")
             ->orWhere('author', 'like', "%{$query}%")
+            ->orWhere('id','like', "%{$query}%")
             ->orWhereHas('category', function($querys) use ($query) {
                 $querys->where('genre', 'like', "%{$query}%");
             });

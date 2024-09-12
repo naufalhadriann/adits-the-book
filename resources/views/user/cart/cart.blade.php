@@ -7,7 +7,7 @@
 
         @if($cart->isEmpty())
         <div class="lottie-cart">
-            <dotlottie-player src="https://lottie.host/96daed6e-5fa3-4cd7-ba9e-08d430d7c8ac/zbUaNeH1Mp.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            <dotlottie-player src="https://lottie.host/96daed6e-5fa3-4cd7-ba9e-08d430d7c8ac/zbUaNeH1Mp.json" background="transparent" speed="1" style="width: 300px; height: 300px;" autoplay></dotlottie-player>
         </div>
         <div class="cart-empty-title">
             <p>Wah, keranjang kamu kosong</p>
@@ -20,7 +20,7 @@
         <div class="cart-header-title">Cart <span> ({{ $totalBooks }} Product)</span></div>
 
         <aside class="col-md-7">
-            <div class="card mb-4">
+            <div class="card  mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <div class="form-check form-check-inline d-flex justify-content-between align">
                         <label>
@@ -38,9 +38,10 @@
                                     $quantity = $item['quantity'];
                                     $discountedPrice = $book->discounted_price;
                                     $hasDiscount = $book->hasDiscount();
+                                    $discountPercentage = ceil($item['book']->discount);
                                     $totalPrice = $book->price * $quantity;
                                     $totalDiscountedPrice = $discountedPrice * $quantity;
-                                    $discountBadge = $hasDiscount ? '<span class="badge badge-discount-cart">30%</span>' : '';
+                                    $discountBadge = $hasDiscount ? "<span class=\"badge badge-discount-cart\">{$discountPercentage}%</span>" : '';
                                 @endphp
 
                                 <div class="col-md-12 mb-4">
@@ -60,16 +61,19 @@
                                                         data-book-discount="{{ $item['discount'] }}"
                                                         data-book-has-discount="{{ $hasDiscount ? 'true' : 'false' }}">
                                                     <label class="form-check-label" for="book-{{ $bookId }}"></label>
-                                                </div>
+                                            </div>
                                                 <figure class="itemside">
-                                                    <div class="aside">
+                                                    <div class="aside">  
+                                                            <a href="{{route('book.show', urldecode($item['book']->title))}}">                                                  
                                                         <img src="{{ asset('storage/' . $item['book']->image) }}" class="img-sm rounded-2 fit" style="height: 100px;">
                                                         {!! $discountBadge !!}
+                                                        </a>
                                                     </div>
                                                     <figcaption class="info">
-                                                        <a href="#" class="title text-dark">{{ $item['book']->title }}</a>
+                                                        <a href="{{route('book.show', urldecode($item['book']->title))}}" class="title text-dark">{{ $item['book']->title }}</a>
                                                         <p class="text-muted small">{{ $item['book']->author }}</p>
                                                     </figcaption>
+                                                  
                                                 </figure>
                                                 <div class="ms-3 d-flex flex-column justify-content-between" style="flex: 1;">
                                                     <div class="price-wrap text-center mb-2 ms-4">
@@ -116,18 +120,20 @@
                 <div class="card-body">
                     <li class="list-group-item d-flex justify-content-between align-items-center mb-3">
                         <div>
-                            <strong>Total amount</strong>
+                            <strong id="total-books"></strong>
                         </div>
                         <span id="total-price"><strong>Rp </strong></span>
                     </li>
-                    <a class="btn btn-dark btn-square btn-main rounded-3" href="{{ route('payment.index') }}">Proceed to Checkout</a>
-                </div>
-                </form>
-
+                    <form id="checkout-form" action="{{ route('payment.index') }}" method="POST">
+                @csrf
+                <input type="hidden" name="selected_books" id="selected-books">
+                <button type="button" id="proceed-to-checkout" class="btn btn-dark btn-square btn-main rounded-3" disabled>Proceed to Checkout</button>        </form>    
+        </div>
             </div>
         </aside>
         @endif
     </div>
-</div>
+    @include('sweetalert::alert')
+    </div>
 
 @endsection

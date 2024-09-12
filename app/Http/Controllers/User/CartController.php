@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
-use App\Models\Book;
-use App\Models\UserBooks;
+use App\Models\cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,7 +12,7 @@ class CartController extends Controller
     public function viewCart() {
         $userId = Auth::id();
 
-        $cart = UserBooks::where('user_id', $userId)->with('book')->get();
+        $cart = cart::where('user_id', $userId)->with('book')->get();
        
         $totalPrice = $this->calculateTotalPrice($cart);
 
@@ -26,7 +25,6 @@ class CartController extends Controller
             return $item->book->discounted_price * $item->quantity;
         });
         
-    
 
         $totalAmount =$totalValue - $totalDiscountAmount  ;
    
@@ -47,21 +45,19 @@ class CartController extends Controller
         $bookId = $request->input('book_id');
         $quantity = $request->input('quantity', 1);
 
-        $cartItem = userBooks::where('user_id', $userId)->where('book_id', $bookId)->first();
+        $cartItem = cart::where('user_id', $userId)->where('book_id', $bookId)->first();
 
         if ($cartItem) {
             $cartItem->quantity += $quantity;
-            $cartItem->status = 1;
             $cartItem->save();
         } else {
-            UserBooks::create([
+            cart::create([
                 'user_id' => $userId,
                 'book_id' => $bookId,
                 'quantity' => $quantity,
-                'status' => 1,
             ]);
         }
-        Alert::toast('Product Succes add to cart','success');
+        Alert::toast('Buku berhasil masuk ke cart  <a href="'. route('cart.view').'" class="ms-1">Lihat</a>','success');
         return redirect()->back()->with('success', 'Cart updated successfully.');
     }
     public function update(Request $request)
@@ -70,14 +66,13 @@ class CartController extends Controller
         $bookId = $request->input('book_id');
         $quantity = $request->input('quantity', 1);
     
-        $cartItem = UserBooks::where('user_id', $userId)
+        $cartItem = cart::where('user_id', $userId)
                               ->where('book_id', $bookId)
                               ->first();
     
         if ($cartItem) {
             if ($quantity > 0) {
                 $cartItem->quantity = $quantity;
-                $cartItem->status = 1;
                 $cartItem->save();
                 $message = 'Cart updated successfully.';
             } else {
@@ -96,7 +91,7 @@ class CartController extends Controller
         $userId = Auth::id();
         $bookId = $request->input('book_id');
     
-        $cartItem = UserBooks::where('user_id', $userId)
+        $cartItem = cart::where('user_id', $userId)
                               ->where('book_id', $bookId)
                               ->first();
     
@@ -108,19 +103,10 @@ class CartController extends Controller
             $message = 'Item not found in cart.';
         }
     
-     
+        Alert::toast('Buku berhasil dihapus' ,'success');
         return redirect()->back()->with('success', $message);
     }
-    public function removeAll(Request $request)
-    {
-        $userId = Auth::id();
-    
-        UserBooks::where('user_id', $userId)->delete();
-    
-        Alert::toast('All items removed from cart', 'success');
-    
-        return redirect()->back();
-    }    
+  
     private function calculateTotalPrice($cart)
     {
         $totalPrice = 0;

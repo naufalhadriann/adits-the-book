@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\cart;
 use App\Models\Category;
-use App\Models\UserBooks;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +21,7 @@ class navbar extends Component
     {
         $this->categorys = Category::all();
         $userId = Auth::id(); 
-        $this->cart = UserBooks::where('user_id', $userId)->with('book')->get();
+        $this->cart = cart::where('user_id', $userId)->with('book')->get();
 
         // Calculate the total number of unique books in the cart
         $this->totalBooks = $this->cart->pluck('book_id')->unique()->count();

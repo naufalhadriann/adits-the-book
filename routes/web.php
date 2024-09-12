@@ -9,8 +9,9 @@ Route::get('/welcome', [BookController::class, 'index'])->name('book.index');
 Route::get('/error', function () {
     return view('error.error');
 });
-Route::get('/search',[UserController::class,'search'])->name('search');
-
+Route::get('/search', [UserController::class, 'search'])->name('search');
+Route::post('/search', [UserController::class, 'search'])->name('search');
+Route::get('/book/{title}',[BookController::class,'show'])->name('book.show');
 
 
 

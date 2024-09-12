@@ -9,19 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('user_books', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id'); 
-            $table->foreignId('book_id');
-            $table->integer('quantity');
-            $table->string('status')->default('not in cart'); // Set default status
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained('book')->onDelete('cascade');
+            $table->integer('quantity'); 
+            $table->date('purchase_date');
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('user_books');
     }

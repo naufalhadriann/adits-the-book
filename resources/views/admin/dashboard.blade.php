@@ -42,7 +42,7 @@
 				<i class='bx bxs-category'></i>
 					<span class="text">
 						<h3>{{ $totalCategory}}</h3>
-						<p>Category</p>
+						<p>Genre</p>
 					</span>
 				</li>
 

@@ -10,14 +10,15 @@
         <div class="col-md-8 py-4">
             <div class="card border-0">
                 <div class="card-body">
-                    @foreach ($cart as $item)
+                    @foreach ($cartItems as $item)
                         @php
                             $book = $item['book'];
                             $quantity = $item['quantity'];
                             $hasDiscount = $book->hasDiscount();
                             $discountedPrice = $book->discounted_price;
+                            $discountPercentage = ceil($item['book']->discount);
                             $totalDiscounted = $discountedPrice * $quantity;
-                            $discountBadge = $hasDiscount ? '<span class="badge badge-discount-payment">30%</span>' : '';
+                            $discountBadge = $hasDiscount ?"<span class=\"badge badge-discount-payment\">{$discountPercentage}%</span>" : '';
 
                         @endphp
                         <div class="d-flex align-items-start">
@@ -50,7 +51,7 @@
                                     <div class="card border-0 shadow-sm mb-3" id="selectedPaymentMethodCard">
                                         <div class="card-body d-flex align-items-center">
                                             <img id="selectedPaymentMethodImage" src="" alt="" width="50" class="me-3" />
-                                            <h5 id="selectedPaymentMethodName" class="mb-0 ">Select Payment Method</h5>
+                                            <h5 id="selectedPaymentMethodName" class="mb-0 text-center">Select Payment Method</h5>
                                         </div>
                                     </div>
                                 </a>
@@ -87,7 +88,12 @@
                         </li>
                     </ul>
                     <hr>
-                    <a class="btn btn-dark btn-square btn-main rounded-3" data-toggle="modal" data-target="#checkoutModal">Checkout</a>
+                    <form action="{{ route('payment.checkout') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="selected_books" value="{{ json_encode($selectedBooks) }}">
+                        <input type="hidden" name="payment_method" id="paymentMethodInput" value="">
+                        <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
+                    </form>
                 </div>
             </div>
         </aside>

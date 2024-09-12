@@ -19,7 +19,7 @@
             />
             <h5 class="mb-0 ms-1">Dana</h5>
           </label>
-          <input class="form-check-input" type="radio" name="paymentOption" id="danaOption">
+          <input class="form-check-input" type="radio" name="paymentOption" id="danaOption" value="Dana">
         </div>
         
         <hr>
@@ -34,7 +34,7 @@
             />
             <h5 class="mb-0 ms-3">Gopay</h5>
           </label>
-          <input class="form-check-input" type="radio" name="paymentOption" id="gopayOption">
+          <input class="form-check-input" type="radio" name="paymentOption" id="gopayOption" value="Gopay">
         </div>
 
         <hr>
@@ -49,7 +49,7 @@
             />
             <h5 class="mb-0 ms-3">Ovo</h5>
           </label>
-          <input class="form-check-input" type="radio" name="paymentOption" id="ovoOption">
+          <input class="form-check-input" type="radio" name="paymentOption" id="ovoOption" value="Ovo">
         </div>
 
         <hr>
@@ -68,7 +68,7 @@
             />
             <h5 class="mb-0 ms-3">Indomaret</h5>
           </label>
-          <input class="form-check-input" type="radio" name="paymentOption" id="indomaretOption">
+          <input class="form-check-input" type="radio" name="paymentOption" id="indomaretOption" value="Indomaret">
         </div>
 
         <hr>
@@ -182,7 +182,7 @@
             />
             <h5 class="mb-0 ms-3">BNI</h5>
           </label>
-          <input class="form-check-input" type="radio" name="paymentOption" id="bniOption">
+          <input class="form-check-input" type="radio" name="paymentOption" id="bniOption" value="BNI">
         </div>
       </div>
       <div class="modal-footer">

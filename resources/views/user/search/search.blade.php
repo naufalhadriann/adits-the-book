@@ -17,15 +17,13 @@
                     @include('user.search.partials.filter-price')
                     </div>
 
-                    <div class="stock-filter mb-4">
-                       @include('user.search.partials.filter-stock')
-                    </div>
+                
 
                     
                 </aside>
         </div>
         
-        <div class="col-md-8      ">
+        <div class="col-md-8">
             <div class="container search-container">
             @if($books->isEmpty())
                     <p class="search-title ms-5 ">
@@ -35,10 +33,17 @@
                         </div>
                     </p>
                 @else
-            <p class="search-title ">
+                
+            <div class="search-title ">
+           
+                <div class="filter-latest">
+                    @include('user.search.partials.filter-latest')
+                </div>
+                                            
+              
             {{count($books)}} dari {{$totalBooks}} Hasil Pencarian untuk: "{{ $query }}"
      
-        </p>
+        </div>
       
                       
                     </div>
@@ -47,7 +52,7 @@
         @foreach ($books as $item)
             
             <a class="col-md-3 mb-4" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
-                <div class="card book-card">
+                <div class="card book-card border-0">
                     <img src="{{asset('storage/' . $item->image)}}" class="card-img-top" alt="Popular Book 1">
                     <div class="card-body">
                         <h5 class="popular-book-title">{{$item->title}}</h5>

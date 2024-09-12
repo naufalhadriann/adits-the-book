@@ -9,8 +9,6 @@
 
                     <h5 class="text-uppercase">Haji Thoriq</h5>
 
-
-
                 <h4 class="mt-5 theme-color mb-5">Thanks for your order</h4>
 
                 <span class="theme-color">Payment Summary</span>
@@ -19,10 +17,12 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Cerita Laut(Qty:1)</span>
-                    <span class="text-muted">Rp 125.000</span>
+                    <span class="font-weight-bold">Buku Cerita Laut</span>
+                    <br>
+                    <span class="text-muted d-flex justify-content-between">Rp 125.000</span>
                 </div>
-
+               <span class="font-weight-bold">Rp 89.000 x 2</span>
+    <hr>
                 <div class="d-flex justify-content-between">
                     <small>Shipping</small>
                     <small>Rp 120.000</small>

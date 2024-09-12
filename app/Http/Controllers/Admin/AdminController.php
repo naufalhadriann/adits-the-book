@@ -11,9 +11,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $admin = User::where('role',1)->orderBy('id')->paginate(10);
+        $query = $request->input('query');
+        $search = User::query();
+        if ($query) {
+            $search = User::where('name', 'like', "%{$query}%")
+            ->orWhere('id', 'like', "%{$query}%");
+        }
+        $admin = $search->orderBy('id')->where('role',1)->paginate(10);
+            $admin->appends(['query' => $query]);
         return view("admin.data-admin.admin", compact("admin"));
     }
     public function store(Request $request)
