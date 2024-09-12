@@ -23,7 +23,7 @@ $groupedCategories = $categorys->groupBy('name');
                 <ul>
                     @foreach ($uniqueCategorys as $item)
                     <li class="category" data-category-id="{{ $item->id }}">
-                        <a href="{{route('search', request('query'))}}"  class="category-link">{{ $item->name }}</a>
+                        <a href="{{route('search', ['category'=>$item->name])}}"  class="category-link">{{ $item->name }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -32,7 +32,7 @@ $groupedCategories = $categorys->groupBy('name');
                 @foreach ($uniqueCategorys as $item)
                 <div class="category-genres" id="category-genres-{{ $item->id }}" style="display: none;">
                     @foreach ($categorys->where('name',$item->name) as $genre)
-                    <a href="#" name="query" value="{{ request('query') }}" class="d-flex justify-content-between ">{{ $genre->genre }}</a>
+                    <a href="{{route('search', ['category'=>$genre->genre])}}"  class="d-flex justify-content-between ">{{ $genre->genre }}</a>
                     @endforeach
                 </div>
                 @endforeach

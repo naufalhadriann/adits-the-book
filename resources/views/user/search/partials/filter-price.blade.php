@@ -1,4 +1,4 @@
-<form method="POST" action="{{route('search', ['query' => $query , 'min_price'=>$minPrice, 'max_price'=>$maxPrice])}}">
+<form method="POST" action="{{route('search', ['query' => $query , 'min_price'=>$minPrice, 'max_price'=>$maxPrice , 'category'=>$category])}}">
   @csrf
   <h3>Price</h3>
   

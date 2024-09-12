@@ -10,17 +10,19 @@
         Buku
       </button>
     </h2>
+   <form action="{{route('search')}}" method="GET">
    
-    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+   <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
     <ul>
         @foreach ($uniqueCategorys as $category )
         
         <li class="mt-3">
-            <a href="#">{{$category->name}}</a>
+          
+            <a href="{{route('search', ['category' =>$category->name])}}">{{$category->name}}</a>
              <ul class="mt-2">
              @foreach ($categorys->where('name',$category->name) as $genre)
 
-             <li class="mb-2"><a href="#">{{$genre->genre}}</a></li>
+             <li class="mb-2"><a href="{{route('search', ['category'=>$genre->genre])}}">{{$genre->genre}}</a></li>
              @endforeach
                  </ul>
         </li>
@@ -28,5 +30,6 @@
         
     </ul>
   </div>
+  </form>
   
 </div>

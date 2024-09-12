@@ -41,8 +41,13 @@
                 </div>
                                             
               
-            {{count($books)}} dari {{$totalBooks}} Hasil Pencarian untuk: "{{ $query }}"
-     
+            {{count($books)}} dari {{$totalBooks}} Hasil Pencarian untuk:
+            @if($query)
+            "{{ $query }}"
+            @endif
+            @if($category)
+            "{{$category}}"
+            @endif
         </div>
       
                       

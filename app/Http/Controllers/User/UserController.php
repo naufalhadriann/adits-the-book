@@ -20,10 +20,11 @@ class UserController extends Controller
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
         $sort = $request->input('sort');
+        $category = $request->input('category');
         $categorys = Category::get();
-   
-        $search = Book::query();
         
+        $search = Book::query();
+
         if ($query) {
             $search->where(function($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
@@ -42,7 +43,15 @@ class UserController extends Controller
         if ($maxPrice) {
             $search->where('price', '<=', $maxPrice)->orderBy('price','desc');
         }
-    
+        
+        if ($category) {
+            $search->where(function ($query) use ($category) {
+                $query->whereHas('category', function ($q) use ($category) {
+                    $q->where('name', $category)
+                      ->orWhere('genre', $category);
+                });
+            });
+        }
         $totalBooks = $search->count();
     
         switch($sort){
@@ -63,8 +72,8 @@ class UserController extends Controller
             break;
             }
         $books = $search->orderBy('id')->paginate(12);
-        $books->appends(['query' => $query, 'min_price' => $minPrice, 'max_price' => $maxPrice, 'sort'=> $sort]);
-        return view('user.search.search', compact('books', 'query', 'minPrice', 'maxPrice', 'totalBooks','sort' ,'categorys'));
+        $books->appends(['query' => $query, 'min_price' => $minPrice, 'max_price' => $maxPrice, 'sort'=> $sort, 'category'=>$category]);
+        return view('user.search.search', compact('books', 'query', 'minPrice', 'maxPrice', 'totalBooks','sort' ,'categorys','category'));
     }
     
     

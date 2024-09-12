@@ -1,6 +1,6 @@
 
     <label for="filter-latest">Urutkan</label>
-    <form action="{{route('search' ,['query' => $query, 'sort'=>$sort])}}" method="POST">
+    <form action="{{route('search' ,['query' => $query, 'sort'=>$sort ,'category'=>$category])}}" method="POST">
     @csrf
     <select id="filter-latest" class="form-select" name="sort" onchange="this.form.submit()">
         <option value="0">Sesuai</option>
