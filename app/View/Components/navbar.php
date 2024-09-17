@@ -23,7 +23,7 @@ class navbar extends Component
         $userId = Auth::id(); 
         $this->cart = cart::where('user_id', $userId)->with('book')->get();
 
-        // Calculate the total number of unique books in the cart
+        
         $this->totalBooks = $this->cart->pluck('book_id')->unique()->count();
     }
 

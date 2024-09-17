@@ -71,7 +71,7 @@
                                                     </div>
                                                     <figcaption class="info">
                                                         <a href="{{route('book.show', urldecode($item['book']->title))}}" class="title text-dark">{{ $item['book']->title }}</a>
-                                                        <p class="text-muted small">{{ $item['book']->author }}</p>
+                                                        <p class="text-muted small">{{ $book->author }}</p>
                                                     </figcaption>
                                                   
                                                 </figure>

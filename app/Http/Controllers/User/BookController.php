@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\category;
 use App\Models\UserBooks;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,11 @@ class BookController extends Controller
 
     public function show($title){
         $title = urldecode($title);
-
+        $category = category::get();
+        
         $book = Book::where('title', $title)->firstOrFail();
 
-        return view('user.product.product', compact('book'));
+        return view('user.product.product', compact('book','category'));
     }
 
     public function more(Request $request){

@@ -23,7 +23,10 @@ class Order extends Model
         'order_date',
     ];
 
-
+    public function orderItems()
+{
+    return $this->hasMany(OrderItems::class, 'order_id');
+}
     public function user()
     {
         return $this->belongsTo(User::class);

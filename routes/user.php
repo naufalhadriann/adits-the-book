@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,15 +28,17 @@ Route::get('/payment/success', function () {
         Route::get('/', 'viewCart')->name('cart.view');
         Route::post('/','cart')->name('cart');
     });
+
+    Route::get('/history', [HistoryController::class, 'show'])->name('history');
+
     Route::get('/diskon',[BookController::class,'more'])->name('diskon');
     Route::get('/recommend',[BookController::class,'load'])->name('load');
     Route::get('/cart/payment/success', function(){
         return view('user.payment.success');
     });
     Route::get('/filter-price', [UserController::class, 'filterPrice'])->name('filterPrice');
-    Route::get('/history', function(){
-        return view('user.history.history');
-    });
+   
+    
     Route::get('/book', function(){
         return view('user.product.product');
     });

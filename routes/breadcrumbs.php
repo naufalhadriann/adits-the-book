@@ -18,10 +18,7 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Product', route('book.index'));
 });
-Breadcrumbs::for('categoryy', function (BreadcrumbTrail $trail) {
-    $trail->parent('dashboard');
-    $trail->push('Category', route('category.index'));
-});
+
 Breadcrumbs::for('transaction', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Transaction', route('transaction.index'));
@@ -57,7 +54,12 @@ Breadcrumbs::for('diskonbook', function ($trail, $book) {
     $trail->parent('diskon'); 
     $trail->push($book->title, route('book.show', $book->id)); 
 });
+Breadcrumbs::for('category', function ($trail, $category) {
+    $trail->parent('home');
+    $trail->push($category->name, route('search', $category->name));
+});
 Breadcrumbs::for('book', function ($trail, $book) {
     $trail->parent('home'); 
     $trail->push($book->title, route('book.show', $book->id)); 
 });
+

@@ -23,11 +23,18 @@
                 </div>
                <span class="font-weight-bold">Rp 89.000 x 2</span>
     <hr>
+
+    <div class="d-flex justify-content-between">
+                    <small>Total harga (2 buku )</small>
+                    <small>Rp 120.000</small>
+                </div>
+                
                 <div class="d-flex justify-content-between">
-                    <small>Shipping</small>
+                    <small>Discount</small>
                     <small>Rp 120.000</small>
                 </div>
 
+               
 
               
                 

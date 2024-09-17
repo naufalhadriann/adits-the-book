@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderItem extends Model
+class OrderItems extends Model
 {
-    // Define the fillable attributes for mass assignment
+    use HasFactory;
     protected $fillable = ['order_id', 'book_id', 'quantity', 'price'];
 
     /**
@@ -20,8 +21,8 @@ class OrderItem extends Model
     /**
      * Get the book that this order item refers to.
      */
-    public function book()
+    public function book() 
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class, 'book_id');
     }
 }

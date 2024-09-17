@@ -1,5 +1,5 @@
 
-    <label for="filter-latest">Urutkan</label>
+    <label for="filter-latest" class="fs-6 mt-1">Urutkan</label>
     <form action="{{route('search' ,['query' => $query, 'sort'=>$sort ,'category'=>$category])}}" method="POST">
     @csrf
     <select id="filter-latest" class="form-select" name="sort" onchange="this.form.submit()">
