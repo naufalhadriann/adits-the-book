@@ -46,7 +46,7 @@ Breadcrumbs::for('cart', function(BreadcrumbTrail $trail){
 });
 Breadcrumbs::for('payment', function(BreadcrumbTrail $trail){
     $trail->parent('cart');
-    $trail->push('Payment', route('payment.index'));
+    $trail->push('Payment', route('payment.proceed'));
 });
 
 // Home > Diskon > [title]

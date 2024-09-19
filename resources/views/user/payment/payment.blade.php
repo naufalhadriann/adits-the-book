@@ -10,37 +10,29 @@
         <div class="col-md-8 py-4">
             <div class="card border-0">
                 <div class="card-body">
-                    @foreach ($cartItems as $item)
-                        @php
-                            $book = $item['book'];
-                            $quantity = $item['quantity'];
-                            $hasDiscount = $book->hasDiscount();
-                            $discountedPrice = $book->discounted_price;
-                            $discountPercentage = ceil($item['book']->discount);
-                            $totalDiscounted = $discountedPrice * $quantity;
-                            $discountBadge = $hasDiscount ?"<span class=\"badge badge-discount-payment\">{$discountPercentage}%</span>" : '';
-
-                        @endphp
+                    @foreach ($orders as $order)
+                    @foreach ($order->orderItems as $item )
                         <div class="d-flex align-items-start">
                             <figure class="itemside">
                                 <div class="aside">
-                                    <img src="{{ asset('storage/' . $item['book']->image) }}" class="img-sm rounded-2 fit" style="height: 100px;">
-                                    {!! $discountBadge !!}
+                                    <img src="{{ asset('storage/' . $item->book->image) }}" class="img-sm rounded-2 fit" style="height: 100px;">
 
                                 </div>
                                 <figcaption class="info">
-                                    <a href="#" class="title text-dark" data-abc="true">{{ $item['book']->title }}</a>
-                                    <p class="text-muted small">{{ $item['book']->author }}</p>
+                                    <a href="#" class="title text-dark" data-abc="true">{{ $item->book->title }}</a>
+                                    <p class="text-muted small">{{ $item->book->author }}</p>
                                 </figcaption>
                             </figure>
                             <div class="price-payment">
-                                @if ($book->hasDiscount())
-                                    <p>Rp {{ number_format($totalDiscounted, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
+                                @if ($item->book->hasDiscount())
+                                    <p>Rp {{ number_format($totalDiscountedPrice, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
                                 @else
-                                    <p>Rp {{ number_format($item['book']->price, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
+                                    <p>Rp {{ number_format($item->book->price, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
                                 @endif
                             </div>
                         </div>
+                        @endforeach
+
                     @endforeach
                     <div class="methode-pembayaran ms-4 mt-2">
                         Pilih Pembayaran
@@ -91,7 +83,7 @@
                     <hr>
                     <form action="{{ route('payment.checkout') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="selected_books" value="{{ json_encode($selectedBooks) }}">
+                        <input type="hidden" name="selected_books" >
                         <input type="hidden" name="payment_method" id="paymentMethodInput" value="">
                         <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
                     </form>

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,57 +15,67 @@ use Exception;
 
 class PaymentController extends Controller
 {
-    public function index(Request $request)
-    {
-        $userId = Auth::id();
+    public function proceedToCheckout(Request $request){
 
+        $authId = Auth::id();
         $selectedBooks = json_decode($request->input('selected_books'), true);
-      
 
+        $order = Order::create([
+            'user_id' => $authId,
+            'total_amount' => 0,
+            'status' => 1,
+        ]);
+        $totalAmount = 0;
+        foreach ($selectedBooks as $bookData) {
+            $book = Book::find($bookData);
+            if ($book) {
+                $quantity = $bookData['quantity'] ?? 1; 
 
-        $cartItems = Cart::where('user_id', $userId)
-            ->whereIn('book_id', $selectedBooks)
-            ->with('book') 
-            ->get();
+                $price =  $book->discount > 0 ? $book->price - ($book->price *($book->discount / 100)) : $book->price;
 
-     
+                $totalAmount += $price * $quantity;
+    
+                OrderItems::create([
+                    'order_id' => $order->id,
+                    'book_id' => $book->id,
+                    'quantity' => $quantity,
+                    'price' => $price, 
+                ]);
+            }
+        }
+        $order->total_amount = $totalAmount;
+        $order->save();
 
-        $totalPrice = $this->calculateTotalPrice($cartItems);
+       $order =  Cart::where('user_id', $authId)->whereIn('book_id', $selectedBooks)->delete();
 
-        $totalDiscountAmount = $cartItems->sum(function ($item) {
-            return $item->book->getDiscountAmountAttribute() * $item->quantity;
+        $orders = Order::where('user_id',$authId)->where('status',1)->with('orderItems.book')->get();
+        
+        $totalPrice = $orders->sum(function ($order) {
+            return $order->orderItems->sum(function ($item) {
+                return $item->price * $item->quantity;
+            });
+        });
+        $totalDiscountAmount = $orders->sum(function ($order) {
+            return $order->orderItems->sum(function ($item) {
+                return $item->book ? $item->book->getDiscountAmountAttribute() * $item->quantity : 0;
+            });
         });
 
-        $totalDiscountedPrice = $cartItems->sum(function ($item) {
-            return $item->book->discounted_price * $item->quantity;
-        });
-        $totalBooks = $cartItems->pluck('book_id')->unique()->count();
+     $totalDiscountedPrice = $orders->sum(function ($order) {
+    return $order->orderItems->sum(function ($item) {
+        return $item->book ? $item->book->discounted_price * $item->quantity : 0;
+    });
+});
 
-        return view('user.payment.payment', [
-            'selectedBooks' => $selectedBooks,
-            'cartItems' => $cartItems,
-            'totalPrice' => $totalPrice,
-            'totalBooks' => $totalBooks,
-            'totalDiscountAmount' => $totalDiscountAmount,
-            'totalDiscountedPrice' => $totalDiscountedPrice,
+        return view('user.payment.payment',[
+            'orders' => $orders,
+             'totalPrice' => $totalPrice,
+             'totalDiscountAmount' => $totalDiscountAmount,
+             'totalDiscountedPrice' => $totalDiscountedPrice,
         ]);
     }
 
-
-    private function calculateTotalPrice($cartItems)
-    {
-        $totalPrice = 0;
-
-        foreach ($cartItems as $item) {
-            if (isset($item->book->price) && isset($item->quantity)) {
-                $totalPrice += $item->book->price * $item->quantity;
-            }
-        }
-
-        return $totalPrice;
-    }
-
-
-
+   
+    
    
 }

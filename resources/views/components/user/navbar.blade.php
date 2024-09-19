@@ -65,7 +65,7 @@ $groupedCategories = $categorys->groupBy('name');
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('user.edit')}}">Profile</a>
-                            <a class="dropdown-item" href="/history">History</a>
+                            <a class="dropdown-item" href="/history">Pembelian</a>
 
                             @if(Auth::user()->role_label=="Admin")
                             <a class="dropdown-item" href="/dashboard">Dashboard Admin</a>

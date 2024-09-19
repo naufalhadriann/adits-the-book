@@ -1,12 +1,12 @@
 @extends('user.layouts.app')
 @section('content')
 
-<h2 class="text-center mt-3">Riwayat Transaksi</h2>
+<h2 class="text-center mt-3">Riwayat Pembelian</h2>
 <div class="container section-container-history">
     <div class="history-filter">
 <form class=" mb-4" role="search">
 <i class="bx bx-search"></i>
-      <input class="search-history form-control rounded-3 " type="search" placeholder="Cari Transaksimu.." aria-label="Search">
+      <input class="search-history form-control rounded-3 " type="search" placeholder="Cari Pembelianmu.." aria-label="Search">
     </form>
 
     <div class="sort-history">
@@ -31,7 +31,7 @@
 
     </div>
     @if($orders->isEmpty())
-    <h5 class="d-flex justify-content-center">Maaf, kami tidak dapat menemukan daftar riwayat transaksi </h5>
+    <h5 class="d-flex justify-content-center">Maaf, kami tidak dapat menemukan daftar riwayat pembelian </h5>
     <dotlottie-player src="https://lottie.host/7fabf068-60c1-4747-8241-7d65222d3590/YHJ0zGvIHG.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin-left:300px;" loop autoplay></dotlottie-player>
 
     @else
@@ -39,7 +39,15 @@
     <div class="card history-card mb-4">
 
         <div class="history-card-header ms-3 mt-2">
-            <p>{{ $order->created_at->format('d F Y') }} <span class="badge text-bg-success mt-2">Selesai</span></p>
+            <p>{{ $order->created_at->format('d F Y') }}  
+                @if($order->status == 1)
+            <span class="text-secondary fw-bold mt-2">Pending</span></p>
+            @elseif($order->status == 2)
+            <span class="  text-success fw-bold mt-2">Selesai</span></p>
+            @elseif($order->status == 3)
+            <span class=" text-danger fw-bold mt-2">Failed</span></p>
+
+            @endif
         </div>
         @foreach($order->orderItems as $item)
             <div class="d-flex align-items-start">
@@ -50,18 +58,18 @@
                                 <figcaption class="info">
                                     <a href="#" class="title text-dark" data-abc="true">{{$item->book->title}}</a>
                                     <p class="text-muted small">{{$item->book->author}}</p>
-                                    <p>Rp {{number_format($item->book->price,2 ,'.','',)}} x {{$item->quantity}}</p>
+                                    <p>Rp {{number_format($item->book->price,0 ,'','.')}} x {{$item->quantity}}</p>
                                 </figcaption>
                             </figure>
                             </div>
                             @endforeach
-                           
+
                             
                             
                           <div class="total py-4 d-flex align-items-start1">
                             <div class="total-history ">
                             <h6 class="text-secondary ms-4">Total Transaksi</h6>
-                            <h6 class="fw-bold ms-4">Rp 120.00</h6>
+                            <h6 class="fw-bold ms-4">Rp {{number_format($order->total_amount,0 ,'','.')}}</h6>
                             </div>
 
                             <div class="total-button">

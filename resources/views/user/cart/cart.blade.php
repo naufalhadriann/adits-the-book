@@ -124,10 +124,11 @@
                         </div>
                         <span id="total-price"><strong>Rp </strong></span>
                     </li>
-                    <form id="checkout-form" action="{{ route('payment.index') }}" method="POST">
+                    <form id="checkout-form" action="{{ route('payment.proceed') }}" method="POST">
                 @csrf
                 <input type="hidden" name="selected_books" id="selected-books">
-                <button type="button" id="proceed-to-checkout" class="btn btn-dark btn-square btn-main rounded-3" disabled>Proceed to Checkout</button>        </form>    
+                <button type="button" id="proceed-to-checkout" class="btn btn-dark btn-square btn-main rounded-3" disabled>Proceed to Checkout</button>    
+                </form>    
         </div>
             </div>
         </aside>

@@ -11,10 +11,9 @@ use App\Http\Controllers\User\ProfileeController;
 use App\Http\Controllers\User\UserProfilleController;
 
 Route::middleware('auth')->group(function(){
-Route::post('/cart/payment', [PaymentController::class, 'index'])->name('payment.index');
+Route::post('/cart/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
 Route::post('/payment/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
-    
-   
+Route::post('/update-order-status', [PaymentController::class, 'updateOrderStatus'])->name('order.update');   
 
 Route::get('/payment/success', function () {
     return view('user.payment.success');

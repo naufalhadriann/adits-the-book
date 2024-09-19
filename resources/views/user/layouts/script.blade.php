@@ -182,9 +182,9 @@ document.querySelectorAll('.category').forEach(item => {
         checkbox.addEventListener('change', updateCheckoutButtonState);
     });
 
-    document.getElementById('proceed-to-checkout').addEventListener('click', function() {
-        submitCheckoutForm();
-    });
+    document.getElementById('proceed-to-checkout').onclick = function() {
+    submitCheckoutForm();
+};
 
     updateCheckoutButtonState();
 

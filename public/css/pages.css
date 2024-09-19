@@ -473,12 +473,7 @@ a {
 .date-history::placeholder {
     color: transparent; /* Hide placeholder text */
 }
-.history-card-header .badge {
-    position: absolute;
-    font-size: 10px;
-    border-radius: 5px;
-    right: 81%;
-}
+
 .total-button {
     margin-left: 60%;
 }

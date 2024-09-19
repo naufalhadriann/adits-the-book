@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 mt-3">
-            <img src="{{asset('images/promo2.png')}}" alt="Image beside container" class="img-fluid">
+            <img src="{{asset('images/Promo3.png')}}" alt="Image beside container" class="img-fluid">
         </div>
         
         <div class="col-md-8  ">

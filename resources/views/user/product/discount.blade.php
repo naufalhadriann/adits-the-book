@@ -1,6 +1,6 @@
 
 
-<h2 class="section-title">Diskon HUT RI </h2>
+<h2 class="section-title">Karnaval Buku Seru </h2>
 <?php
     $currentUrl = $_SERVER['REQUEST_URI'];
     ?>
