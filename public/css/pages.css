@@ -556,6 +556,9 @@ a {
     cursor: pointer;
     margin-top: 20px;
 }
+.button-pending {
+    width: 150px;
+}
 .crumbs {
     padding-top: 40px;
     padding-left: 15px;

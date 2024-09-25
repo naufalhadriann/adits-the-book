@@ -11,7 +11,8 @@ use App\Http\Controllers\User\ProfileeController;
 use App\Http\Controllers\User\UserProfilleController;
 
 Route::middleware('auth')->group(function(){
-Route::post('/cart/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
+Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
+Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
 Route::post('/payment/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
 Route::post('/update-order-status', [PaymentController::class, 'updateOrderStatus'])->name('order.update');   
 
@@ -19,7 +20,7 @@ Route::get('/payment/success', function () {
     return view('user.payment.success');
 })->name('user.payment.success');
    
-
+    //cart  
     Route::prefix('cart')->controller(CartController::class)->group(function (){
         Route::post('/remove','remove')->name('cart.remove');
         Route::post('/select-all','selectAll')->name('cart.selectAll');

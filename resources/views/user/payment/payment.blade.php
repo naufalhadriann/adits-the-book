@@ -8,12 +8,18 @@
     
     <div class="row">
         <div class="col-md-8 py-4">
+        <div class="payment-timer ms-5">
+      
+        <h5>Waktu untuk membayar: <span id="countdown"></span> detik</h5>
+    </div>
             <div class="card border-0">
-                <div class="card-body">
+            <div class="card-body">
+          
                     @foreach ($orders as $order)
                     @foreach ($order->orderItems as $item )
                         <div class="d-flex align-items-start">
                             <figure class="itemside">
+                            
                                 <div class="aside">
                                     <img src="{{ asset('storage/' . $item->book->image) }}" class="img-sm rounded-2 fit" style="height: 100px;">
 

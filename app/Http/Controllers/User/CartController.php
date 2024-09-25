@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -13,9 +14,8 @@ class CartController extends Controller
         $userId = Auth::id();
 
         $cart = cart::where('user_id', $userId)->with('book')->get();
-       
         $totalPrice = $this->calculateTotalPrice($cart);
-
+      
         $totalValue = $this->calculateTotalValue($cart);
 
         $totalDiscountAmount = $cart->sum(function ($item) {
@@ -26,7 +26,7 @@ class CartController extends Controller
         });
         
 
-        $totalAmount =$totalValue - $totalDiscountAmount  ;
+        $totalAmount = $totalValue - $totalDiscountAmount  ;
    
         $totalBooks = $cart->pluck('book_id')->unique()->count();
 

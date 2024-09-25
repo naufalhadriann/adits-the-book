@@ -73,10 +73,26 @@
                             </div>
 
                             <div class="total-button">
-                            <button type="button" class="btn btn-sm "  data-bs-toggle="modal" data-bs-target="#modalTransaction">Lihat detail</button>
+                            @if($order->status == 1)
                            
+                              <a href="{{route('payment.page', $order->id )}}" class="button-pending btn btn-danger ">Bayar</a>
+                            
 
-                            <button type="button" class="btn btn-dark  ">Beli lagi</button>
+                                @elseif($order->status == 2)
+                                <button type="button" class="btn btn-sm "  data-bs-toggle="modal" data-bs-target="#modalTransaction">Lihat detail</button>
+                                  <button type="button" class="btn btn-dark  ">Beli lagi</button>
+
+                                @elseif($order->status == 3)
+                                <form action="{{route('cart')}}" method="POST">
+                                    @csrf
+                                  <input type="hidden" name="action" value="add">
+
+                                <input type="hidden" name="book_id" value="{{ $order->id }}">
+    
+                                <button type="submit" class="btn btn-success  ">Beli</button>
+                                 </form>
+
+                            @endif
                             </div>
                             </div>
                           

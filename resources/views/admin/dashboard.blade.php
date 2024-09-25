@@ -33,7 +33,7 @@
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>0</h3>
+						<h3>Rp {{ $formattedTransaction}}</h3>
 						<p> Transaksi</p>
 					</span>
 				</li>
@@ -53,7 +53,13 @@
 						<p>Admin</p>
 					</span>
 				</li>
-
+				<li>
+				<i class='bx bx-receipt'></i>
+					<span class="text">
+						<h3>{{ $totalOrder }}</h3>
+						<p>Order</p>
+					</span>
+				</li>
 			</ul>
            
 				</div>
