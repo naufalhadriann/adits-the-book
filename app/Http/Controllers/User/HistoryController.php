@@ -16,25 +16,35 @@ class HistoryController extends Controller
       $ordersQuery = Order::where('user_id',$userId)->with('orderItems.book');
 
       $sort = $request->input('sort');
+      $search = $request->input('search');
 
+      if($search){
+        $ordersQuery->where( function($s) use ($search){
+            $s->where('id', 'like', "%{$search}%")
+            ->orWhereHas('orderItems.book', function($q) use($search){
+                $q->where('title', 'like', "{$search}");
+            });
+        });
+      }
 
       switch($sort){
         case 1 :
-            $ordersQuery->orderBy('created_at', 'asc');
+            $ordersQuery->orderBy('created_at', 'desc');
             break;
         case 2 :
-            $ordersQuery->order('created_at', 'desc');
+            $ordersQuery->orderBy('created_at', 'asc');
             break;
         case 3 :
-            $ordersQuery->orderBy('price','asc');
+            $ordersQuery->orderBy('total_amount','desc');
             break;
         case 4 :
-            $ordersQuery->orderBy('price', 'desc');
+            $ordersQuery->orderBy('total_amount', 'asc');
             break;
         default:
         break;
       }
-      $orders = $ordersQuery->get();
-        return view ('user.history.history', compact('orders','sort'));
+      $orders = $ordersQuery->orderBy('id')->paginate(5);
+      $orders->appends(['sort'=>$sort, 'search'=>$search]);
+        return view ('user.history.history', compact('orders','sort','search'));
     }
 }

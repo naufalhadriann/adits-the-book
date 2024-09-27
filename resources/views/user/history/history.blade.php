@@ -6,12 +6,12 @@
     <div class="history-filter">
 <form class=" mb-4" role="search">
 <i class="bx bx-search"></i>
-      <input class="search-history form-control rounded-3 " type="search" placeholder="Cari Pembelianmu.." aria-label="Search">
+      <input class="search-history form-control rounded-3 " type="search" placeholder="Cari Pembelianmu.." aria-label="Search" name="search" value="{{ request('search')}}">
     </form>
 
     <div class="sort-history">
-         <form action="{{route('history', ['sort'=>$sort])}}">
-                <select class="form-select rounded-3 " name="short" onchange="this.form.submit()">
+         <form action="{{ route('history', ['sort'=>$sort])}}">
+                <select class="form-select rounded-3 " name="sort" onchange="this.form.submit()">
                 <option value="" >Sesuai</option>
                 <option value="1" {{ request('sort') == '1' ? 'selected' : '' }}>Terbaru</option>
                 <option value="2" {{ request('sort') == '2' ? 'selected' : ''}}>Terlama</option>
@@ -104,7 +104,7 @@
                 
                     
                 
-          
+          {{{$orders->links('pagination::bootstrap-5')}}}
     </div>
 
     
