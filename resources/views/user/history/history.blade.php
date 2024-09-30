@@ -29,7 +29,19 @@
       </form>
     </div>
 
+   
+
     </div>
+
+    <div class="status d-flex justify-content-around py-2">
+      <h5 >Status</h5>
+      <button class="btn btn-light">Success</button>
+      <button class="btn btn-secondary">Pending</button>
+      <button class="btn btn-danger">Failed</button>
+      
+    </div>
+
+
     @if($orders->isEmpty())
     <h5 class="d-flex justify-content-center">Maaf, kami tidak dapat menemukan daftar riwayat pembelian </h5>
     <dotlottie-player src="https://lottie.host/7fabf068-60c1-4747-8241-7d65222d3590/YHJ0zGvIHG.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin-left:300px;" loop autoplay></dotlottie-player>

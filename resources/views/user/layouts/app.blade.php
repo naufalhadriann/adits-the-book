@@ -9,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/pages.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <x-navbar></x-navbar>

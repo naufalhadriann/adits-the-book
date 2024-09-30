@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Book;
 
-class navbar extends Component
+class greetings extends Component
 {
     public $categories;
     public $users;

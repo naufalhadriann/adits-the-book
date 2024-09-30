@@ -93,9 +93,11 @@
                         <input type="hidden" name="payment_method" id="paymentMethodInput" value="">
                         <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
                     </form>
+                    <input type="hidden" id="order-id" value="{{ $orders->first()->id }}">
                 </div>
             </div>
         </aside>
     </div>
 </div>
+@include('user.payment.countdown')
 @endsection
