@@ -20,7 +20,6 @@ class PaymentController extends Controller
         $authId = Auth::id();
         $selectedBooks = json_decode($request->input('selected_books'), true);
         
-        // Create a new order
         $order = Order::create([
             'user_id' => $authId,
             'total_amount' => 0,
@@ -34,11 +33,10 @@ class PaymentController extends Controller
             if ($book) {
                 $quantity = $bookData['quantity'] ?? 1; 
     
-                // Calculate price considering discount
+                
                 $price = $book->discount > 0 ? $book->price - ($book->price * ($book->discount / 100)) : $book->price;
                 $totalAmount += $price * $quantity;
     
-                // Create order items
                 OrderItems::create([
                     'order_id' => $order->id,
                     'book_id' => $book->id,
@@ -102,11 +100,26 @@ class PaymentController extends Controller
         $order = Order::where('id', $id)->where('user_id', $authId)->first();
 
         if($order){
-            $order->status =3;
+            $order->status = 3;
             $order->save();
 
-            return redirect()->route('user.payment.failed' ,['id' => $id] );
         }
+        return redirect()->route('user.payment.failed');
+    }
+    public function cancelOrder($id){
+        $authId = Auth::id();
+
+        $order = Order::where('id', $id)->where('user_id', $authId)->first();
+        if($order){
+            $order->status = 3;
+            $order->save();
+        }
+       
+
+        return redirect()->back()->with('message', 'berhasil batalkan order');
     }
    
+    public function checkout(){
+        $authId = Auth::id();
+    }
 } 

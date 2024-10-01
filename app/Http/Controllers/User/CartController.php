@@ -42,9 +42,10 @@ class CartController extends Controller
     }
     public function cart(Request $request) {
         $userId = Auth::id();
-        $bookId = $request->input('book_id');
+        $bookIds = $request->input('book_id');
         $quantity = $request->input('quantity', 1);
-
+        
+        foreach($bookIds as $bookId){
         $cartItem = cart::where('user_id', $userId)->where('book_id', $bookId)->first();
 
         if ($cartItem) {
@@ -56,6 +57,7 @@ class CartController extends Controller
                 'book_id' => $bookId,
                 'quantity' => $quantity,
             ]);
+        }
         }
         Alert::toast('Buku berhasil masuk ke cart  <a href="'. route('cart.view').'" class="ms-1">Lihat</a>','success');
         return redirect()->back()->with('success', 'Cart updated successfully.');

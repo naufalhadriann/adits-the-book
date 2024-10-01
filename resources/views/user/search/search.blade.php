@@ -39,7 +39,7 @@
                 <div class="filter-latest">
                     @include('user.search.partials.filter-latest')
                 </div>
-                                            
+                                        
               
             {{count($books)}} dari {{$totalBooks}} Hasil Pencarian untuk:
             @if($query)

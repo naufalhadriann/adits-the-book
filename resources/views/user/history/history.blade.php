@@ -3,48 +3,34 @@
 
 <h2 class="text-center mt-3">Riwayat Pembelian</h2>
 <div class="container section-container-history">
-    <div class="history-filter">
-<form class=" mb-4" role="search">
-<i class="bx bx-search"></i>
-      <input class="search-history form-control rounded-3 " type="search" placeholder="Cari Pembelianmu.." aria-label="Search" name="search" value="{{ request('search')}}">
-    </form>
-
-    <div class="sort-history">
-         <form action="{{ route('history', ['sort'=>$sort])}}">
-                <select class="form-select rounded-3 " name="sort" onchange="this.form.submit()">
-                <option value="" >Sesuai</option>
-                <option value="1" {{ request('sort') == '1' ? 'selected' : '' }}>Terbaru</option>
-                <option value="2" {{ request('sort') == '2' ? 'selected' : ''}}>Terlama</option>
-                <option value="3" {{ request('sort') == '3' ? 'selected' : ''}}>Harga Tertinggi</option>
-                <option value="4" {{ request('sort') == '4' ? 'selected' : ''}}>Harga Terendah</option>
-               
-                </select>
-         </form>
-     </div>
-
-
-    <div class="date-history">
-      <form>
-         <input type="date" id="datepicker" class="form-control rounded-3"  placeholder="KOCAOK"/>
-      </form>
-    </div>
 
    
+    <div class="history-filter">
 
+        @include('user.history.partials.search')
+
+      <div class="sort-history">
+
+        @include('user.history.partials.filter-latest')
+
+      </div>
+
+      <div class="date-history">
+
+        @include('user.history.partials.filter-date')
+
+      </div>
+
+       </div>
+    
+    <div class="status mb-3">
+        @include('user.history.partials.status')
     </div>
-
-    <div class="status d-flex justify-content-around py-2">
-      <h5 >Status</h5>
-      <button class="btn btn-light">Success</button>
-      <button class="btn btn-secondary">Pending</button>
-      <button class="btn btn-danger">Failed</button>
-      
-    </div>
-
 
     @if($orders->isEmpty())
-    <h5 class="d-flex justify-content-center">Maaf, kami tidak dapat menemukan daftar riwayat pembelian </h5>
-    <dotlottie-player src="https://lottie.host/7fabf068-60c1-4747-8241-7d65222d3590/YHJ0zGvIHG.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin-left:300px;" loop autoplay></dotlottie-player>
+        <h5 class="d-flex justify-content-center mt-4">Maaf, kami tidak dapat menemukan daftar riwayat pembelian </h5>
+      
+        <dotlottie-player src="https://lottie.host/7fabf068-60c1-4747-8241-7d65222d3590/YHJ0zGvIHG.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin-left:300px;" loop autoplay></dotlottie-player>
 
     @else
     @foreach($orders  as $order)
@@ -78,7 +64,7 @@
 
                             
                             
-                          <div class="total py-4 d-flex align-items-start1">
+                          <div class="total py-4 d-flex align-items-start">
                             <div class="total-history ">
                             <h6 class="text-secondary ms-4">Total Transaksi</h6>
                             <h6 class="fw-bold ms-4">Rp {{number_format($order->total_amount,0 ,'','.')}}</h6>
@@ -86,8 +72,8 @@
 
                             <div class="total-button">
                             @if($order->status == 1)
-                           
-                              <a href="{{route('payment.page', $order->id )}}" class="button-pending btn btn-danger ">Bayar</a>
+                            <a class="btn btn-danger" href="{{route('order.canceled', $order->id)}}" data-confirm-delete="true">Batalkan</a>
+                              <a href="{{route('payment.page', $order->id )}}" class=" btn btn-dark  ">Bayar</a>
                             
 
                                 @elseif($order->status == 2)
@@ -97,11 +83,13 @@
                                 @elseif($order->status == 3)
                                 <form action="{{route('cart')}}" method="POST">
                                     @csrf
-                                  <input type="hidden" name="action" value="add">
+                                    @foreach($order->orderItems as $item)
 
-                                <input type="hidden" name="book_id" value="{{ $order->id }}">
-    
-                                <button type="submit" class="btn btn-success  ">Beli</button>
+                                    <input type="hidden" name="action" value="add">
+                                    <input type="hidden" name="book_id[]" value="{{ $item->book->id }}">
+                                    @endforeach
+
+                                <button type="submit" class="button-pending btn btn-dark  ">Beli lagi</button>
                                  </form>
 
                             @endif

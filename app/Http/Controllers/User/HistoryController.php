@@ -14,9 +14,14 @@ class HistoryController extends Controller
       $userId = Auth::id();
 
       $ordersQuery = Order::where('user_id',$userId)->with('orderItems.book');
-
+      $title = 'Batalkan Order ';
+      $text = 'Kamu yakin mau batalkan order an?';
+      confirmDelete($title,$text);
       $sort = $request->input('sort');
+
       $search = $request->input('search');
+
+      $status = $request->input('status');
 
       if($search){
         $ordersQuery->where( function($s) use ($search){
@@ -25,6 +30,14 @@ class HistoryController extends Controller
                 $q->where('title', 'like', "{$search}");
             });
         });
+      }
+
+      if($status === 'success'){
+        $ordersQuery->where('status', 2);
+      }elseif($status === 'pending'){
+        $ordersQuery->where('status', 1);
+      }elseif($status === 'failed'){
+        $ordersQuery->where('status', 3);
       }
 
       switch($sort){
@@ -44,7 +57,7 @@ class HistoryController extends Controller
         break;
       }
       $orders = $ordersQuery->orderBy('id')->paginate(5);
-      $orders->appends(['sort'=>$sort, 'search'=>$search]);
-        return view ('user.history.history', compact('orders','sort','search'));
+      $orders->appends(['sort'=>$sort, 'search'=>$search, 'status'=>$status]);
+        return view ('user.history.history', compact('orders','sort','search','status'));
     }
 }

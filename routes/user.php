@@ -9,23 +9,22 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileeController;
 use App\Http\Controllers\User\UserProfilleController;
-use Faker\Provider\ar_EG\Payment;
+
 
 Route::middleware('auth')->group(function(){
 Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
 Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
 Route::post('/payment/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
 Route::post('/update-order-status', [PaymentController::class, 'updateOrderStatus'])->name('order.update');   
-
+Route::get('/payment/failed/{id}',[PaymentController::class, 'expireOrder']);
+Route::get('/order-canceled/{id}', [PaymentController::class, 'cancelOrder'])->name('order.canceled');
 Route::get('/success', function () {
     return view('user.payment.success');
 })->name('user.payment.success');
 
-Route::get('/faileed', function() {
+Route::get('/failed', function() {
     return view('user.payment.failed');
-})->name('user.payment.failede');
-
-Route::get('/payment/failed/{orderId}', [PaymentController::class, 'expireOrder'])->name('user.payment.failed');
+})->name('user.payment.failed');
     //cart  
     Route::prefix('cart')->controller(CartController::class)->group(function (){
         Route::post('/remove','remove')->name('cart.remove');

@@ -10,8 +10,8 @@
         <div class="col-md-8 py-4">
         <div class="payment-timer ms-5">
       
-        <h5>Waktu untuk membayar: <span id="countdown"></span> detik</h5>
-    </div>
+        <h5>Waktu untuk membayar: <span id="countdown"></span></h5>
+        </div>
             <div class="card border-0">
             <div class="card-body">
           
@@ -31,7 +31,7 @@
                             </figure>
                             <div class="price-payment">
                                 @if ($item->book->hasDiscount())
-                                    <p>Rp {{ number_format($totalDiscountedPrice, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
+                                    <p>Rp {{ number_format($item->book->discountedPrice, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
                                 @else
                                     <p>Rp {{ number_format($item->book->price, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
                                 @endif
@@ -94,7 +94,7 @@
                         <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
                     </form>
                     <input type="hidden" id="order-id" value="{{ $orders->first()->id }}">
-                </div>
+                    </div>
             </div>
         </aside>
     </div>

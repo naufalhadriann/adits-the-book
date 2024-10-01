@@ -431,7 +431,7 @@ a {
 
 .history-filter {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
 }
 .search-history {
     text-indent: 20px;
@@ -477,9 +477,7 @@ a {
 .total-button {
     margin-left: 60%;
 }
-.total {
-    border-top: 1px solid grey;
-}
+
 .btn-back-home {
     display: block;
     width: 20%;
@@ -555,6 +553,23 @@ a {
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
+}
+.status {
+    display: flex;
+    gap: 10px;
+}
+.status .btn {
+    background-color: transparent;
+    color: black;
+    margin-left: 10px;
+}
+.status .btn:hover {
+    background-color: #000;
+    color: white;
+}
+.status .btn.active {
+    background-color: black;
+    color: white;
 }
 .button-pending {
     width: 150px;

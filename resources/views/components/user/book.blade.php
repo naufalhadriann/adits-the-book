@@ -87,7 +87,7 @@
           </div>
           @include('sweetalert::alert')
             <input type="hidden" name="action" value="add">
-            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <input type="hidden" name="book_id[]" value="{{ $book->id }}">
     
             <button type="submit" class="btn btn-primary">Add to Cart</button>
         </form>

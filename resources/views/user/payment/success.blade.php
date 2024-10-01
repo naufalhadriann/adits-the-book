@@ -1,13 +1,16 @@
 <html>
   <head>
-   
+  <title>@yield('title','Adits the Book')</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="icon" type="image/jpg" href="{{asset('images/logo2.png')}}">
+
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   </head>
     <style>
       body {
         text-align: center;
-        padding: 40px 0;
+        padding: 20px 0;
       }
         h1 {
           color: black;
@@ -30,7 +33,7 @@
       }
       .card {
         background: white;
-        padding: 60px;
+        padding: 50px;
         border-radius: 4px;
         display: inline-block;
         margin: 0 auto;
