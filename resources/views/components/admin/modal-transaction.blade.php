@@ -7,7 +7,7 @@
                 
                 <div class="px-4 py-5">
 
-                    <h5 class="text-uppercase">Haji Thoriq</h5>
+                    <h5 class="text-uppercase" id="order-name">{{$transaction['order']->user->name}}</h5>
 
                 <h4 class="mt-5 theme-color mb-5">Thanks for your order</h4>
 
@@ -15,13 +15,13 @@
                 <div class="mb-3">
                     <hr class="new1">
                 </div>
-
+                
                 <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Buku Cerita Laut</span>
+                    <span class="font-weight-bold" id="book-title">Cerita Laut</span>
                     <br>
-                    <span class="text-muted d-flex justify-content-between">Rp 125.000</span>
+                    <span class="text-muted d-flex justify-content-between">123</span>
                 </div>
-               <span class="font-weight-bold">Rp 89.000 x 2</span>
+               <span class="font-weight-bold" id="book-price">Rp 120.000 x <span id="book-quantity">1 </span></span>
     <hr>
 
     <div class="d-flex justify-content-between">
@@ -40,7 +40,7 @@
                 
                 <div class="d-flex justify-content-between mt-3">
                     <span class="font-weight-bold">Total</span>
-                    <span class="font-weight-bold theme-color">Rp  2125.00</span>
+                    <span class="font-weight-bold theme-color">Rp  {{number_format($transaction->amount,0 ,'','.')}}</span>
                 </div>  
 
 

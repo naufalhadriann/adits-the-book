@@ -1,4 +1,4 @@
-         <form action="{{ route('history', ['sort'=>$sort])}}">
+         <form action="{{ route('history', ['sort'=>$sort, 'date'=>$date])}}" >
                 <select class="form-select rounded-3 " name="sort" onchange="this.form.submit()">
                 <option value="" >Sesuai</option>
                 <option value="1" {{ request('sort') == '1' ? 'selected' : '' }}>Terbaru</option>

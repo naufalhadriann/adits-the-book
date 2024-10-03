@@ -10,7 +10,7 @@
     <style>
       body {
         text-align: center;
-        padding: 20px 0;
+       
       }
         h1 {
           color: black;
@@ -18,6 +18,11 @@
           font-weight: 900;
           font-size: 40px;
           margin-bottom: 10px;
+        }
+        h2{
+          color: #404F5E;
+          font-size:25px;
+          margin-bottom: 15px;
         }
         p {
           color: #404F5E;
@@ -42,10 +47,13 @@
     <body>
       <div class="card border-0">
     
-      <dotlottie-player src="https://lottie.host/60cd800c-937f-4b72-9c9c-9eb9f06f8403/0OwvlHXHYl.json" background="transparent" speed="1" style="width: 450px; height: 400px;" loop autoplay></dotlottie-player>
+      <dotlottie-player src="https://lottie.host/60cd800c-937f-4b72-9c9c-9eb9f06f8403/0OwvlHXHYl.json" background="transparent" speed="1" style="width: 450px; height: 300px;" loop autoplay></dotlottie-player>
 
-        <h1>Payment Success</h1> 
-        <p>We received your purchase request<br/> your order id</p>
+        <h2>Payment Success!</h2> 
+      
+        <h1>Rp {{$transaction->amount}}</h1> 
+        
+        <p>We received your purchase request</p>
         <button type="button" class="btn btn-dark mt-3">Back</button>
           </div>
         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 

@@ -9,8 +9,11 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $hidden = [
-        "",
-    ] ;
-    protected $fillable =[];
+    protected $table='transaction';
+    protected $fillable =['order_id', 'amount', 'payment_method'];
+
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }

@@ -2,31 +2,35 @@
 @section('content')
 
 <h2 class="text-center mt-3">Riwayat Pembelian</h2>
+
 <div class="container section-container-history">
 
-   
-    <div class="history-filter">
+
+
+        <div class="history-filter">
 
         @include('user.history.partials.search')
-
-      <div class="sort-history">
+    
+        <div class="sort-history">
 
         @include('user.history.partials.filter-latest')
 
-      </div>
+        </div>
 
-      <div class="date-history">
+        <div class="date-history">
 
         @include('user.history.partials.filter-date')
+       
+        </div>
 
-      </div>
+        </div>
 
-       </div>
-    
-    <div class="status mb-3">
+        <div class="status mb-3">
         @include('user.history.partials.status')
-    </div>
+        </div>
+        
 
+  
     @if($orders->isEmpty())
         <h5 class="d-flex justify-content-center mt-4">Maaf, kami tidak dapat menemukan daftar riwayat pembelian </h5>
       

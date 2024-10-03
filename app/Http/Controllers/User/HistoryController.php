@@ -21,15 +21,21 @@ class HistoryController extends Controller
 
       $search = $request->input('search');
 
+      $date = $request->input('date');
+
       $status = $request->input('status');
 
       if($search){
         $ordersQuery->where( function($s) use ($search){
             $s->where('id', 'like', "%{$search}%")
             ->orWhereHas('orderItems.book', function($q) use($search){
-                $q->where('title', 'like', "{$search}");
+                $q->where('title', 'like', "%{$search}%");
             });
         });
+      }
+
+      if($date){
+        $ordersQuery->whereDate('order_date', $date);
       }
 
       if($status === 'success'){
@@ -57,7 +63,7 @@ class HistoryController extends Controller
         break;
       }
       $orders = $ordersQuery->orderBy('id')->paginate(5);
-      $orders->appends(['sort'=>$sort, 'search'=>$search, 'status'=>$status]);
-        return view ('user.history.history', compact('orders','sort','search','status'));
+      $orders->appends(['sort'=>$sort, 'search'=>$search, 'status'=>$status, 'order_date'=>$date]);
+        return view ('user.history.history', compact('orders','sort','search','status','date'));
     }
 }

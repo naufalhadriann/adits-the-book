@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    public $timestamps = true;
 
     protected $table = 'orders';
 
@@ -23,7 +24,7 @@ class Order extends Model
     protected $dates = [
         'order_date',
     ];
-
+   
     public function orderItems()
 {
     return $this->hasMany(OrderItems::class, 'order_id');

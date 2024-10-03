@@ -60,7 +60,7 @@
               <h3 class="h2">
                 You dont have acces this site
               </h3>
-              <a href="/pages" class="link_404">Go to pages</a>
+              <a href="/" class="link_404">Go to pages</a>
             </div>
           </div>
         </div>

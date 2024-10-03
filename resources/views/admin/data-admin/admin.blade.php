@@ -35,6 +35,7 @@
                               </tr>
                             </thead>
                             <tbody>
+                                
                             @foreach ($admin as $user)
                           <td>{{ $user->id}}</td>
                                     <td>{{ $user->name }}</td>

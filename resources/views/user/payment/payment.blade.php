@@ -87,13 +87,14 @@
                         </li>
                     </ul>
                     <hr>
-                    <form action="{{ route('payment.checkout') }}" method="POST">
+                    <form action="{{ route('checkout', ['id' => $orders->first()->id]) }}" method="POST">
                         @csrf
                         <input type="hidden" name="selected_books" >
-                        <input type="hidden" name="payment_method" id="paymentMethodInput" value="">
+                        <input type="hidden" name="paymentOption" id="paymentMethodInput" value="selectedPaymentMethod">
                         <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
                     </form>
                     <input type="hidden" id="order-id" value="{{ $orders->first()->id }}">
+                    <input type="hidden" id="order-date" value="{{$orders->first()->created_at}}">
                     </div>
             </div>
         </aside>

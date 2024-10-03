@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItems;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -119,7 +120,27 @@ class PaymentController extends Controller
         return redirect()->back()->with('message', 'berhasil batalkan order');
     }
    
-    public function checkout(){
+    public function checkout(Request $request,  $id) {
         $authId = Auth::id();
+        
+        $order = Order::where('id', $id)->where('user_id', $authId)->first();
+    
+        if (!$order) {
+            return redirect()->route('user.orders')->with('error', 'Order not found.');
+        }
+    
+        $transaction = Transaction::create([
+            'order_id' => $order->id,  
+            'amount' => $order->total_amount,
+            'payment_method' => $request->input('paymentOption'),
+        ]);
+    
+        $order->status = 2;
+        $order->save();
+
+       
+    
+        return redirect()->route('user.payment.success', ['transaction'=>$transaction]);
     }
+    
 } 

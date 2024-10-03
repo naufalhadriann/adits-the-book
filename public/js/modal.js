@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
             handleBookModal(action, entityId);
         } else if (entity === "admin") {
             handleAdminModal(action, entityId);
+        } else if (entity === "transaction") {
+            handleTransactionModal(action, entityId);
         }
     });
     function showFields(fields) {
@@ -151,6 +153,25 @@ document.addEventListener("DOMContentLoaded", function () {
             ]);
             form.setAttribute("action", "/user");
             form.setAttribute("method", "POST");
+        }
+    }
+    function handleTransactionModal(action, transactionId) {
+        if (action === "view") {
+            fetch("/transaction/" + transactionId)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("order-name").value = data.userName;
+                    document.getElementById("book-title").value =
+                        data.bookTitle;
+                    document.getElementById("price-book").value =
+                        data.bookPrice;
+                    document.getElementById("quantity").value =
+                        data.orderItemsQuantity;
+                    document.getElementById("price-book-quantity");
+                    document.getElementById("total-buku-sebelum-diskon");
+                    document.getElementById("harga-potongan");
+                    document.getElementById("total-buku-sesudah-discount");
+                });
         }
     }
 

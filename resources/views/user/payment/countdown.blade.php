@@ -1,21 +1,19 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        let countdownTime = 3600; 
+        const orderCreatedAt = new Date(document.getElementById("order-date").value);
+        const countdownDuration = 2 *  60 * 60 * 1000; 
+        const targetTime = orderCreatedAt.getTime() + countdownDuration; 
+
+        console.log(orderCreatedAt)
         const countdownElement = document.getElementById("countdown");
-        const orderId = document.getElementById("order-id").value; 
+        let countdownTime = Math.floor((targetTime - Date.now()) / 1000); 
 
         const countdown = setInterval(() => {
-            const hours = Math.floor(countdownTime / 3600);
-            const minutes = Math.floor((countdownTime % 3600) / 60);
-            const seconds = countdownTime % 60;
-
-            countdownElement.innerText = ` ${hours} jam : ${minutes < 10 ? '0' : ''}${minutes} menit : ${seconds < 10 ? '0' : ''}${seconds} detik`;
-            countdownTime--;
-
             if (countdownTime < 0) {
                 clearInterval(countdown);
                 countdownElement.innerText = "Waktu habis";
 
+                const orderId = document.getElementById("order-id").value; 
                 fetch(`/payment/failed/${orderId}`, {
                     method: 'GET',
                     headers: {
@@ -33,7 +31,16 @@
                 .catch(error => {
                     console.error('Error updating order status:', error);
                 });
+
+                return; 
             }
+
+            const hours = Math.floor(countdownTime / 3600);
+            const minutes = Math.floor((countdownTime % 3600) / 60);
+            const seconds = countdownTime % 60;
+
+            countdownElement.innerText = `${hours} jam : ${minutes < 10 ? '0' : ''}${minutes} menit : ${seconds < 10 ? '0' : ''}${seconds} detik`;
+            countdownTime--;
         }, 1000);
     });
 </script>
