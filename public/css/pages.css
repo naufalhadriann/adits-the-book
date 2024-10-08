@@ -181,12 +181,21 @@ ul {
 }
 
 .profile {
-    color: var(--maroon);
-    font-size: 20px;
     margin-right: 70px;
     margin-left: 50px;
+    margin-top: 3px;
 }
-
+.profile img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.profile span {
+    color: var(--maroon);
+    font-size: 20px;
+}
 .greetings-content {
     display: flex;
     justify-content: center;

@@ -18,7 +18,10 @@ Breadcrumbs::for('product', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Product', route('book.index'));
 });
-
+Breadcrumbs::for('categoryy', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Category', route('category.index'));
+});
 Breadcrumbs::for('transaction', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Transaction', route('transaction.index'));
@@ -44,9 +47,9 @@ Breadcrumbs::for('cart', function(BreadcrumbTrail $trail){
     $trail->parent('home');
     $trail->push('Cart', route('cart.view'));
 });
-Breadcrumbs::for('payment', function(BreadcrumbTrail $trail){
+Breadcrumbs::for('shipping', function(BreadcrumbTrail $trail){
     $trail->parent('cart');
-    $trail->push('Payment', route('payment.proceed'));
+    $trail->push('Shipping', route('shipping'));
 });
 
 // Home > Diskon > [title]

@@ -60,9 +60,11 @@ $groupedCategories = $categorys->groupBy('name');
                     </div>
                     @if(Auth::check())
                     <div class="profile">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{Auth::user()->name}}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                           <span >{{Auth::user()->name}}</span>
+                            <img src="{{ Auth::user()->profile_image}}">
                         </a>
+                        
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('user.edit')}}">Profile</a>
                             <a class="dropdown-item" href="/history">Pembelian</a>

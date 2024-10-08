@@ -51,7 +51,7 @@
 
         <h2>Payment Success!</h2> 
       
-        <h1>Rp {{$transaction->amount}}</h1> 
+        <h1>Rp 1.250.000</h1> 
         
         <p>We received your purchase request</p>
         <button type="button" class="btn btn-dark mt-3">Back</button>

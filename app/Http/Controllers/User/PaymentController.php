@@ -140,7 +140,7 @@ class PaymentController extends Controller
 
        
     
-        return redirect()->route('user.payment.success', ['transaction'=>$transaction]);
+        return redirect()->route('user.payment.success', compact('transaction'));
     }
     
 } 

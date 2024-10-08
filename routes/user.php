@@ -5,18 +5,22 @@ use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\User\ShippingController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserProfilleController;
 
 
 Route::middleware('auth')->group(function(){
+
+
 Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
 Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
 Route::post('/payment/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
 Route::get('/payment/failed/{id}',[PaymentController::class, 'expireOrder']);
 Route::get('/order-canceled/{id}', [PaymentController::class, 'cancelOrder'])->name('order.canceled');
 Route::get('/success', [PaymentController::class, 'checkout'])->name('payment.success');
+
 Route::get('/success', function () {
     return view('user.payment.success');
 })->name('user.payment.success');
@@ -25,7 +29,8 @@ Route::get('/failed', function() {
     return view('user.payment.failed');
 })->name('user.payment.failed');
 
-
+Route::get('/cart/shipping', [ShippingController::class, 'show']);
+Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shipping');
     //cart  
     Route::prefix('cart')->controller(CartController::class)->group(function (){
         Route::post('/remove','remove')->name('cart.remove');

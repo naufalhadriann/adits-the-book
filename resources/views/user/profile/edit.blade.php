@@ -9,13 +9,11 @@
 				<div class="col-lg-4 " >
 					<div class="card">
 						<div class="card-body">
+					
 							<div class="d-flex flex-column align-items-center text-center">
-								<img src="{{ Auth::user()->profile_image}}" alt="Admin" class="rounded-circle p-1 " width="110">
-								<div class="mt-3">
-									<h4>{{Auth::user()->name}}</h4>
+							<img src="{{ asset('/images/admin.png')}}"  alt="Admin" class="rounded-circle p-1 " width="50">
+							<h4>{{Auth::user()->name}}</h4>
 								
-									<button class="btn">Edit Photo</button>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -38,4 +36,5 @@
 
 		</div>
 	</div>
+
 @endsection

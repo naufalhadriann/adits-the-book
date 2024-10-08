@@ -10,7 +10,7 @@
 
     <form method="POST" action="{{ route('profile.update' , $user->id) }}" >
         @csrf
-        @method('PATCH')
+        @method('PUT')
                          <div class="row mb-3">
                          <input type="hidden" name="role" value="{{ old('role', $user->role ?? 0) }}">
 

@@ -90,7 +90,7 @@
                     <form action="{{ route('checkout', ['id' => $orders->first()->id]) }}" method="POST">
                         @csrf
                         <input type="hidden" name="selected_books" >
-                        <input type="hidden" name="paymentOption" id="paymentMethodInput" value="selectedPaymentMethod">
+                        <input type="hidden" name="paymentOption" id="paymentMethodInput" value="paymentMethodInput">
                         <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
                     </form>
                     <input type="hidden" id="order-id" value="{{ $orders->first()->id }}">
