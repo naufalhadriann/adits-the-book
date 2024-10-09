@@ -28,22 +28,20 @@ $groupedCategories = $categorys->groupBy('name');
                     @endforeach
                 </ul>
             </div>
-            <div class="sub-menu-item">
-                @foreach ($uniqueCategorys as $item)
+                    <div class="sub-menu-item">
+            @foreach ($uniqueCategorys as $item)
                 <div class="category-genres" id="category-genres-{{ $item->id }}" style="display: none;">
-                    @foreach ($categorys->where('name',$item->name) as $genre)
-                    <a href="{{route('search', ['category'=>$genre->genre])}}"  class="d-flex justify-content-between ">{{ $genre->genre }}</a>
+                    @foreach ($categorys->where('name', $item->name) as $genre)
+                    <a href="{{route('search', ['category'=>$genre->genre])}}">{{ $genre->genre }}</a>
                     @endforeach
                 </div>
-                @endforeach
-            </div>
-            </form>
-
+            @endforeach
         </div>
-    </li>
-</ul>
+                    </form>
 
-
+                </div>
+            </li>
+        </ul>
 
                 </div>
                 <div class="col-lg-6 ">
@@ -67,13 +65,13 @@ $groupedCategories = $categorys->groupBy('name');
                         
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('user.edit')}}">Profile</a>
-                            <a class="dropdown-item" href="/history">Pembelian</a>
+                            <a class="dropdown-item" href="{{route('history')}}">Pembelian</a>
 
                             @if(Auth::user()->role_label=="Admin")
                             <a class="dropdown-item" href="/dashboard">Dashboard Admin</a>
                             @endif
 
-                            <div class="dropdown-divider"></div>
+                            
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                               @csrf 
                          
@@ -84,7 +82,7 @@ $groupedCategories = $categorys->groupBy('name');
                           @else
                           <div class="nav-item mx-5">
                     <a class="nav-link active mx-5 "  href="{{ route('login')}}">Login</a>
-                  </d>
+                  </div>
                   @endif
                        </div>
                     </div>

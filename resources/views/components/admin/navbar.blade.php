@@ -3,7 +3,7 @@
 	@auth
 			<i class='bx bx-menu' ></i>
 			<p>Halo, {{Auth::user()->name}}</p>
-				<a href="/profile" class="profile" >
+				<a href="{{route('profile.edit')}}" class="profile" >
 					<img src="{{ Auth::user()->profile_image}}">
 				</a>
 				@endauth

@@ -8,6 +8,9 @@ body {
 ul {
     list-style-type: none;
 }
+a {
+    color: black;
+}
 :root {
     --maroon: #650f2c;
     --poppins: "Poppins", sans-serif;
@@ -124,6 +127,12 @@ ul {
     font-size: 20px;
     color: var(--maroon);
 }
+.dropdown-toggle::after {
+    display: none;
+}
+.btn-ac::after {
+    display: none;
+}
 .search {
     background-color: white;
     border: none;
@@ -192,9 +201,38 @@ ul {
     object-fit: cover;
     border-radius: 50%;
 }
+.card-body .profile-edit {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+.card-body .profile-edit h4 {
+    font-size: 20px;
+}
+.toggle-password {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: black;
+}
+.profile-info {
+    margin-top: 35px;
+}
+ul .profile {
+    margin-left: 22px;
+}
 .profile span {
     color: var(--maroon);
     font-size: 20px;
+}
+.card-address .card-header {
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 .greetings-content {
     display: flex;
@@ -429,10 +467,9 @@ a {
 .btn-apply {
     font-size: 11px;
 }
-.section-container-history {
+.section-history {
     background-color: #fff;
     border-radius: 8px;
-    margin: 2rem auto;
     padding: 1.5rem;
     max-width: 900px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -484,9 +521,8 @@ a {
 }
 
 .total-button {
-    margin-left: 60%;
+    margin-right: 20px;
 }
-
 .btn-back-home {
     display: block;
     width: 20%;
@@ -512,9 +548,7 @@ a {
     text-decoration: none;
     color: black;
 }
-.accordion {
-    border-bottom: 1px solid rgb(208, 205, 205);
-}
+
 .filter-latest {
     display: flex;
     justify-content: end;

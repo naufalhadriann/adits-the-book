@@ -14,13 +14,25 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserProfilleController extends Controller
 {
-    public function edit(Request $request): View
+    public function editProfile(Request $request): View
     {
-        return view('user.profile.edit', [
+        return view('user.profile.profile', [
             'user' => $request->user(),
         ]);
     }
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function editPassword(Request $request) :View 
+    {
+        return view('user.profile.password', [
+            'user' => $request->user(),
+        ]);
+    }
+    public function editAddress(Request $request) :View 
+    {
+        return view ('user.profile.address', [
+            'user' => $request->user(),
+        ]);
+    }
+        public function update(ProfileUpdateRequest $request): RedirectResponse
     {
        
         $user =  $request->user()->fill($request->validated());;

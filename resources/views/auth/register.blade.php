@@ -1,10 +1,10 @@
 <x-guest-layout>
   @section('title','Register')
    @section('form')
-   <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+   <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 py-2">
         <form method="POST" action="{{ route('register')}}" >
         @csrf
-        <H3 style="text-align:center; margin-bottom:40px; font-weight:bold; font-style:italic; font-size:35px;">Register</H3>
+        <H3 style="text-align:center; margin-bottom:40px; font-weight:bold; color: #650f2c; font-style:italic; font-size:35px;">Register</H3>
           <div data-mdb-input-init class="form-outline mb-4">
           <x-input-label for="name" :value="__('Name')" />
           <x-text-input id="name" class="form-control form-control-lg" type="name" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -44,8 +44,8 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn  btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #650f2c; color:white;  width:100%;">Register</button>
           </div>
 
         </form>

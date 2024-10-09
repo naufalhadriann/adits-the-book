@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\BookController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HistoryController;
@@ -31,6 +32,7 @@ Route::get('/failed', function() {
 
 Route::get('/cart/shipping', [ShippingController::class, 'show']);
 Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shipping');
+
     //cart  
     Route::prefix('cart')->controller(CartController::class)->group(function (){
         Route::post('/remove','remove')->name('cart.remove');
@@ -40,7 +42,7 @@ Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shippin
         Route::post('/','cart')->name('cart');
     });
 
-    Route::get('/history', [HistoryController::class, 'show'])->name('history');
+
     
     Route::get('/diskon',[BookController::class,'more'])->name('diskon');
     Route::get('/recommend',[BookController::class,'load'])->name('load');
@@ -53,7 +55,10 @@ Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shippin
     Route::get('/book', function(){
         return view('user.product.product');
     });
-
-    Route::get('/profile/edit', [UserProfilleController::class, 'edit'])->name('user.edit');
+    //user
+    Route::get('/user/profile', [UserProfilleController::class, 'editProfile'])->name('user.edit');
+    Route::get('/user/pembelian', [HistoryController::class, 'show'])->name('history');
+    Route::get('/user/profile/password', [UserProfilleController::class, 'editPassword'])->name('user.password');
+    Route::get('/user/profile/alamat', [AddressController::class, 'show'])->name('user.address');
     Route::patch('/profile', [UserProfilleController::class, 'update'])->name('profile.update');
 }); 

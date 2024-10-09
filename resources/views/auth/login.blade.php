@@ -1,10 +1,10 @@
 <x-guest-layout>
   @section('title', 'Login')
     @section('form')
-    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 py-5">
         <form method="POST" action="{{ route('login')}}" >
         @csrf
-                <H3 style="text-align:center; margin-bottom:40px; font-weight:bold; font-style:italic; font-size:35px;">Login</H3>
+                <H3 style="text-align:center; margin-bottom:40px; font-weight:bold; color: #650f2c; font-style:italic; font-size:35px;">Login</H3>
           <div data-mdb-input-init class="form-outline mb-4">
           <x-input-label for="email" :value="__('Email ')" />
           <x-text-input id="email" class="form-control form-control-lg" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
@@ -34,8 +34,8 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-lg "
+              style="padding-left: 2.5rem; padding-right: 2.5rem; background-color:#650f2c; color:white; width:100%;">Login</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{ route('register')}}"
                 class="link-danger">Register</a></p>
           </div>
