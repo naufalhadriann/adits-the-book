@@ -37,15 +37,13 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <a href="{{ route('login')}}" class="text-body">Already Have Account</a>
-            
-          </div>
+        
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn  btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #650f2c; color:white;  width:100%;">Register</button>
+              style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #650f2c; color:white;  width:100%;">Register</button><!-- Checkbox -->
+              <p class="small fw-bold mt-2 pt-1 mb-3 ">Sudah punya akun? <a href="{{ route('login')}}"
+              class="link-danger">Login</a></p>
           </div>
 
         </form>

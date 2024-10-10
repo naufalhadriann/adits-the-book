@@ -60,5 +60,6 @@ Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shippin
     Route::get('/user/pembelian', [HistoryController::class, 'show'])->name('history');
     Route::get('/user/profile/password', [UserProfilleController::class, 'editPassword'])->name('user.password');
     Route::get('/user/profile/alamat', [AddressController::class, 'show'])->name('user.address');
+    Route::post('/user/profile/alamat', [AddressController::class,'create'])->name('user.address.create');
     Route::patch('/profile', [UserProfilleController::class, 'update'])->name('profile.update');
 }); 

@@ -11,7 +11,12 @@ class address extends Model
 
     protected $table = 'address';
     protected $fillable = [
+        'name',
         'user_id',
+        'nomor_telp',
+        'status',
+        'address_type',
+        'negara',
         'street',
         'rt_rw',
         'kelurahan',

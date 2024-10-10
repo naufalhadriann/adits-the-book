@@ -316,7 +316,12 @@ ul .profile {
     flex-direction: column;
     height: 98%;
     box-shadow: 2px 1px 10px #d0cfcf;
+    transition: transform 0.2s;
 }
+.book-card:hover {
+    transform: scale(1.05);
+}
+
 .book-title {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -626,7 +631,13 @@ a {
     position: fixed;
     width: 350px;
 }
+.shipping-address {
+    transition: transform 0.2s;
+}
 
+.shipping-address:hover {
+    transform: scale(1.05);
+}
 @media (max-width: 768px) {
     .navbar-nav {
         flex-direction: column;

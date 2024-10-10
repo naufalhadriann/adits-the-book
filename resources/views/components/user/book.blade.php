@@ -28,7 +28,8 @@
           <div class="d-flex flex-row mt-4">
             <span style="text-decoration: line-through;">Rp {{ number_format($book->price, 0, ',', '.') }}</span>
             <span class="h5 ms-2 text-danger">Rp {{ number_format($book->discountedPrice, 0, ',', '.') }}</span>
-          </div>
+            <span class="text-danger ms-2">{{floor($book->discount) }}% Off</span>       
+             </div>
           @else
           <div class="d-flex flex-row mt-4">
             <span>Rp {{ number_format($book->price, 0, ',', '.') }}</span>

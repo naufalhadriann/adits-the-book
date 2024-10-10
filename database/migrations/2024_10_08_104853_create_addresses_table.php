@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('address', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('name');
+            $table->integer('nomor_telp');
             $table->string('street');
             $table->string('rt_rw')->nullable();
             $table->string('kelurahan')->nullable();
@@ -21,6 +23,9 @@ return new class extends Migration
             $table->string('kota');
             $table->string('provinsi');
             $table->string('postal_code');
+            $table->integer('status');
+            $table->string('negara');
+            $table->string('address_type');
             $table->timestamps();
         });
     }

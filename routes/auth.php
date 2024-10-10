@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AddressController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('register', [RegisterController::class, 'create'])->name('register');
+
+    Route::get('verifikasi-alamat', [AddressController::class,'show'])->name('verify.address');
+    Route::post('verifikasi-alamat', [AddressController::class,'create'])->name('user.verify.address');
 
     Route::post('register', [RegisterController::class, 'store']);
     Route::post('/dashboard', [RegisterController::class,'store']);

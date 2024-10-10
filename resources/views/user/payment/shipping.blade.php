@@ -54,7 +54,7 @@
             <div class="card card-payment">
                 <div class="card-header bg-white">
                 <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
-                     <div class="card border-0 shadow-sm mb-3" id="selectedPaymentMethodCard">
+                     <div class="card border-0 shadow-sm mb-3 shipping-address" id="selectedPaymentMethodCard">
                         <div class="card-body d-flex align-items-center">
                          <img id="selectedPaymentMethodImage" src="" alt="" width="50" class="me-3" />
                              <h5 id="selectedPaymentMethodName" class="mb-0 text-center">Select Payment Method</h5>

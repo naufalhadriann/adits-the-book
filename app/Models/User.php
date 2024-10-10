@@ -54,5 +54,13 @@ class User extends Authenticatable
     {
         return $this->role == 1 ? 'Admin' : 'User';
     }
+    public function address()
+    {
+        return $this->hasOne(address::class);
+    }
+    public function hasAddress()
+    {
+        return $this->address()->exists();
+    }
 
 }
