@@ -28,24 +28,7 @@
 						<h3>{{ $totalUser}}</h3>
 						<p>User</p>
 					</span>
-				</li>
-				
-				<li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3>Rp {{ $formattedTransaction}}</h3>
-						<p> Transaksi</p>
-					</span>
-				</li>
-
-				<li>
-				<i class='bx bxs-category'></i>
-					<span class="text">
-						<h3>{{ $totalCategory}}</h3>
-						<p>Genre</p>
-					</span>
-				</li>
-
+				</li>			
 				<li>
 				<i class='bx bxs-group'></i>
 					<span class="text">
@@ -54,13 +37,25 @@
 					</span>
 				</li>
 				<li>
-				<i class='bx bx-receipt'></i>
+				<i class='bx bxs-receipt'></i>
 					<span class="text">
 						<h3>{{ $totalOrder }}</h3>
 						<p>Order</p>
 					</span>
 				</li>
+				<li class="transaction">
+        <i class='bx bxs-dollar-circle'></i>
+        <span class="text">
+            <h3>Rp {{$formattedTransaction}}</h3>
+            <p>Total Transaksi Bulan Ini {{$totalTransaction}}</p>
+		
+            
+        </span>
+    </li>
+
 			</ul>
+			
+				
            
 				</div>
 			</div>

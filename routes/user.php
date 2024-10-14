@@ -55,6 +55,9 @@ Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shippin
     Route::get('/book', function(){
         return view('user.product.product');
     });
+
+Route::post('use-address/{addresId}', [AddressController::class, 'useAddress'])->name('use.address');
+
     //user
     Route::get('/user/profile', [UserProfilleController::class, 'editProfile'])->name('user.edit');
     Route::get('/user/pembelian', [HistoryController::class, 'show'])->name('history');

@@ -17,18 +17,20 @@ class DashboardController extends Controller
         $totalBook = Book::count();
         $totalCategory = Category::count();
         $totalOrder = Order::whereIn('status',[1,2])->count();
-        $totalTransaction = Order::where('status', 2)->sum('total_amount');
-       
-        if ($totalTransaction >= 1000000) {
-            $formattedTransaction = number_format($totalTransaction / 1000000, 0, ',', '.') . ' juta';
-        } elseif ($totalTransaction >= 1000) {
-            $formattedTransaction = number_format($totalTransaction / 1000, 0, ',', '.') . ' ribu';
+        $summaryTransaction = Order::where('status', 2)->sum('total_amount');
+        $totalTransaction = Order::where('status', 2)->count();
+        
+        if ($summaryTransaction >= 1000000) {
+            $formattedTransaction = number_format($summaryTransaction / 1000000, 1, ',', '.') . ' juta'; 
+        } elseif ($summaryTransaction >= 1000) {
+            $formattedTransaction = number_format($summaryTransaction / 1000, 1, ',', '.') . ' ribu'; 
         } else {
-            $formattedTransaction = number_format($totalTransaction, 0, ',', '.');
+            $formattedTransaction = number_format($summaryTransaction, 0, ',', '.'); 
         }
+        
         $totalAdmin = User::where('role',1)->count();
 
-        return view("admin.dashboard",compact('totalUser','totalBook','totalCategory','totalAdmin','totalOrder','totalTransaction','formattedTransaction')) ;
+        return view("admin.dashboard",compact('totalUser','totalBook','totalCategory','totalAdmin','totalOrder','totalTransaction','formattedTransaction','summaryTransaction')) ;
     }
     
         

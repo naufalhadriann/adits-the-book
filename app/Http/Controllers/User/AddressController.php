@@ -45,8 +45,24 @@ class AddressController extends Controller
         ]);
         
         Alert::success('success', 'Kamu telah berhasil menambahkan alamat');
-        return redirect()->back()->with('success');
+        return redirect()->back();
     }
-    
+    public function useAddress($addressId)
+        {
+            $userId = Auth::id();
+
+        
+            Address::where('user_id', $userId)->update(['status' => 0]);
+
+        
+            $address = Address::find($addressId);
+            if ($address && $address->user_id == $userId) {
+                $address->status = 1;
+                $address->save();
+            }
+
+            return redirect()->back()->with('success', 'Alamat telah diperbarui!');
+        }
+
     
 }

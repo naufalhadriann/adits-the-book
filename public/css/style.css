@@ -285,6 +285,10 @@ body {
     align-items: center;
     grid-gap: 24px;
 }
+#content main .box-info .transaction {
+    width: 580px;
+    height: 200px;
+}
 #content main .box-info li .bx {
     width: 80px;
     height: 80px;
@@ -303,16 +307,16 @@ body {
     color: var(--yellow);
 }
 #content main .box-info li:nth-child(3) .bx {
-    background: var(--light-orange);
-    color: var(--orange);
-}
-#content main .box-info li:nth-child(4) .bx {
     background: var(--light-green);
     color: var(--green);
 }
-#content main .box-info li:nth-child(5) .bx {
+#content main .box-info li:nth-child(4) .bx {
     background: var(--light-purple);
     color: var(--purple);
+}
+#content main .box-info li:nth-child(5) .bx {
+    background: var(--light-orange);
+    color: var(--orange);
 }
 #content main .box-info li .text h3 {
     font-size: 24px;

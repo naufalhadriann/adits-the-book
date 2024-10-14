@@ -27,7 +27,9 @@ class ShippingController extends Controller
   
         
         $item = cart::where('user_id', $userId)->whereIn('book_id', $selectedBooks)->with('book')->get();
-        $address = address::where('user_id', $userId)->first();
+        $address = address::where('user_id', $userId)->where('status' , 1)->first();
+        $addresses = address::where('user_id', $userId)->get();
+        
         $totalPrice = $this->calculateTotalPrice($item);
         $totalDiscountAmount = $item->sum(function ($item) {
          return $item->book->getDiscountAmountAttribute() * $item->quantity;
@@ -41,6 +43,7 @@ class ShippingController extends Controller
         return view('user.payment.shipping', [
             'item'=>$item,
             'address' => $address,
+            'addresses' => $addresses,
             'totalPrice' => $totalPrice,
             'totalBooks' => $totalBooks,
             'totalDiscountAmount' => $totalDiscountAmount,
@@ -58,4 +61,5 @@ class ShippingController extends Controller
         
         return $totalPrice;
     }
+    
 }
