@@ -51,7 +51,8 @@
 
         <h2>Payment Failed!</h2> 
       
-        <h1>Rp 2.000.000</h1> 
+        <h1>Rp {{number_format($order->total_amount,0,'','.')}}</h1> 
+      
         
         <p>Kamu kehabisan waktu untuk membayar </p>
         <button type="button" class="btn btn-dark mt-3">Back</button>

@@ -13,53 +13,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Contracts\View\View;
 
 class PaymentController extends Controller
 {
-    public function proceedToCheckout(Request $request)
-    {
-        $authId = Auth::id();
-        $selectedBooks = json_decode($request->input('selected_books'), true);
-        
-        $order = Order::create([
-            'user_id' => $authId,
-            'total_amount' => 0,
-            'status' => 1,
-        ]);
-        
-        $totalAmount = 0;
-    
-        foreach ($selectedBooks as $bookData) {
-            $book = Book::find($bookData); 
-            if ($book) {
-                $quantity = $bookData['quantity'] ?? 1; 
-    
-                
-                $price = $book->discount > 0 ? $book->price - ($book->price * ($book->discount / 100)) : $book->price;
-                $totalAmount += $price * $quantity;
-    
-                OrderItems::create([
-                    'order_id' => $order->id,
-                    'book_id' => $book->id,
-                    'quantity' => $quantity,
-                    'price' => $price,
-                ]);
-            }
-        }
-    
-    
-        $order->total_amount = $totalAmount;
-        $order->save();
-    
-    
-        Cart::where('user_id', $authId)->whereIn('book_id',$selectedBooks)->delete();
-    
-       
-        return redirect()->route('payment.page', ['id' => $order->id]);
-    }
-    
-    
-    
+ 
     public function paymentPage($id){
         $authId = Auth::id();
        $orders = Order::where('id', $id)->where('user_id', $authId)->where('status', 1)->with('orderItems.book')->get();
@@ -88,7 +46,6 @@ class PaymentController extends Controller
         
         return view('user.payment.payment',[
             'orders' => $orders, 
-            
                 'totalPrice' => $totalPrice,
                 'totalDiscountAmount' => $totalDiscountAmount,
                 'totalDiscountedPrice' => $totalDiscountedPrice,
@@ -105,7 +62,16 @@ class PaymentController extends Controller
             $order->save();
 
         }
-        return redirect()->route('user.payment.failed');
+
+        return redirect()->route('payment.failed');
+    }
+    public function failedOrder()
+    {
+        $userId = Auth::id();
+        
+        $order = Order::where('user_id', $userId)->first();
+
+        return view('user.payment.failed', compact('order'));
     }
     public function cancelOrder($id){
         $authId = Auth::id();
@@ -142,5 +108,6 @@ class PaymentController extends Controller
     
         return redirect()->route('user.payment.success', compact('transaction'));
     }
+    
     
 } 

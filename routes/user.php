@@ -15,23 +15,24 @@ use App\Http\Controllers\User\UserProfilleController;
 Route::middleware('auth')->group(function(){
 
 
-Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
-Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
-Route::post('/payment/checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
-Route::get('/payment/failed/{id}',[PaymentController::class, 'expireOrder']);
-Route::get('/order-canceled/{id}', [PaymentController::class, 'cancelOrder'])->name('order.canceled');
-Route::get('/success', [PaymentController::class, 'checkout'])->name('payment.success');
+    Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
+    Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
+    Route::get('/payment/failed/{id}',[PaymentController::class, 'expireOrder']);
+    Route::get('/order-canceled/{id}', [PaymentController::class, 'cancelOrder'])->name('order.canceled');
+    Route::get('/success', [PaymentController::class, 'checkout'])->name('payment.success');
+    
+    Route::post('checkout', [ShippingController::class, 'checkout'])->name('user.checkout');
 
-Route::get('/success', function () {
-    return view('user.payment.success');
-})->name('user.payment.success');
- 
-Route::get('/failed', function() {
-    return view('user.payment.failed');
-})->name('user.payment.failed');
+    Route::get('/success', function () {
+        return view('user.payment.success');
+    })->name('user.payment.success');
+    
+  
+    
+    Route::get('/failed', [PaymentController::class, 'failedOrder'])->name('payment.failed');
 
-Route::get('/cart/shipping', [ShippingController::class, 'show']);
-Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shipping');
+    Route::get('/cart/shipping', [ShippingController::class, 'show']);
+    Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shipping');
 
     //cart  
     Route::prefix('cart')->controller(CartController::class)->group(function (){
@@ -56,8 +57,8 @@ Route::post('/cart/shipping', [ShippingController::class,'show'])->name('shippin
         return view('user.product.product');
     });
 
-Route::post('use-address/{addresId}', [AddressController::class, 'useAddress'])->name('use.address');
-
+    Route::post('use-address/{addresId}', [AddressController::class, 'useAddress'])->name('use.address');
+    Route::post('/delete-address/{id}', [AddressController::class, 'deleteAddress'])->name('delete.address');
     //user
     Route::get('/user/profile', [UserProfilleController::class, 'editProfile'])->name('user.edit');
     Route::get('/user/pembelian', [HistoryController::class, 'show'])->name('history');

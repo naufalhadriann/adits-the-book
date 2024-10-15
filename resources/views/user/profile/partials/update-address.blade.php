@@ -22,11 +22,21 @@
                         </h5>
                         <h6 class="card-subtitle mb-2">{{$alamat->name}}</h6>
                         <p class="card-text">{{$alamat->street}}, {{$alamat->kota}}, {{$alamat->postal_code}}, {{$alamat->provinsi}}, {{$alamat->negara}}</p>
+                        
                         @if($alamat->status == 0)
-                                <form id="useAddressForm{{ $alamat->id }}" action="{{ route('use.address', $alamat->id) }}" method="POST" style="display:inline;">
+                        <div class="button-address">
+                                <form id="useAddressForm{{ $alamat->id }}" action="{{ route('use.address', $alamat->id) }}" method="POST" >
                         @csrf
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('useAddressForm{{ $alamat->id }}').submit();" >Pakai Alamat Ini</a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('useAddressForm{{ $alamat->id }}').submit();">Pakai Alamat </a>
+
+                    </form >
+
+                    <form id="deleteAddressForm{{$alamat->id}}" action="{{route('delete.address', $alamat->id)}}" method="POST" >
+                        @csrf
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('deleteAddressForm{{$alamat->id}}').submit();" >Hapus Alamat </a>
                     </form>
+
+                    </div>
                         @endif
                     </div>
                 </div>

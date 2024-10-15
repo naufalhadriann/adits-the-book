@@ -52,6 +52,7 @@ Breadcrumbs::for('shipping', function(BreadcrumbTrail $trail){
     $trail->push('Shipping', route('shipping'));
 });
 
+
 // Home > Diskon > [title]
 Breadcrumbs::for('diskonbook', function ($trail, $book) {
     $trail->parent('diskon'); 

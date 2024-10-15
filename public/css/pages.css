@@ -634,6 +634,10 @@ a {
 .shipping-address {
     transition: transform 0.2s;
 }
+.button-address {
+    gap: 20px;
+    display: flex;
+}
 
 .shipping-address:hover {
     transform: scale(1.05);

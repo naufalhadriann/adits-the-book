@@ -87,7 +87,11 @@
                         </li>
                     </ul>
                     <hr>
-                    <a class="btn btn-dark btn-square btn-main rounded-3" data-toggle="modal" data-target="#checkoutModal">Checkout</a>
+                    <form action="{{route('user.checkout' )}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="selected_books" value="{{$item}}">
+                <button type="submit" class="btn btn-dark btn-square btn-main rounded-3">Checkout</button>
+                    </form>
                 </div>
             </div>
         </aside>

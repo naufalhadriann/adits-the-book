@@ -19,11 +19,18 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{$address->name}}</h6>
                 <p class="card-text">{{$address->street}}, {{$address->kota}}, {{$address->postal_code}}, {{$address->provinsi}}, {{$address->negara}}</p>
                 @if($address->status == 0)
+                <div class="button-address">
                 <form id="useAddressForm{{ $address->id }}" action="{{ route('use.address', $address->id) }}" method="POST" style="display:inline;">
-                
                 @csrf
-                <a href="#" onclick="event.preventDefault(); document.getElementById('useAddressForm{{ $address->id }}').submit();" >Pakai Alamat Ini</a>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('useAddressForm{{ $address->id }}').submit();" >Pakai Alamat</a>
             </form>
+
+            <form id="deleteAddressForm{{ $address->id }}" action="{{ route('delete.address', $address->id )}}" method="POST">
+              @csrf
+              <a href="#" onclick="event.preventDefault(); document.getElementById('deleteAddressForm{{ $address->id }}').submit();">Hapus Alamat</a>
+            </form>
+           
+            </div>
                 @endif
               </div>
             </div>

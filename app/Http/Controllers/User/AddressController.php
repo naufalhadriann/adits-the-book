@@ -63,6 +63,15 @@ class AddressController extends Controller
 
             return redirect()->back()->with('success', 'Alamat telah diperbarui!');
         }
+        public function deleteAddress($id){
+
+            $address = Address::find($id);
+            $address->delete();
+
+            Alert::success('success', 'Alamat Kamu berhasil di hapus');
+            return redirect()->back()->with('success','Alamat telah dihapus');
+            
+        }
 
     
 }
