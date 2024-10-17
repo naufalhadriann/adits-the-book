@@ -55,9 +55,16 @@
 
             <div class="row">
         @foreach ($books as $item)
-            
-            <a class="col-md-3 mb-4" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
+            @if($item->stock == 0)
+            <a class="col-md-3 mb-4" >
                 <div class="card book-card border-0">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black bg-opacity-50 d-flex justify-content-center align-items-center" style="z-index: 10; backdrop-filter: blur(5px); border-radius:10px;">
+            <span class="text-white fs-4">Habis</span>
+        </div>
+        @else
+        <a class="col-md-3 mb-4" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
+        <div class="card book-card border-0">
+        @endif
                     <img src="{{asset('storage/' . $item->image)}}" class="card-img-top" alt="Popular Book 1">
                     <div class="card-body">
                         <h5 class="popular-book-title">{{$item->title}}</h5>

@@ -185,6 +185,7 @@
           <input class="form-check-input" type="radio" name="paymentOption" id="bniOption" value="BNI">
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-dark w-100" data-dismiss="modal">Pilih Methode Pembayaran</button>
       </div>

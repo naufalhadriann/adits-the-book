@@ -19,8 +19,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/payment/{id}', [PaymentController::class, 'paymentPage'])->name('payment.page');
     Route::get('/payment/failed/{id}',[PaymentController::class, 'expireOrder']);
     Route::get('/order-canceled/{id}', [PaymentController::class, 'cancelOrder'])->name('order.canceled');
-    Route::get('/success', [PaymentController::class, 'checkout'])->name('payment.success');
-    
+    Route::post('/pay/{orderId}', [PaymentController::class,'payment'])->name('user.payment');    
+
     Route::post('checkout', [ShippingController::class, 'checkout'])->name('user.checkout');
 
     Route::get('/success', function () {

@@ -86,27 +86,32 @@ class PaymentController extends Controller
         return redirect()->back()->with('message', 'berhasil batalkan order');
     }
    
-    public function checkout(Request $request,  $id) {
+    public function payment(Request $request,  $id) {
         $authId = Auth::id();
         
         $order = Order::where('id', $id)->where('user_id', $authId)->first();
-    
-        if (!$order) {
-            return redirect()->route('user.orders')->with('error', 'Order not found.');
-        }
-    
-        $transaction = Transaction::create([
+         Transaction::create([
             'order_id' => $order->id,  
             'amount' => $order->total_amount,
-            'payment_method' => $request->input('paymentOption'),
+            'payment_method' => $order->payment_method,
         ]);
     
         $order->status = 2;
         $order->save();
 
+        foreach($order->orderItems as  $item){
+            $book = Book::find($item->book_id);
+            if($book){
+                $book->stock -= $item->quantity;
+                $book->save();
+            }
+        }
+        $transaction = Transaction::where('order_id', $id)->first();
+
+
        
     
-        return redirect()->route('user.payment.success', compact('transaction'));
+        return view('user.payment.success', compact('transaction'));
     }
     
     

@@ -2,6 +2,7 @@
     <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
       
       <div class="card">
+    
   <img src="{{ asset('storage/' . $book->image)}}" class="card-img-top" alt="">
   <div class="card-body">
     <h6 class="card-author mb-2 text-muted fs-5">{{$book->author}}</h6>
@@ -13,7 +14,11 @@
             </div>
         <div class="d-flex justify-content-between mb-4">
         <span>Rp. {{ number_format($book->price, 0, ',', '.') }}</span>
-        <span class="mx-3">{{$book->stock}}</span>
+        @if($book->stock == 0)
+        <span >Habis</span>
+        @else
+      <span class="mx-3">{{$book->stock}}</span>
+      @endif
         </div>
            
     <div class="d-flex justify-content-between mt-2">

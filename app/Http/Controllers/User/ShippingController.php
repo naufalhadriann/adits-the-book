@@ -68,11 +68,14 @@ class ShippingController extends Controller
     }
     public function checkout(Request $request){
         $userId = Auth::id();
+        $userAddress = Address::where('user_id', $userId)->where('status', 1)->first();  
 
         $selectedBooks = json_decode( $request->input('selected_books'),true);
         $order = Order::create([
             'user_id' => $userId,
             'total_amount' => 0,
+            'payment_method' => $request->input('payment_method'),
+            'address_id' => $userAddress->id,
             'status' => 1,
         ]);
         
@@ -103,10 +106,8 @@ class ShippingController extends Controller
         return redirect()->route('payment.page' , $order->id);
     }
     private function removeBooksFromCart($userId, $selectedBooks) {
-        // Assuming you have a Cart model and a user_cart table where the books are stored
         foreach ($selectedBooks as $bookData) {
             $bookId = $bookData['book_id'];
-            // Assuming 'user_cart' is your cart model and has a 'user_id' and 'book_id' column
             Cart::where('user_id', $userId)->where('book_id', $bookId)->delete();
         }
     }

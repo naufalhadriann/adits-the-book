@@ -14,7 +14,10 @@
             <div class="address-list">
                 <div class="card mb-4 {{ $alamat->status == 1 ? 'border-success' : '' }}">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title"><i class="
+                                                    {{$alamat->address_type == 'Rumah' ? 'bx bxs-home' : 
+                                                     ($alamat->address_type == 'Kantor' ? 'bx bxs-business' :
+                                                     ($alamat->address_type == 'Toko' ? 'bx bxs-store-alt' : ''))}}"></i>
                             {{$alamat->address_type}} 
                             @if($alamat->status == 1)
                                 <span class="fw-bold text-success fs-6">Utama</span>

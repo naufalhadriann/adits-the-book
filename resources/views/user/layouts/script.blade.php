@@ -5,12 +5,13 @@
 
 <script>
     
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const paymentOptions = document.querySelectorAll('input[name="paymentOption"]');
     const paymentMethodImage = document.getElementById('selectedPaymentMethodImage');
     const paymentMethodName = document.getElementById('selectedPaymentMethodName');
     const paymentMethodCard = document.getElementById('selectedPaymentMethodCard');
     const paymentMethode = document.getElementById('selectedPaymentMethod');
+    const selectedPaymentMethodInput = document.getElementById('selectedPaymentMethodInput');
 
     const paymentMethods = {
         danaOption: { image: 'https://i.pinimg.com/originals/2b/1f/11/2b1f11dec29fe28b5137b46fffa0b25f.png', name: 'Dana' },
@@ -35,11 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 paymentMethodImage.src = selectedPaymentMethod.image;
                 paymentMethodName.innerText = selectedPaymentMethod.name;
                 paymentMethode.innerText = selectedPaymentMethod.name;
+                selectedPaymentMethodInput.value = selectedPaymentMethod.name; 
+                console.log(selectedPaymentMethodInput.value);
             }
         });
     });
-  
 });
+
 document.querySelectorAll('.category').forEach(item => {
     item.addEventListener('mouseover', () => {
         
