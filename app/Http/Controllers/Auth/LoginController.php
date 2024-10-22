@@ -23,7 +23,11 @@ class LoginController extends Controller
         if(Auth::attempt($user)){
             $request ->session()->regenerate();
 
-            return redirect("/");
+            if(Auth::user()->role == 1){
+                return redirect('/dashboard');
+            }else{
+                return redirect('/');
+            };
         }else{
             return back()->withErrors([
                 "email"=> "Email atau password tidak cocok"
@@ -34,11 +38,17 @@ class LoginController extends Controller
     }
     public function logout(Request $request){
 
-        Auth::logout();
-        $request->session()->invalidate();
+        $user = Auth::user(); // Ambil user yang sedang login
 
-        // Regenerate the CSRF token
-        $request->session()->regenerateToken();
-        return redirect("/")->with("success","Kamu berhasil logout");
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    // Redirect berdasarkan role
+    if ($user && $user->role === 1) {
+        return redirect()->route('login'); // Ganti dengan route yang sesuai
+    } else {
+        return redirect('/'); // Redirect ke home page
+    }
     }
 }

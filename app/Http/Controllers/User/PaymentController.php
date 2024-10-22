@@ -62,6 +62,8 @@ class PaymentController extends Controller
             $order->save();
 
         }
+        $orderFailed = Order::where('id', $id)->where('user_id', $authId)->first();
+        dd($orderFailed);
 
         return redirect()->route('payment.failed');
     }

@@ -40,7 +40,7 @@
                 <td>Rp {{number_format($transaction->amount,0 ,'','.')}}</td>
 								<td class="text-center">    
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="" method="POST">
-                                            <button type="button" class="btn btn-sm btn-dark"  data-bs-toggle="modal" data-bs-target="#modalTransaction"><i class='bx bxs-show' data-entity="transaction" data-id="{{$transaction->id}}"></i></button>
+                                            <button type="button" class="btn btn-sm btn-dark"  data-bs-toggle="modal" data-bs-target="#modalTransaction{{$transaction->id}}" ><i class='bx bxs-show'></i></button>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"><i class='bx bxs-trash'></i></button>

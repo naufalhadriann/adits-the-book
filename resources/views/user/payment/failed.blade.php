@@ -55,7 +55,7 @@
       
         
         <p>Kamu kehabisan waktu untuk membayar </p>
-        <button type="button" class="btn btn-dark mt-3">Back</button>
+        <a href="/" class="btn btn-dark mt-3">Back</a>
           </div>
         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 
