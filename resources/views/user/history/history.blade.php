@@ -72,7 +72,7 @@
                                         <figcaption class="info">
                                             <a href="#" class="title text-dark" data-abc="true">{{ $item->book->title }}</a>
                                             <p class="text-muted small">{{ $item->book->author }}</p>
-                                            <p>Rp {{ number_format($item->book->price, 0, ',', '.') }} x {{ $item->quantity }}</p>
+                                            <p>Rp {{ number_format($item->book->discounted_price, 0, ',', '.') }} x {{ $item->quantity }}</p>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -83,12 +83,14 @@
                                     <h6 class="text-secondary">Total Transaksi</h6>
                                     <h6 class="fw-bold">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</h6>
                                 </div>
+                                
                                 <div class="total-button">
+                                    
                                     @if($order->status == 1)
-                                        <a class="btn btn-danger" href="{{ route('order.canceled', $order->id) }}" data-confirm-delete="true">Batalkan</a>
+                                        <a class="btn btn-danger" href="{{ route('order.canceled', $order->id) }}" >Batalkan</a>
                                         <a href="{{ route('payment.page', $order->id) }}" class="btn btn-dark">Bayar</a>
                                     @elseif($order->status == 2)
-                                        <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalTransaction">Lihat detail</button>
+                                        <button type="button"  class="btn btn-sm" data-toggle="modal" data-target="#modalTransaction{{$order->id}}">Lihat detail</button>
                                         <button type="button" class="btn btn-dark">Beli lagi</button>
                                     @elseif($order->status == 3)
                                         <form action="{{ route('cart') }}" method="POST">
@@ -107,6 +109,9 @@
                 @endif
 
                 {{{ $orders->links('pagination::bootstrap-5') }}}
+                @include('sweetalert::alert')
+                @include('user.history.modal-transaction')
+
             </div>
         </div>
     </div>

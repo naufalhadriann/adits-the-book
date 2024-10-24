@@ -24,8 +24,8 @@ class ShippingController extends Controller
         $user = Auth::user();
 
         if (!$user->hasAddress()) {
-            Alert::toast('Kamu Belum Mencatumkan Alamat', 'error');
-             return redirect()->back()->with('failed');
+            Alert::toast('Silahkan <a href="'.route('user.address').'" class="text-primary">tambahkan alamatmu</a> untuk melanjutkan', 'error');
+            return redirect()->back()->with('error');
         }
 
         $selectedBooks = json_decode($request->input('selected_books'), true);
@@ -87,7 +87,16 @@ class ShippingController extends Controller
             if ($book) {
                 $quantity = $bookData['quantity'];
                 $price = $book->price; 
-                $totalAmount += $price * $quantity;
+                $discount = $book->discount;
+
+                if($book->hasDiscount()){
+                    $discountedPrice = ($price * (1 - ($discount / 100))) * $quantity;
+                    $totalAmount += $discountedPrice;
+                }else{
+                    $totalAmount += $price * $quantity;
+
+                }
+                
     
                 OrderItems::create([
                     'order_id' => $order->id,

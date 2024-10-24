@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mt-3">
+        <div class="col-md-4 ">
             <img src="{{asset('images/Promo3.png')}}" alt="Image beside container" class="img-fluid">
         </div>
         
@@ -21,7 +21,7 @@
     
     <div class="container">
     <div class="row">
-        <div class="col-md-4 mt-4">
+        <div class="col-md-4 ">
             <img src="{{asset('images/recomend.png')}}" alt="Image beside container" class="img-fluid ">
         </div>
         

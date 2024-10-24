@@ -329,7 +329,9 @@ ul .profile {
     overflow: hidden;
     position: relative;
 }
-
+.price-discount {
+    font-size: 13px;
+}
 .card-body {
     display: flex;
     flex-direction: column;

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserProfilleController;
 
 
-Route::middleware(['auth','user'])->group(function(){
+Route::middleware(['auth'])->group(function(){
 
 
     Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');

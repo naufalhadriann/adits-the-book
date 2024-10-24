@@ -11,7 +11,6 @@
 
                 <h4 class="mt-5 theme-color mb-5">Transaction ID : {{$transaction->id}}</h4>
 
-                <span class="theme-color">Payment Summary</span>
                 <div class="mb-3">
                     <hr class="new1">
                 </div>
@@ -33,7 +32,11 @@
                     </div>
                @endforeach
     <hr>
-
+    <p class="fw-bold">Informasi Pembayaran</p>
+    <div class="d-flex justify-content-between">
+                    <small>Methode Pembayaran</small>
+                    <small>{{$transaction->payment_method}}</small>
+                </div>
     <div class="d-flex justify-content-between">
                     <small>Total harga ({{$totalBuku}} buku )</small>
                     <small>Rp {{number_format($transaction['order']->total_amount,0,',','.')}}</small>
@@ -43,10 +46,7 @@
                     <small>Discount</small>
                     <small>Rp 120.000</small>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <small>Pembayaran</small>
-                    <small>{{$transaction->payment_method}}</small>
-                </div>
+               
 
                
 

@@ -13,18 +13,23 @@
             <div class="card border-0 mt-4">
                 <div class="card-body text-center">
                     <h4>Silakan Selesaikan Pembayaran Anda</h4>
-                    <p class="fs-5 fw-bold">Order Id : {{$orders->first()->id}}</p>
 
                     <div class="card border-0">
                         <div class="card-body">
+
                             @php
                                 $subtotal = 0;
                                 $discount = 0;
+                                $totalPriceBeforeDiscount = 0;
+                                $bookDiscount = false;
                             @endphp
+                                <p class="fs-5 fw-bold d-flex align-items-start ms-3">Order ID : {{$orders->first()->id}}</p>
 
                             @foreach ($orders as $order)
                                 @foreach ($order->orderItems as $item)
+
                                     <div class="d-flex align-items-start">
+                                        
                                         <figure class="itemside">
                                             <div class="aside">
                                                 <img src="{{ asset('storage/' . $item->book->image) }}" class="img-sm rounded-2 fit" style="height: 100px;">
@@ -39,7 +44,11 @@
                                                 $price = $item->book->hasDiscount() ? $item->book->discountedPrice : $item->book->price;
                                                 if ($item->book->hasDiscount()) {
                                                     $discount += ($item->book->price - $item->book->discountedPrice) * $item['quantity'];
+                                                    $bookDiscount = true;
+
                                                 }
+                                                $totalPriceBeforeDiscount += $item->book->price * $item->quantity; 
+
                                             @endphp
                                             <p>Rp {{ number_format($price, 0, ',', '.') }} x {{ $item['quantity'] }}</p>
                                             @php
@@ -55,20 +64,25 @@
                                 <p>Payment Method:</p>
                                 <p>{{ $order->payment_method }}</p>
                             </div>
+                            @if ($bookDiscount)
                             <div class="d-flex justify-content-between">
                                 <p>Subtotal:</p>
-                                <p>Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
+                                <p>Rp {{ number_format($totalPriceBeforeDiscount, 0, ',', '.') }}</p>
                             </div>
-                            @if ($discount > 0)
                                 <div class="d-flex justify-content-between">
                                     <p>Diskon:</p>
                                     <p>- Rp {{ number_format($discount, 0, ',', '.') }}</p>
                                 </div>
-                            @endif
+                                <div class="d-flex justify-content-between fw-bold">
+                                <p>Total:</p>
+                                <p>Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
+                            </div>
+                            @else
                             <div class="d-flex justify-content-between fw-bold">
                                 <p>Total:</p>
-                                <p>Rp {{ number_format($subtotal - $discount, 0, ',', '.') }}</p>
+                                <p>Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
                             </div>
+                            @endif
                         </div>
                     </div>
 

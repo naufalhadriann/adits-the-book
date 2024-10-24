@@ -69,14 +69,19 @@
                     <div class="card-body">
                         <h5 class="popular-book-title">{{$item->title}}</h5>
                         <p class="popular-book-author">{{$item->author}}</p>
-                        <div class="d-flex justify-content-between ">
-                                <span >Price </span>
-                                <span>Stock </span>
-                            </div>
-                            <div class="d-flex justify-content-between ">
-                        <span >Rp {{number_format($item->price,0 ,',', '.')}}</span>
-                        <span class="mx-3">{{$item->stock}}</span>
-                        </div>
+                        
+                                @if($item->hasDiscount())
+                                <span >Rp {{number_format($item->discounted_price,0 ,',', '.')}}</span>
+                                <div class="price-discount">
+                                    <span class="text-danger">{{floor($item->discount) }}%</span>
+                                    <span class="text-decoration-line-through text-secondary">Rp{{number_format($item->price,0,',','.')}}</span>
+                                </div>       
+
+                                @else
+                                <span >Rp {{number_format($item->price,0 ,',', '.')}}</span>
+                                @endif
+
+
                     </div>
                 </div>
             </a>
