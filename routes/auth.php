@@ -10,8 +10,9 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\SocialLoginController;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 
     Route::get('login', [LoginController::class, 'login'])->name('login');
 
@@ -57,5 +58,15 @@ Route::middleware('auth')->group(function () {
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
+     
+    Route::get('/auth/redirect', function () {
+        return Socialite::driver('github')->redirect();
+    });
+
+    Route::get('/auth/callback', function(){
+        return Socialite::driver('github')->user();
+    });
+
+   
     
 });

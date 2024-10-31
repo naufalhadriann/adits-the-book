@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\BookController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/error', function () {
     return view('error.error');
 });
+Route::get('/login/{driver}', [SocialLoginController::class,'toProvider'])->where('driver', 'github|google');
+Route::get('/auth/{driver}/login', [SocialLoginController::class,'handleCallback'])->where('driver', 'github|google');
 
 require __DIR__.'/user.php';
 require __DIR__.'/admin.php';

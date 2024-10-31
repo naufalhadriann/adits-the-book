@@ -80,8 +80,9 @@ $groupedCategories = $categorys->groupBy('name');
                           </a>
                           </form>
                           @else
-                          <div class="nav-item mx-5">
-                    <a class="nav-link active mx-5 "  href="{{ route('login')}}">Login</a>
+                          <div class="nav-item mx-5  d-flex justify-content-between">
+                    <a class="nav-link active "  href="{{ route('login')}}">Login</a>
+                    <a class="nav-link active  mx-5"  href="{{ route('register')}}">Register</a>
                   </div>
                   @endif
                        </div>

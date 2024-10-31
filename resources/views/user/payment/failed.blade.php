@@ -53,7 +53,7 @@
       
         <h1>Rp {{number_format($order->total_amount,0,'','.')}}</h1> 
       
-        
+      
         <p>Kamu kehabisan waktu untuk membayar </p>
         <a href="/" class="btn btn-dark mt-3">Back</a>
           </div>
