@@ -64,11 +64,8 @@ class HistoryController extends Controller
       }
       $orders = $ordersQuery->orderBy('id')->paginate(5);
       $orders->appends(['sort'=>$sort, 'search'=>$search, 'status'=>$status, 'order_date'=>$date]);
-      $title = 'Batalkan Pesanan';
-      $text = "Apakah kamu yakin untuk membatalkan pesanan?";
+      $orderss =  Order::where('user_id', $userId)->get();
 
-      confirmDelete($title, $text);
-
-        return view ('user.history.history', compact('orders','sort','search','status','date'));
+        return view ('user.history.history', compact('orders','sort','search','status','date','orderss'));
     }
 }

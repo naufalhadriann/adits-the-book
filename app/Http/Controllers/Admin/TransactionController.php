@@ -11,8 +11,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-     $transactions = Transaction::get(); 
-     
+     $transactions = Transaction::with('order.orderItems')->get(); 
      
         return view("admin.transaction.transaction", compact('transactions'));
     }

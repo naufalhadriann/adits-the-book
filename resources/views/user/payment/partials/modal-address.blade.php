@@ -15,7 +15,10 @@
           <div class="address-list">
             <div class="card mb-4 {{ $address->status == 1 ? 'border-success' : ''}} shadow-sm animated fadeIn ">
               <div class="card-body shipping">
-                <h5 class="card-title">{{$address->address_type}}</h5>
+              <h5 class="card-title"><i class='{{$address->address_type == 'Rumah' ?  'bx bxs-home' :
+                                         ($address->address_type == 'Kantor' ? 'bx bxs-business' : 
+                                         ($address->address_type == 'Toko' ? 'bx bxs-store-alt' : ''))}}
+                                         px-1'></i>{{$address->address_type}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$address->name}}</h6>
                 <p class="card-text">{{$address->street}}, {{$address->kota}}, {{$address->postal_code}}, {{$address->provinsi}}, {{$address->negara}}</p>
                 @if($address->status == 0)

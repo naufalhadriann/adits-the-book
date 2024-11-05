@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserProfilleController;
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth','user'])->group(function(){
 
 
     Route::post('/payment', [PaymentController::class, 'proceedToCheckout'])->name('payment.proceed');
@@ -65,5 +65,5 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/user/profile/password', [UserProfilleController::class, 'editPassword'])->name('user.password');
     Route::get('/user/profile/alamat', [AddressController::class, 'show'])->name('user.address');
     Route::post('/user/profile/alamat', [AddressController::class,'create'])->name('user.address.create');
-    Route::patch('/profile', [UserProfilleController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [UserProfilleController::class, 'update'])->name('user.profile.update');
 }); 

@@ -1,76 +1,67 @@
-
 <div class="modal fade" id="modalTransaction{{$transaction->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body ">
-                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+            <div class="modal-body p-4 rounded-5" style="background-color: #f9f9f9;">
+                <h5 class="text-center font-weight-bold mb-4">Detail Transaksi</h5>
                 
-                <div class="px-4 py-5">
-
-                    <h5 class="text-uppercase" id="order-name">{{$transaction['order']->user->name}}</h5>
-
-                <h4 class="mt-5 theme-color mb-5">Transaction ID : {{$transaction->id}}</h4>
+                <strong>Status</strong>
+                <p class="text-success">Transaksi Berhasil</p>
 
                 <div class="mb-3">
-                    <hr class="new1">
+                    <strong>Tanggal Transaksi</strong>
+                    <p>{{$transaction->created_at->format('d F Y H:i')}} WIB</p>
                 </div>
-                @foreach ($transaction['order']->orderItems as $item )
-                @php
-                $book = App\Models\Book::find($item->book_id);            
-                $orderId = $transaction['order']->id; 
-                $totalBuku = App\Models\Order::find($orderId)->orderItems->count();
 
+                <hr>
+
+
+                <p class="fw-bold mb-3">Detail Pembelian</p>
+                @php
+                    $totalBuku = 0;
+                    $totalPriceBeforeDiscount = 0;
+                    $discount = 0;
+                    $bookDiscount = false;
                 @endphp
+
                 
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">nama buku</span>
+                                <span class="text-success">Rp 120.000</span>
+                            </div>
+                            <span>Rp 120.000 x 2</span>
+                        </div>
               
-                <div class="mb-3 ">
-                    <span class="font-weight-bold" id="book-title"> {{$book->title}}</span>
-                    <br>
-              
-              
-                    <span class="font-weight-bold mb-5" id="book-price">Rp {{number_format($book->price ,0,',','.')}} x <span id="book-quantity">{{$item->quantity}} </span></span>
-                    </div>
-               @endforeach
-    <hr>
-    <p class="fw-bold">Informasi Pembayaran</p>
-    <div class="d-flex justify-content-between">
+
+                <hr>
+
+                <p class="fw-bold">Informasi Pembayaran</p>
+                <div class="d-flex justify-content-between">
                     <small>Methode Pembayaran</small>
                     <small>{{$transaction->payment_method}}</small>
                 </div>
-    <div class="d-flex justify-content-between">
-                    <small>Total harga ({{$totalBuku}} buku )</small>
-                    <small>Rp {{number_format($transaction['order']->total_amount,0,',','.')}}</small>
-                </div>
-                
                 <div class="d-flex justify-content-between">
-                    <small>Discount</small>
-                    <small>Rp 120.000</small>
+                    <small>Total Harga ({{$totalBuku}} Buku)</small>
+                    <small>Rp {{number_format($transaction->amount, 0, ',', '.')}}</small>
                 </div>
-               
+                @if($bookDiscount)
+                    <div class="d-flex justify-content-between text-danger">
+                        <small>Diskon</small>
+                        <small>-Rp {{number_format($discount, 0, ',', '.')}}</small>
+                    </div>
+                    <div class="d-flex justify-content-between fw-bold">
+                        <small>Total</small>
+                        <small>Rp {{number_format($transaction->total_amount, 0, ',', '.')}}</small>
+                    </div>
+                @endif
 
-               
-
-              
+                <div class="mt-4 text-center">
+                    <button type="button" class="btn btn-primary rounded-pill" data-bs-dismiss="modal">Tutup</button>
+                </div>
                 
-                <div class="d-flex justify-content-between mt-3">
-                    <span class="font-weight-bold">Total</span>
-                    <span class="font-weight-bold theme-color">Rp  {{number_format($transaction->amount,0 ,'','.')}}</span>
-                </div>  
-
-
-
-                <div class="text-center mt-5">
-
-
-                    <button class="btn btn-primary">Track your order</button>
-                    
-
-
-                </div>                   
-
+                <div class="mt-3 text-center text-muted">
+                    <small>Enjoy Reading!</small>
                 </div>
-
-
             </div>
         </div>
     </div>

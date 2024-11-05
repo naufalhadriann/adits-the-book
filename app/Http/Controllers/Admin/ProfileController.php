@@ -35,7 +35,8 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        $imagePath = $request->file('profile_image')->store('images/profile', 'public');
+        $request->user()->profile_image = $imagePath;
         $request->user()->save();
         Alert::success('success','Profile Update Berhasil ');
         return Redirect::back();

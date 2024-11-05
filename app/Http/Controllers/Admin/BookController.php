@@ -15,6 +15,7 @@ class BookController extends Controller
     {
      
         $query = $request->input('query');
+        $sort = $request->input('sort');
         $search = Book::query();
         if ($query) {
             $search = Book::where('title', 'like', "%{$query}%")
@@ -24,10 +25,28 @@ class BookController extends Controller
                 $querys->where('genre', 'like', "%{$query}%");
             });
         } 
-            $books = $search->orderBy('id')->paginate(12);
-            $books->appends(['query' => $query]);
-        
-
+           
+        switch($sort){
+            case 1:
+                $search->orderBy('price', 'asc');
+                break;
+            case 2:
+                $search->orderBy('price', 'desc');
+                break;
+            case 3:
+                $search->orderBy('created_at', 'desc');
+                break;
+            case 4:
+                $search->orderBy('created_at','asc');       
+                break;
+            case 5:
+                $search->where('stock', '>', 0 );
+                break;
+            case 6:
+                $search->where('stock', '=', 0);
+        }
+        $books = $search->orderBy('id')->paginate(12);
+        $books->appends(['query' => $query, 'sort' => $sort]);
         return view("admin.product.product", compact("books"));
     }
 
@@ -37,10 +56,10 @@ class BookController extends Controller
         $request->validate([
             "title" => "required|string|max:255",
             "description" => "required|string",
-            "author" => "required|string|max:255", // Validate 'penerbit' field
+            "author" => "required|string|max:255", 
             "price" => "required|numeric",
             "stock" => "required|integer",
-            "category_id" => "nullable|exists:category,id", // Ensure 'categories' table name is correct
+            "category_id" => "nullable|exists:category,id", 
             "image" => "nullable|image|mimes:jpg,jpeg,png,gif|max:2048",
             "publish_date" => "required|date",
 
@@ -87,9 +106,9 @@ class BookController extends Controller
         $book = Book::find($id);
         $currentImagePath = $book->image;
 
-        // If a new image is uploaded
+  
         if ($request->hasFile('image')) {
-            // Delete the old image file from storage
+           
             if ($currentImagePath && Storage::disk('public')->exists($currentImagePath)) {
                 Storage::disk('public')->delete($currentImagePath);
             }

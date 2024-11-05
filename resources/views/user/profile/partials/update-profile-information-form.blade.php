@@ -6,9 +6,9 @@
         {{ __("Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun") }}
     </p>                            
 
-    <form method="POST" action="{{ route('profile.update', $user->id) }}" class="d-flex">
+    <form method="POST" action="{{ route('user.profile.update', $user->id) }}" class="d-flex"  enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <input type="hidden" name="role" value="{{ old('role', $user->role ?? 0) }}">
 
         <!-- Form Section -->
@@ -44,9 +44,9 @@
         <div class="ml-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body ">
-				<img id="preview"  class="img rounded-circle ms-5" style="max-width: 150px; max-height: 150px; object-fit: cover;" src="{{ Auth::user()->profile_image}}">
+				<img id="preview"  class="img rounded-circle ms-5" style="max-width: 150px; max-height: 150px; object-fit: cover;" src="{{ asset('storage/' . Auth::user()->profile_image) }}">
                     <div class="text-center mt-5">
-					<input type="file" class="form-control d-none" id="image" name="profile_image" accept="image/*" onchange="previewImage(event)">
+                    <input type="file" class="form-control d-none" id="image" name="profile_image" onchange="previewImage(event)">
                     <label for="image" class="custom-file-label" style="cursor: pointer;">
                         <div class="btn btn-dark">Pilih Gambar</div>
                     </label>

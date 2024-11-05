@@ -82,10 +82,11 @@
   <div class="card border-0">
     <dotlottie-player src="https://lottie.host/60cd800c-937f-4b72-9c9c-9eb9f06f8403/0OwvlHXHYl.json" background="transparent" speed="1" style="width: 450px; height: 300px;" loop autoplay></dotlottie-player>
     
-    <h2>Payment Success!</h2> 
+    <h2>Pembayaran Berhasil!</h2> 
     <h1>Rp {{number_format($transaction->amount,0 ,'','.')}}</h1> 
-    <p>We received your purchase request</p>
-    <a href="/" class="btn btn-dark mt-3">Back</a>
+    <p>Terima kasih sudah belanja</p>
+    <a href="/" class="btn btn-dark mt-3">Kembali</a>
+    <a href="{{route('history')}}" class="btn btn-dark mt-3 ms-2">Lihat Pesanan</a>
   </div>
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </body>

@@ -2,7 +2,7 @@
 						<div class="card-body">
 					
                              <div class="profile-edit">
-                              <img src="{{ asset('/images/admin.png')}}"  alt="Admin" class="rounded-circle p-2 " width="50">
+                              <img src="{{ asset('storage/'. Auth::user()->profile_image)}}"  alt="Admin" class="rounded-circle p-2 " width="50">
                                <h4>{{Auth::user()->name}}</h4>
                                  </div>
                               <ul class="profile-info">

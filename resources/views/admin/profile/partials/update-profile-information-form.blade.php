@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -45,11 +45,19 @@
                 </div>
             @endif
         </div>
-        <div>
-        <label for="profile_image" class="form-label">Profile Image</label>
-        <input type="file" class="form-control" id="image" name="profile_image" accept="image/*" >
-        <img id="preview" alt="Image Preview" class="form-control " style="max-width: 150px;
-    max-height: 150px;" :value="old('image',$user->profile_image)">
+        <div class="ml-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body ">
+				<img id="preview"  class="img rounded-circle ms-5" style="max-width: 150px; max-height: 150px; object-fit: cover;" src="{{asset('storage/'. Auth::user()->profile_image)}}">
+                    <div class="text-center mt-5">
+                    <input type="file" class="form-control d-none" id="image" name="profile_image" onchange="previewImage(event)">
+                    <label for="image" class="custom-file-label" style="cursor: pointer;">
+                        <div class="btn btn-dark">Pilih Gambar</div>
+                    </label>
+                    </div>
+					
+                </div>
+            </div>
         </div>
         <div>
         </div>
@@ -70,3 +78,10 @@
         </div>
     </form>
 </section>
+
+<script>
+function previewImage(event) {
+    const image = document.getElementById('preview');
+    image.src = URL.createObjectURL(event.target.files[0]);
+}
+</script>
