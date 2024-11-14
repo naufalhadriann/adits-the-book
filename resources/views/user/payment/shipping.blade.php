@@ -74,17 +74,17 @@
                         @if($items->book->hasDiscount())
 
                         <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                            Products
+                            Barang 
                             <div>Rp {{ number_format($totalPrice, 0, ',', '.') }}</div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            Discount
-                            <span>Rp {{ number_format($totalDiscountAmount, 0, ',', '.') }}</span>
+                            Diskon
+                            <span class="text-danger">Rp {{ number_format($totalDiscountAmount, 0, ',', '.') }}</span>
                         </li>
                         @endif
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             <div>
-                                <strong>Total amount</strong>
+                                <strong>Jumlah total</strong>
                             </div>
                             <span><strong>Rp {{ number_format($totalDiscountedPrice, 0, ',', '.') }}</strong></span>
                         </li>

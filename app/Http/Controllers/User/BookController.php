@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     public function index(Request $request){
-        $discountId = $request->input('discount_id', [1, 6, 9, 12]); 
-        $mangaId = $request->input('manga_id',[30,25,32,7,31,27]);
-        $newId = $request->input('new_id',[33,34,35,17,37,38]);
+        $discountId = $request->input('discount_id', [1, 2, 3, 44]); 
+        $mangaId = $request->input('manga_id',[61,56,55,32,63,59,70,80]);
+        $newId = $request->input('new_id',[68,34,35,17,37,38]);
         $recommendId = $request->input('recommend_id', [33, 19, 4, 15]); 
         $discountBook = Book::whereIn('id', $discountId)->get();
         $recommendBook = Book::whereIn('id', $recommendId)->get();
-        $newBook = Book::WhereIn('id',$newId)->get();
         $mangaBook = Book::whereIn('id',$mangaId)->get();
+        $newBook = Book::orderBy('publish_date','desc')->take(6)->get();
        
         return view('user.dashboard', compact('discountBook', 'recommendBook','mangaBook','newBook'));
     }
@@ -33,7 +33,7 @@ class BookController extends Controller
     }
 
     public function more(Request $request){
-        $discountId = $request->input('discount_id', [1, 6, 9, 12, 18, 16, 22, 20]); 
+        $discountId = $request->input('discount_id', [1, 2, 3, 44, 20, 13, 5, ]); 
         $discountBook = Book::whereIn('id', $discountId)->get();
 
         return view('user.product.page.diskonpage', compact('discountBook'));

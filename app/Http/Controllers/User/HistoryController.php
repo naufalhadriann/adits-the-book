@@ -64,8 +64,8 @@ class HistoryController extends Controller
       }
       $orders = $ordersQuery->orderBy('id')->paginate(5);
       $orders->appends(['sort'=>$sort, 'search'=>$search, 'status'=>$status, 'order_date'=>$date]);
-      $orderss =  Order::where('user_id', $userId)->get();
+      
 
-        return view ('user.history.history', compact('orders','sort','search','status','date','orderss'));
+        return view ('user.history.history', compact('orders','sort','search','status','date'));
     }
 }

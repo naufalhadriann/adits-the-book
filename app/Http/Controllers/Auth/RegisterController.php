@@ -35,14 +35,27 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $image = Storage::disk('public')->put('images/user.jpeg');
-        $imagePath = 
+
+        $imageDefault = public_path('images/user.jpeg'); 
+        if (!file_exists($imageDefault)) {
+            return back()->withErrors(['image' => 'Default profile image not found.']);
+        }
+        $imageContent = file_get_contents($imageDefault);
+
+        $imageDestination = 'images/profile/'. uniqid(). '.jpg'; 
+        
+       
+       $imageSave = Storage::disk('public')->put($imageDestination,$imageContent);
+       if (!$imageSave) {
+        return back()->withErrors(['image' => 'Failed to save the profile image.']);
+    }
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 0,
-            'profile_image' => 'images/user.jpeg',
+            'profile_image' => $imageDestination,
         ]);
 
         event(new Registered($user));

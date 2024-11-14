@@ -350,6 +350,11 @@ body {
     font-size: 15px;
     margin: 0;
 }
+.card-title {
+    line-clamp: 2;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .card {
     margin-top: 25px;
     border-radius: 10px;
@@ -420,6 +425,7 @@ body {
     font-weight: bold;
     font-style: italic;
 }
+
 .h-custom {
     height: calc(100% - 73px);
 }

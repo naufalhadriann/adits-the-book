@@ -61,25 +61,25 @@
 
                             <hr>
                             <div class="d-flex justify-content-between">
-                                <p>Payment Method:</p>
+                                <p>Payment Method</p>
                                 <p>{{ $order->payment_method }}</p>
                             </div>
                             @if ($bookDiscount)
                             <div class="d-flex justify-content-between">
-                                <p>Subtotal:</p>
+                                <p>Subtotal</p>
                                 <p>Rp {{ number_format($totalPriceBeforeDiscount, 0, ',', '.') }}</p>
                             </div>
                                 <div class="d-flex justify-content-between">
-                                    <p>Diskon:</p>
-                                    <p>- Rp {{ number_format($discount, 0, ',', '.') }}</p>
+                                    <p>Diskon</p>
+                                    <p class="text-danger">- Rp {{ number_format($discount, 0, ',', '.') }}</p>
                                 </div>
                                 <div class="d-flex justify-content-between fw-bold">
-                                <p>Total:</p>
+                                <p>Total</p>
                                 <p>Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
                             </div>
                             @else
                             <div class="d-flex justify-content-between fw-bold">
-                                <p>Total:</p>
+                                <p>Total</p>
                                 <p>Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
                             </div>
                             @endif

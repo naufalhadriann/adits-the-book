@@ -44,6 +44,10 @@ class BookController extends Controller
                 break;
             case 6:
                 $search->where('stock', '=', 0);
+                break;
+            case 7 :
+                $search->where('discount', '>', 0);
+                break;            
         }
         $books = $search->orderBy('id')->paginate(12);
         $books->appends(['query' => $query, 'sort' => $sort]);
@@ -60,11 +64,11 @@ class BookController extends Controller
             "price" => "required|numeric",
             "stock" => "required|integer",
             "category_id" => "nullable|exists:category,id", 
-            "image" => "nullable|image|mimes:jpg,jpeg,png,gif|max:2048",
+            "image' => 'nullable|image|mimes:jpg,jpeg,png,gif,avif|max:2048",
             "publish_date" => "required|date",
 
         ]);
-        $imagePath = $request->file('image')->store('images', 'public');
+        $imagePath = $request->file('image')->store('images/book', 'public');
     
         
         Book::create([
@@ -99,7 +103,7 @@ class BookController extends Controller
             "price"=> "required|numeric",
             "stock"=> "required|integer",
             "category_id" => "nullable|exists:category,id",
-            "image" => "nullable|image|mimes:jpg,jpeg,png,gif|max:2048",
+            "image' => 'nullable|image|mimes:jpg,jpeg,png,gif,avif|max:2048",
             "publish_date" => "required|date",
 
         ]);
@@ -112,7 +116,7 @@ class BookController extends Controller
             if ($currentImagePath && Storage::disk('public')->exists($currentImagePath)) {
                 Storage::disk('public')->delete($currentImagePath);
             }
-            $newImagePath = $request->file('image')->store('images', 'public');
+            $newImagePath = $request->file('image')->store('images/book', 'public');
 
             $book->image = $newImagePath;
             $book->save();

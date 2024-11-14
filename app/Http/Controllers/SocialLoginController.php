@@ -7,9 +7,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
+
 
 class SocialLoginController extends Controller
 {
@@ -35,18 +37,27 @@ class SocialLoginController extends Controller
             ]);
         } else {
             $imageUrl = $user->getAvatar();
-            $imageContent = Http::get($imageUrl);
-            
-            if ($imageContent->successful()) {
-                $imagePath = Storage::put('images/profile/' . basename($imageUrl), $imageContent->body());
-            } else {
-                $imagePath = 'default/image/path.jpg';
+            $imageContent = file_get_contents($imageUrl);
+             
+            if($imageContent === false){
+                return response()->json(['msg'=>'ERROR']);
             }
+            $imageName = "PP".$user->getName().".png";
+        
+            $path ='images/profile/'. $imageName;
+            
+            $imageSave = Storage::disk('public')->put($path,$imageContent); 
+
+
+            if(!$imageSave){
+                return response()->json(['msg'=>'error']);
+            }
+            
             $db_user = User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => bcrypt(rand(1000, 9999)),
-                'profile_image' => $imagePath
+                'profile_image' => $path,
             ]);
 
             SocialLogin::create([

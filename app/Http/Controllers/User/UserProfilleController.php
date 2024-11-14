@@ -35,31 +35,30 @@ class UserProfilleController extends Controller
       public function update(ProfileUpdateRequest $request): RedirectResponse
 {
     $user = $request->user();
+    $alertMessage = [];
 
-    // Update the name if provided
     if ($request->filled('name')) {
         $user->name = $request->input('name');
+        $alertMessage[] = 'Ganti Nama telah Berhasil!';
     }
 
-    // Update the email if provided
+   
     if ($request->filled('email')) {
         $user->email = $request->input('email');
+        $alertMessage[] = 'Ganti Email telah berhasil!';
+        
     }
 
-    // Update the profile image if a file is uploaded
-    $imagePath = $request->file('profile_image')->store('images/profile', 'public');
-    $user->profile_image = $imagePath;
+    if($request->hasFile('profile_image')){
+        $imagePath = $request->file('profile_image')->store('images/profile', 'public');
+        $user->profile_image = $imagePath;
+        $alertMessage[] = 'Ganti Photo Profile telah berhasil!';
+    }
 
-    // Save the updated user information
     $user->save();
-
-    // Show a success message based on what was updated
-    if ($request->filled('name')) {
-        Alert::success('success', 'Update Name telah Berhasil!');
-    } elseif ($request->filled('email')) {
-        Alert::success('success', 'Update Email telah Berhasil!');
-    } elseif ($request->hasFile('profile_image')) {
-        Alert::success('success', 'Update Profile Image telah Berhasil!');
+    
+    foreach($alertMessage as $message){
+        Alert::success('Berhasil', $message);
     }
 
     return Redirect::back();

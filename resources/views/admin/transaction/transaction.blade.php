@@ -35,7 +35,7 @@
                                 @foreach ($transactions as $transaction )
                 <td>{{$transaction->id}}</td>
                 <td>{{$transaction['order']->user->name}}</td>
-								<td>{{$transaction->transaction_date}}</td>
+								<td>{{$transaction->created_at->format('d F Y H:i')}}</td>
 								<td>{{$transaction->payment_method}}</td>
                 <td>Rp {{number_format($transaction->amount,0 ,'','.')}}</td>
 								<td class="text-center">    

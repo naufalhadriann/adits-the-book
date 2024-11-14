@@ -63,9 +63,8 @@ class PaymentController extends Controller
 
         }
         $orderFailed = Order::where('id', $id)->where('user_id', $authId)->first();
-        dd($orderFailed);
 
-        return redirect()->route('payment.failed');
+        return view('user.payment.failed', compact('order'));
     }
     public function failedOrder()
     {
@@ -96,8 +95,8 @@ class PaymentController extends Controller
             'order_id' => $order->id,  
             'amount' => $order->total_amount,
             'payment_method' => $order->payment_method,
+            
         ]);
-    
         $order->status = 2;
         $order->save();
 

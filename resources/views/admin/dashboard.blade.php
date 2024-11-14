@@ -48,8 +48,6 @@
         <span class="text">
             <h3>Rp {{$formattedTransaction}}</h3>
             <p>Total Transaksi Bulan Ini {{$totalTransaction}}</p>
-		
-            
         </span>
     </li>
 

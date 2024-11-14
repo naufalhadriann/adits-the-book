@@ -1,7 +1,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const orderCreatedAt = new Date(document.getElementById("order-date").value);
-        const countdownDuration = 2 *  60 * 60 * 1000; 
+        const countdownDuration = 1 * 60  * 60 * 1000; 
         const targetTime = orderCreatedAt.getTime() + countdownDuration; 
 
         console.log(orderCreatedAt)
@@ -23,7 +23,7 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = `/failed`;
+                        window.location.href = `/payment/failed/${orderId}`;
                     } else {
                         console.error('Error updating order status:', response.statusText);
                     }

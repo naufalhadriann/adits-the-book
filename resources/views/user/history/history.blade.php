@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-edit text-center">
-                        <img src="{{ asset('/images/admin.png') }}" alt="Admin" class="rounded-circle p-2" width="50">
+                        <img src="{{ asset('storage/'. Auth::user()->profile_image) }}" alt="Admin" class="rounded-circle p-2" width="50">
                         <h4>{{ Auth::user()->name }}</h4>
                     </div>
 
@@ -87,11 +87,20 @@
                                 <div class="total-button">
                                     
                                     @if($order->status == 1)
-                                        <a class="btn btn-danger" href="{{ route('order.canceled', $order->id) }}" >Batalkan</a>
+                                        <a class="btn btn-danger" href="{{ route('order.canceled', $orders->id) }}" >Batalkan</a>
                                         <a href="{{ route('payment.page', $order->id) }}" class="btn btn-dark">Bayar</a>
                                     @elseif($order->status == 2)
+                                    <div class="d-flex justify-content-between">
                                         <button type="button"  class="btn btn-sm" data-toggle="modal" data-target="#modalTransaction{{$order->id}}">Lihat detail</button>
-                                        <button type="button" class="btn btn-dark">Beli lagi</button>
+                                        <form action="{{ route('cart') }}" method="POST">
+                                        @csrf
+                                        @foreach($order->orderItems  as $item)
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="book_id[]" value="{{ $item->book->id }}">
+                                        @endforeach
+                                        <button type="submit" class="btn btn-dark">Beli lagi</button>
+                                        </form>
+                                        </div>
                                     @elseif($order->status == 3)
                                         <form action="{{ route('cart') }}" method="POST">
                                             @csrf

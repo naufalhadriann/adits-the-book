@@ -36,8 +36,9 @@
             <option value="2" {{request('sort') == '2' ? 'selected' : ''}} >Harga Tertinggi</option>
             <option value="3" {{request('sort') == '3' ? 'selected' : ''}} >Terbaru</option>
             <option value="4" {{request('sort') == '4' ? 'selected' : ''}} >Terlama</option>
-            <option value="5" {{request('sort') == '5' ? 'selected' : ''}} >Stock Tersedia</option>
-            <option value="6" {{request('sort') == '6' ? 'selected' : ''}} >Stock Kosong</option>
+            <option value="5" {{request('sort') == '5' ? 'selected' : ''}} >Stok Tersedia</option>
+            <option value="6" {{request('sort') == '6' ? 'selected' : ''}} >Stok Kosong</option>
+            <option value="7" {{request('sort') == '7' ? 'selected' : ''}} >Buku Diskon</option>
 	
         </select>
     </form>

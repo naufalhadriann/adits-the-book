@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index(){
 
-        $totalUser = user::count();
+        $totalUser = user::where('role', 0)->count();
         $totalBook = Book::count();
         $totalCategory = Category::count();
         $totalOrder = Order::whereIn('status',[1,2])->count();
