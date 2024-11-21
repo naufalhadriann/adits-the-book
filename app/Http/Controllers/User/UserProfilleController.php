@@ -37,17 +37,15 @@ class UserProfilleController extends Controller
     $user = $request->user();
     $alertMessage = [];
 
-    if ($request->filled('name')) {
-        $user->name = $request->input('name');
-        $alertMessage[] = 'Ganti Nama telah Berhasil!';
-    }
+  if($request->filled('email')){
+    $user->email = $request->input('email');
+    $alertMessage[] = 'Ganti Email telah berhasil';
+  }
 
-   
-    if ($request->filled('email')) {
-        $user->email = $request->input('email');
-        $alertMessage[] = 'Ganti Email telah berhasil!';
-        
-    }
+  if($request->filled('name')){
+    $user->name = $request->input('name');
+    $alertMessage[] = 'Ganti Nama telah berhasil';
+  }
 
     if($request->hasFile('profile_image')){
         $imagePath = $request->file('profile_image')->store('images/profile', 'public');

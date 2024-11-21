@@ -9,8 +9,8 @@
                     @endif
                     <img src="{{asset('storage/' . $item->image)}}" class="card-img-top" alt="Popular Book 1">
                     <div class="card-body">
-                        <h5 class="popular-book-title">{{$item->title}}</h5>
-                        <p class="popular-book-author">{{$item->author}}</p>
+                        <h5 class="book-title">{{$item->title}}</h5>
+                        <p class="book-author">{{$item->author}}</p>
                        
                         @if($item->hasDiscount())
                                 <span >Rp {{number_format($item->discounted_price,0 ,',', '.')}}</span>

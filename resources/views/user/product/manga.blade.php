@@ -10,8 +10,8 @@
                     @if($item->hasDiscount())
                 <span class="badge badge-discount">{{ceil($item->discount)}}%</span>
                     @endif
-                        <h5 class="popular-book-title">{{$item->title}}</h5>
-                        <p class="popular-book-author">{{$item->author}}</p>
+                        <h5 class="book-title">{{$item->title}}</h5>
+                        <p class="book-author">{{$item->author}}</p>
                         @if($item->hasDiscount())
                                 <span >Rp {{number_format($item->discounted_price,0 ,',', '.')}}</span>
                                 <div class="price-discount">

@@ -59,7 +59,9 @@
                                     @elseif($order->status == 2)
                                         <span class="text-success fw-bold">Selesai</span>
                                     @elseif($order->status == 3)
-                                        <span class="text-danger fw-bold">Failed</span>
+                                        <span class="text-danger fw-bold">Gagal</span>
+                                    @elseif($order->status == 4)
+                                        <span class="text-danger fw-bold">Gagal</span>    
                                     @endif
                                 </p>
                             </div>
@@ -87,7 +89,7 @@
                                 <div class="total-button">
                                     
                                     @if($order->status == 1)
-                                        <a class="btn btn-danger" href="{{ route('order.canceled', $orders->id) }}" >Batalkan</a>
+                                        <a class="btn btn-danger" href="{{ route('order.canceled', $order->id) }}" >Batalkan</a>
                                         <a href="{{ route('payment.page', $order->id) }}" class="btn btn-dark">Bayar</a>
                                     @elseif($order->status == 2)
                                     <div class="d-flex justify-content-between">
@@ -114,12 +116,13 @@
                                 </div>
                             </div>
                         </div>
+                        @include('user.history.modal-transaction')
                     @endforeach
                 @endif
 
                 {{{ $orders->links('pagination::bootstrap-5') }}}
                 @include('sweetalert::alert')
-                @include('user.history.modal-transaction')
+
 
             </div>
         </div>

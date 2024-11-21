@@ -27,7 +27,6 @@ class SocialLoginController extends Controller
             Session::regenerate();
             return redirect()->intended('/');
         }
-
         $db_user = User::where('email', $user->getEmail())->first();
         if ($db_user) {
             SocialLogin::create([

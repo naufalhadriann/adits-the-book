@@ -18,7 +18,7 @@ Route::middleware(['auth','admin'])->group(function () {
 
     //profile
     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+    Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 
 
     //Book 

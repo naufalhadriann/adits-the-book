@@ -120,7 +120,7 @@ class BookController extends Controller
 
             $book->image = $newImagePath;
             $book->save();
-        }
+        }   
          Book::where('id',$id)->update([
             "title"=> $request->title,
             "description"=> $request->description,

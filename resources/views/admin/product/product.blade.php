@@ -23,8 +23,8 @@
 				
 				<div class="mt-3 ms-5 inputs ">
     <form method="GET" action="{{route('book.index')}}" class="d-flex">
-        <i class="bx bx-search"></i>
-        <input type="text" class="search ms-2" placeholder="Search Book..." name="query" value="{{ request('query')}}">
+        <i class="bx bx-search mt-3"></i>
+        <input type="text" class="search ms-2 " placeholder="Cari Buku..." name="query" value="{{ request('query')}}">
     </form>
 	</div>
 	<div class="d-flex justify-content-end">

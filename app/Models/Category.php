@@ -13,7 +13,6 @@ class category extends Model
         "name",
         "genre",
     ] ;
-    public $timestamps = false;
         
     protected $table='category';
     public function books()

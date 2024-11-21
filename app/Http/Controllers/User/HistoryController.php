@@ -35,7 +35,7 @@ class HistoryController extends Controller
       }
 
       if($date){
-        $ordersQuery->whereDate('order_date', $date);
+        $ordersQuery->whereDate('created_at', $date);
       }
 
       if($status === 'success'){

@@ -384,11 +384,9 @@ body {
 
 .search {
     background: transparent;
-
     border: none;
     height: 50px;
     width: 35%;
-    text-indent: 30px;
     border-radius: 0px;
     border-bottom: 1px solid var(--blue);
 }
@@ -399,15 +397,10 @@ body {
     border-bottom: 1px solid blue;
 }
 
-.searhc:focus {
-    color: blue;
-}
-
-.inputs i {
-    position: absolute;
-    top: 18px;
-
-    color: black;
+.filter-admin {
+    font-size: 18px;
+    padding-left: 80px;
+    margin-top: 5px;
 }
 .divider:after,
 .divider:before {

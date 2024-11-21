@@ -31,14 +31,28 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+        $user = $request->user();
+        $alertMessage = [];
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if($request->filled('email')){
+            $user->email = $request->input('email');
+            $alertMessage[] = 'Ganti Email telah berhasil!';
         }
-        $imagePath = $request->file('profile_image')->store('images/profile', 'public');
-        $request->user()->profile_image = $imagePath;
-        $request->user()->save();
-        Alert::success('success','Profile Update Berhasil ');
+        
+        if($request->filled('name')){
+            $user->name = $request->input('name');
+            $alertMessage[] = 'Ganti Nama telah berhasil!';
+        }
+
+        if($request->hasFile('profile_image')){
+            $imagePath = $request->file('profile_image')->store('images/profile', 'public');
+            $user->profile_image = $imagePath;
+            $alertMessage[] = 'Ganti Photo Profile telah berhasil!';
+        }
+        $user->save();
+        foreach($alertMessage as $message){
+            Alert::success('success', $message);
+        }
         return Redirect::back();
     }
     

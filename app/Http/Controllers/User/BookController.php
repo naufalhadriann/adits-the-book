@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     public function index(Request $request){
-        $discountId = $request->input('discount_id', [1, 2, 3, 44]); 
+        $discountId = $request->input('discount_id', [1, 2, 12, 32]); 
         $mangaId = $request->input('manga_id',[61,56,55,32,63,59,70,80]);
         $newId = $request->input('new_id',[68,34,35,17,37,38]);
         $recommendId = $request->input('recommend_id', [33, 19, 4, 15]); 
@@ -33,7 +33,7 @@ class BookController extends Controller
     }
 
     public function more(Request $request){
-        $discountId = $request->input('discount_id', [1, 2, 3, 44, 20, 13, 5, ]); 
+        $discountId = $request->input('discount_id', [1, 2, 32, 3, 20, 13, 5, 12]); 
         $discountBook = Book::whereIn('id', $discountId)->get();
 
         return view('user.product.page.diskonpage', compact('discountBook'));

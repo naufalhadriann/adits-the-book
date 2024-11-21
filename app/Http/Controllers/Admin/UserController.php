@@ -16,13 +16,25 @@ class UserController extends Controller
     {
 
         $query= $request->input('query');
+        $sort =  $request->input('sort');
         $search = User::query();
         if ($query) {
             $search = User::where('name', 'like', "%{$query}%")
             ->orWhere('id', 'like', "%{$query}%");
         }
+        switch($sort){
+            case 1:
+                $search->orderBy('created_at', 'desc');
+                break;
+            case 2: 
+                $search->orderBy('created_at', 'asc');
+                break;
+            default:
+                $search->orderBy('id');
+                break;
+        }
         $users = $search->orderBy('id')->where('role',0)->paginate(10);
-            $users->appends(['query' => $query]);
+            $users->appends(['query' => $query, 'sort'=>$sort]);
         return view('admin.users.user', compact('users'));
     }
     public function store(Request $request)

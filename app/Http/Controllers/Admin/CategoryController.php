@@ -11,9 +11,29 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categorys = category::orderBy('id')->paginate(10);
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $search = category::query();
+        if($query){
+            $search = category::where('name','like',"%{$query}%")
+            ->orWhere('genre', 'like', "%{$query}%");
+        }
+        switch($sort){
+            case 1:
+                $search->orderBy('created_at', 'desc');
+                break;
+            case 2:
+                $search->orderBy('created_at', 'asc');
+                break;
+            default:
+            $search->orderBy('id');
+            break;
+        }
+
+        $categorys = $search->orderBy('id')->paginate(10);
+        $categorys->appends(['query'=>$query, 'sort'=>$sort]);
         return view('admin.category.category', compact('categorys'));
     }
 

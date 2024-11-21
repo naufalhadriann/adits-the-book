@@ -24,7 +24,7 @@ Breadcrumbs::for('categoryy', function (BreadcrumbTrail $trail) {
 });
 Breadcrumbs::for('transaction', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
-    $trail->push('Transaction', route('transaction.index'));
+    $trail->push('Transaksi', route('transaction.index'));
 });
 
 Breadcrumbs::for('user', function (BreadcrumbTrail $trail) {

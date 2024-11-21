@@ -14,13 +14,25 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
+        $sort = $request->input('sort');
         $search = User::query();
         if ($query) {
             $search = User::where('name', 'like', "%{$query}%")
             ->orWhere('id', 'like', "%{$query}%");
         }
+        switch($sort){
+            case 1:
+                $search->orderBy('created_at', 'desc');
+                break;
+            case 2:
+                $search->orderBy('created_at', 'desc');
+                break;
+            default:
+                $search->orderBy('id');
+                break;
+        }
         $admin = $search->orderBy('id')->where('role',1)->paginate(10);
-            $admin->appends(['query' => $query]);
+            $admin->appends(['query' => $query,'sort'=>$sort]);
         return view("admin.data-admin.admin", compact("admin"));
     }
     public function store(Request $request)

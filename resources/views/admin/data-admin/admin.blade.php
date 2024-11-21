@@ -16,12 +16,22 @@
                      Add Admin
                         </button>
                     <x-modal modalType="admin"></x-modal> 
-                    <div class="  mb-5 inputs">
-					<form method="GET" action="{{route('user.index')}}">
-				<i class="bx bx-search"></i>
-				<input type="text" class="search   " placeholder="Search Admin..." name="query" value="{{ request('query')}}">
+
+                    <div class="  mb-5 d-flex justify-content-between w-100">
+					<form method="GET" action="{{route('admin.index')}}" class="d-flex w-75">
+				<i class="bx bx-search mt-3"></i>
+				<input type="text" class="search form-control" placeholder="Search Admin..." name="query" value="{{ request('query')}}">
 				</form>
 
+                <label for="filter-latest" class="filter-admin">Urutkan</label>
+                <form action="{{ route('admin.index') }}" method="GET">
+    <select id="filter-latest" class="form-select border-black" name="sort" onchange="this.form.submit()" style="border: 1px solid black;"> 
+            <option value="0">Sesuai</option>
+            <option value="1" {{ request('sort') == '1' ? 'selected' : '' }}>Terbaru</option>
+            <option value="2" {{ request('sort') == '2' ? 'selected' : '' }}>Terlama</option>
+           
+        </select>
+    </form>
 				</div>
                 
                         <table class="table table-responsive text-center">
