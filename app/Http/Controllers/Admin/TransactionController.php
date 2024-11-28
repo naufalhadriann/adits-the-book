@@ -30,14 +30,26 @@ class TransactionController extends Controller
     }
     
 
-    if ($sort) {
-        $search->orderBy($sort);
-    } else {
-        $search->orderBy('id');  
+    switch($sort){
+        case 1 :
+            $search->orderBy('amount','asc');
+            break;
+        case 2:
+            $search->orderBy('amount','desc');
+            break;
+        case 3:
+            $search->orderBy('created_at','desc');
+            break;
+        case 4:
+            $search->orderBy('created_at','asc');
+            break;
+        default:
+            $search->orderBy('id');
+            break;
     }
 
     $transactions = $search->paginate(10);
-
+    
     $transactions->appends(['query' => $query, 'sort' => $sort]);
 
     $orderItems = OrderItems::with('book')->get();

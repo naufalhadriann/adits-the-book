@@ -6,14 +6,13 @@
     <div class="input-group-prepend">
       <span class="input-group-text">Rp</span>
     </div>
-    <input type="number" class="form-control" name="min_price" placeholder="Min Price"  step="1" value="{{ old('min_price', number_format($minPrice,0,',','.')) }}" aria-label="Min Price">
-  </div>
+    <input type="number" class="form-control" name="min_price" placeholder="Min Price" value="{{ old('min_price', $minPrice ? number_format($minPrice ,0, ',','.') : '') }}" aria-label="Min Price">  </div>
 
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text">Rp</span>
     </div>
-    <input type="number" class="form-control" name="max_price" placeholder="Max Price"  step="1" value="{{ old('max_price', number_format($maxPrice,0,',','.')) }}" aria-label="Max Price">
+    <input type="number" class="form-control" name="max_price" placeholder="Max Price"  step="1" value="{{ old( 'max_price', $maxPrice  ? number_format($maxPrice, 0, ',','.') : '' ) }}" aria-label="Max Price">
   </div>
 
   <button type="submit" class="btn btn-primary mt-2" hidden>Apply Filter</button>

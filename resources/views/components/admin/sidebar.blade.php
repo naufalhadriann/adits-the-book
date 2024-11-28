@@ -1,7 +1,7 @@
 
 <section id="sidebar">
         
-		<a href="/" class="brand">
+		<a href="#" class="brand">
 		<img src="{{asset('images/logo1.png')}}">
 			<span class="text">Adit's The Book</span>
 		</a>

@@ -38,7 +38,7 @@
                                 </figcaption>
                             </figure>
                             <div class="price-payment">
-                                @if ($book->hasDiscount())
+                                @if ($hasDiscount)
                                     <p>Rp {{ number_format($totalDiscounted, 0, ',', '.') }} x {{ $items['quantity'] }}</p>
                                 @else
                                     <p>Rp {{ number_format($items['book']->price, 0, ',', '.') }} x {{ $items['quantity'] }}</p>
@@ -71,23 +71,34 @@
                             Methode Pembayaran 
                             <p id="selectedPaymentMethod" class="mb-0">~</p>
                         </li>
-                        @if($items->book->hasDiscount())
-
+                        @if($totalDiscountAmount > 0)
                         <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                            Barang 
+                        Harga {{$item->count()}} Buku 
                             <div>Rp {{ number_format($totalPrice, 0, ',', '.') }}</div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             Diskon
-                            <span class="text-danger">Rp {{ number_format($totalDiscountAmount, 0, ',', '.') }}</span>
+                            <span class="text-danger">- Rp {{ number_format($totalDiscountAmount, 0, ',', '.') }}</span>
                         </li>
-                        @endif
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             <div>
                                 <strong>Jumlah total</strong>
                             </div>
                             <span><strong>Rp {{ number_format($totalDiscountedPrice, 0, ',', '.') }}</strong></span>
                         </li>
+                        @else
+                        <li class="list-group-item d-flex justify-content-between align-items-center  px-0 ">
+                            Harga {{$item->count()}} Buku 
+                            <div>Rp {{ number_format($totalPrice, 0, ',', '.') }}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <div>
+                                <strong>Jumlah total</strong>
+                            </div>
+                            <span><strong>Rp {{ number_format($totalDiscountedPrice, 0, ',', '.') }}</strong></span>
+                        </li>
+                        @endif
+                      
                     </ul>
                     <hr>
                     <form action="{{route('user.checkout')}}" method="POST">

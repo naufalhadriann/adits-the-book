@@ -1,7 +1,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const orderCreatedAt = new Date(document.getElementById("order-date").value);
-        const countdownDuration = 2 * 60  * 60 * 1000; 
+        const countdownDuration =  60 * 1000; 
         const targetTime = orderCreatedAt.getTime() + countdownDuration; 
 
         console.log(orderCreatedAt)

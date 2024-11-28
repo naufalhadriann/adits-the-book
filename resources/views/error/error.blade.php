@@ -34,7 +34,6 @@
     .link_404 {
       color: #fff !important;
       font-size: 40px;
-
       padding: 5px 10px 10px 10px;
       border-radius: 25px;
       background: #39ac31;

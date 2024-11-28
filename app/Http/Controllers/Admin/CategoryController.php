@@ -22,10 +22,10 @@ class CategoryController extends Controller
         }
         switch($sort){
             case 1:
-                $search->orderBy('created_at', 'desc');
+                $search->orderBy('id', 'desc');
                 break;
             case 2:
-                $search->orderBy('created_at', 'asc');
+                $search->orderBy('id', 'asc');
                 break;
             default:
             $search->orderBy('id');

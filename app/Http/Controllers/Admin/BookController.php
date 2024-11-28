@@ -34,10 +34,10 @@ class BookController extends Controller
                 $search->orderBy('price', 'desc');
                 break;
             case 3:
-                $search->orderBy('created_at', 'desc');
+                $search->orderBy('publish_date', 'desc');
                 break;
             case 4:
-                $search->orderBy('created_at','asc');       
+                $search->orderBy('publish_date','asc');       
                 break;
             case 5:
                 $search->where('stock', '>', 0 );

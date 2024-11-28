@@ -31,9 +31,14 @@ class ShippingController extends Controller
         $selectedBooks = json_decode($request->input('selected_books'), true);
         
         $item = cart::where('user_id', $userId)->whereIn('book_id', $selectedBooks)->with('book')->get();
-        $address = address::where('user_id', $userId)->where('status' , 1)->first();
+        if($item->isEmpty()){
+            $item = collect();
+        }
+        $address = address::where('user_id', $userId)->where('status', 1)->first();
         $addresses = address::where('user_id', $userId)->get();
-        
+        if($addresses->isEmpty()){
+            $addresses = collect();
+        }
         $totalPrice = $this->calculateTotalPrice($item);
         $totalDiscountAmount = $item->sum(function ($item) {
          return $item->book->getDiscountAmountAttribute() * $item->quantity;

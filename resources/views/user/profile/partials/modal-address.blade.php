@@ -67,7 +67,7 @@
                      </div>
                     <div class="mb-3">
                         <label for="inputPhone" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control form-control-lg" id="inputPhone" placeholder="Nomor Telepon" name="nomor_telp" value="{{ old('nomor_telp') }}" max="15">
+                        <input type="text" class="form-control form-control-lg" id="inputPhone" placeholder="Nomor Telepon" name="nomor_telp" value="{{ old('nomor_telp') }}" maxlength="10">
                         @error('nomor_telp')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
