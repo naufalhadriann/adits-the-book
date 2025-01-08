@@ -10,9 +10,8 @@
     @endif
 </div>
 
-<!-- Swiper Wrapper -->
-<div class="row swiper-container">
-    <div class="swiper-wrapper">
+
+<div class="row ">
         @foreach ($discountBook as $item)
             <a class="col-md-3 mb-5 {{$item->stock <= 0 ? 'disabled' : ''}} swiper-slide" href="{{ $item->stock > 0 ? route('book.show', ['title' => urlencode($item->title)]) : '#' }}">
                 <div class="card book-card border-0">
@@ -28,7 +27,7 @@
                         <p class="book-author">{{$item->author}}</p>
 
                         @if($item->hasDiscount())
-                            <span>Rp {{number_format($item->discounted_price, 0, ',', '.')}}</span>
+                            <span class="book-before-discount">Rp {{number_format($item->discounted_price, 0, ',', '.')}}</span>
                             <div class="price-discount">
                                 <span class="text-danger">{{floor($item->discount)}}%</span>
                                 <span class="text-decoration-line-through text-secondary">Rp{{number_format($item->price, 0, ',', '.')}}</span>
@@ -40,8 +39,8 @@
                 </div>
             </a>
         @endforeach
-    </div>
-    <!-- Add Pagination if needed -->
-    <div class="swiper-pagination"></div>
-</div>
+  </div>
+  
+ 
+  
 

@@ -92,12 +92,17 @@
             </div>
           </div>
           @include('sweetalert::alert')
+         
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="book_id[]" value="{{ $book->id }}">
-            <button type="submit" class="btn {{ $book->stock <= 0 ? 'btn-secondary' : 'btn-primary' }}" {{ $book->stock <= 0 ? 'disabled' : '' }}>
+            <button type="submit" class="btn btn-cart-book {{ $book->stock <= 0 ? 'btn-secondary' : 'btn-primary' }}" {{ $book->stock <= 0 ? 'disabled' : '' }}>
               Add to Cart
           </button>
-
+          <nav id="navbar-detail-bottom" class="navbar fixed-bottom">
+          <button type="submit" class="btn btn-detail  {{ $book->stock <= 0 ? 'btn-secondary' : 'btn-primary' }}" {{ $book->stock <= 0 ? 'disabled' : '' }}>
+              Add to Cart
+          </button>
+          </nav>
         </form>
         </div>
         

@@ -57,6 +57,7 @@ class SocialLoginController extends Controller
                 'email' => $user->getEmail(),
                 'password' => bcrypt(rand(1000, 9999)),
                 'profile_image' => $path,
+                'role' => 0,
             ]);
 
             SocialLogin::create([

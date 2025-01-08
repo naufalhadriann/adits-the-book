@@ -42,7 +42,7 @@
         </div>
         
         <div class="ml-3">
-            <div class="card" style="width: 18rem;">
+            <div class="card card-photo-profil" style="width: 18rem;">
                 <div class="card-body ">
 				<img id="preview" src="{{ asset('storage/' . Auth::user()->profile_image) }}">
                     <div class="text-center mt-5">

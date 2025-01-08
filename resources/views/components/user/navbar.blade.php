@@ -5,16 +5,13 @@ $uniqueCart = $cart->pluck('book_id')->unique('user_id')->count();
 @endphp
 
 <!-- Navbar atas -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<nav id="navbar-home-top" class="navbar navbar-expand-lg navbar-light fixed-top">
 <div class="container">
         <!-- Logo -->
         <div class="logo">
             <a href="/"><img src="{{asset('images/logo2.png')}}">Adit's the Book</a>
         </div> 
-
-      
         <!-- Navbar Links -->
-       
             <ul class="navbar-nav ml-auto">
             
                 <!-- Menu Item: Kategori -->
@@ -98,9 +95,8 @@ $uniqueCart = $cart->pluck('book_id')->unique('user_id')->count();
     
 </nav>
 
-
 <!-- Navbar bawah -->
-<nav class="navbar navbar-light fixed-bottom">
+<nav id="navbar-home-bottom" class="navbar navbar-light fixed-bottom">
     <div class="container">
         <ul class="navbar-nav w-100 d-flex justify-content-around">
             <li class="nav-item-bottom">
@@ -118,4 +114,26 @@ $uniqueCart = $cart->pluck('book_id')->unique('user_id')->count();
         </ul>
     </div>
 </nav>
+
+
+<!--Navbar detail  -->
+<nav id="navbar-detail-top" class="navbar  fixed-top">
+  <div class="container">
+    <ul class="navbar-nav w-100 d-flex justify-content-between">
+      <li class="nav-item nav-detail">
+        <a href="/" class="detail-back "> <i class='bx bx-arrow-back'></i> </a>
+      </li>
+      <li class="nav-item nav-detail">
+        <div class="icon-container">
+          <a href="/cart" class="icon"><i class="bx bx-cart"></i><span class="badge">{{$totalBooks}}</span></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
 

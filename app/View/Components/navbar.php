@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Book;
 use App\Models\cart;
 use App\Models\Category;
 use Closure;
@@ -16,9 +17,12 @@ class navbar extends Component
      */
     public $cart ;
     public $categorys ;
+
+    public $book;
     public $totalBooks;
     public function __construct()
     {
+        $this->book = Book::get();
         $this->categorys = Category::all();
         $userId = Auth::id(); 
         $this->cart = cart::where('user_id', $userId)->with('book')->get();

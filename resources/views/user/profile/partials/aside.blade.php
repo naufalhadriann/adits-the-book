@@ -25,7 +25,18 @@
                                             <li class="mt-3 mb-4">
                                                 <a href="{{ route('user.address')}}">Alamat</a>
                                             </li>
-                                        </ul>
+                                        
+                                        <li class="mt-3 mb-4">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                          @csrf 
+                                         <a class="dropdown-item logout-profile" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                          Logout
+                                            </a>
+                                            </form>
+                                            </li>
+                                            </ul>
+                             
+                   
                                     </div>
                                         </div>
 

@@ -21,7 +21,6 @@
         width: 100%;
         height: 15rem;
         object-fit: contain;
-        margin-top: 10px;
     }
     .navbar-nav {
         padding: 0;
@@ -31,26 +30,37 @@
     .buku {
         width: 100%;
     }
-    .img-fluid {
-        width: 100%;
-        height: 11rem;
-        object-fit: contain;
+    .banner-book {
+        display: none;
     }
     .book-card {
         flex: 0 0 auto; /* Membuat kartu memiliki lebar tetap, tidak ikut memperbesar */
-        width: 100%; /* Lebar default untuk ukuran besar */
-        height: 9rem; /* Tinggi tetap */
+        width: 90px; /* Lebar default untuk ukuran besar */
+        height: 10rem; /* Tinggi tetap */
         background-color: #f4f4f4; /* Warna latar belakang untuk kartu */
         border-radius: 8px;
-        overflow: hidden;
+
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
     }
     .book-card img {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        height: 10rem;
+        height: 5rem;
         width: 100%;
-        object-fit: cover;
+        margin-left: 0;
+        padding: 0;
+        object-fit: contain;
+    }
+    .rak-buku {
+        width: 100%;
+        height: 15rem;
+    }
+    .footer {
+        margin-top: 10px;
+    }
+    .section-container {
+        padding: 0;
+        margin-top: 50px;
     }
     .discount-title,
     h2 {
@@ -65,8 +75,36 @@
     }
     .book-title,
     .popular-book-title {
-        font-size: 1.25rem;
+        font-size: 0.6rem;
         font-weight: bold;
+        margin-bottom: 0;
+        margin-top: 0.3rem;
+    }
+    .book-before-discount {
+        font-size: 0.5rem;
+    }
+    .price-discount {
+        font-size: 0.5rem;
+    }
+    .book-author {
+        font-size: 0.5rem;
+        margin-bottom: 0;
+    }
+    .badge-discount {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        background-color: #dc3545;
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 0.3rem;
     }
     .logo {
         display: none;
@@ -177,17 +215,59 @@
     }
 
     .main-body {
-        margin-top: 0;
+        margin-top: 0px;
     }
     .history-filter {
         display: flex;
         gap: 0;
-        align-items: center;
+
         flex-wrap: wrap; /* Agar elemen dapat dipindahkan ke baris baru pada layar kecil */
         align-items: flex-start;
     }
-
+    .section-history {
+        max-width: 500px;
+        box-shadow: none;
+        margin: auto;
+        margin-top: 10px;
+    }
     .search-history {
-        width: 250px;
+        width: 350px;
+    }
+    .sort-history {
+        margin-left: 0;
+        width: 35%;
+    }
+    .date-history {
+        width: 35%;
+    }
+    .breadcrumb {
+        display: none;
+    }
+    .book-image {
+        height: 25rem;
+        width: 100%;
+    }
+    .btn-detail {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        width: 90%;
+    }
+    #navbar-detail-bottom {
+        background-color: transparent;
+    }
+    #navbar-detail-top {
+        background-color: transparent;
+        display: flex;
+        justify-content: space-around;
+    }
+    .btn-cart-book {
+        display: none;
+    }
+    .detail-back {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .card-photo-profil {
+        display: none;
     }
 }
