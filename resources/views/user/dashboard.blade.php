@@ -1,10 +1,9 @@
 @extends('user.layouts.app')
 @section('title')
-
 @section('content')
 @include('components.user.greetings')
 
-<div class="container">
+<div class="container buku">
     <div class="row">
         <div class="col-md-4 ">
             <img src="{{asset('images/Promo3.png')}}" alt="Image beside container" class="img-fluid">
@@ -19,7 +18,7 @@
         </div>
 
     
-    <div class="container">
+    <div class="container buku">
     <div class="row">
         <div class="col-md-4 ">
             <img src="{{asset('images/recomend.png')}}" alt="Image beside container" class="img-fluid">
@@ -33,10 +32,10 @@
          </div>
         </div>
     
-    <div class="container mt-5">
+    <div class="container buku mt-5">
        @include('user.product.new')
     </div>
-    <div class="container mt-5">
+    <div class="container buku mt-5">
         @include('user.product.manga')
     </div>
 

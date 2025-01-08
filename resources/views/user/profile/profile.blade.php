@@ -4,7 +4,7 @@
 
 
 <div class="container">
-		<div class="main-body mt-5">
+		<div class="main-body ">
 			<div class="row">
 				<div class="col-lg-4 " >
 					@include('user.profile.partials.aside')

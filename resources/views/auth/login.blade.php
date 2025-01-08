@@ -4,7 +4,7 @@
     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 py-5">
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <h3 style="text-align:center; margin-bottom:40px; font-weight:bold; color: #650f2c; font-style:italic; font-size:35px;">Login</h3>
+            <h3 class="head">Login</h3>
             <div data-mdb-input-init class="form-outline mb-4">
                 <x-input-label for="email" :value="__('Email ')" />
                 <x-text-input id="email" class="form-control form-control-lg" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />

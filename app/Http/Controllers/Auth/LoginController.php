@@ -38,7 +38,7 @@ class LoginController extends Controller
     }
     public function logout(Request $request){
 
-        $user = Auth::user(); // Ambil user yang sedang login
+        $user = Auth::user(); 
 
     Auth::logout();
     $request->session()->invalidate();
@@ -46,9 +46,9 @@ class LoginController extends Controller
 
     // Redirect berdasarkan role
     if ($user && $user->role === 1) {
-        return redirect()->route('login'); // Ganti dengan route yang sesuai
+        return redirect()->route('login'); 
     } else {
-        return redirect('/'); // Redirect ke home page
+        return redirect('/'); 
     }
     }
 }

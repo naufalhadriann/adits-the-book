@@ -30,6 +30,7 @@
     }
     .four_zero_four_bg h3{
       font-size: 5rem;
+
     }
     .link_404 {
       color: #fff !important;
@@ -57,9 +58,9 @@
             </div>
             <div class="contant_box_404">
               <h3 class="h2">
-                You dont have acces this site
+                Kamu tidak punya akses untuk ini
               </h3>
-              <a href="/" class="link_404">Go to pages</a>
+              <a href="/" class="link_404">Kembali</a>
             </div>
           </div>
         </div>

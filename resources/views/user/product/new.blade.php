@@ -2,8 +2,13 @@
         <div class="row">
             @foreach ($newBook as $item )
             
-            <a class="col-md-2" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
+            <a class="col-md-2 {{$item->stock <= 0 ? 'disabled' : ''}} " href="{{ $item->stock > 0 ? route('book.show', ['title' => urlencode($item->title)]) : '#' }}">
                 <div class="card book-card">
+                @if($item->stock <= 0)
+                    <div class="stock-overlay">
+                        <span class="stock-message">Stock Habis</span>
+                    </div>
+                @endif
                     @if($item->hasDiscount())
                 <span class="badge badge-discount">{{ceil($item->discount)}}%</span>
                     @endif

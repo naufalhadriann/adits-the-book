@@ -3,8 +3,13 @@
         <div class="row">
         @foreach ($mangaBook as $item)
             
-            <a class="col-md-2" href="{{route('book.show', ['title' => urlencode($item->title)])}}">
+            <a class="col-md-2 {{$item->stock <= 0 ? 'disabled' : ''}} " href="{{ $item->stock > 0 ? route('book.show', ['title' => urlencode($item->title)]) : '#' }}">
                 <div class="card book-card">
+                @if($item->stock <= 0)
+                    <div class="stock-overlay">
+                        <span class="stock-message">Stock Habis</span>
+                    </div>
+                @endif
                     <img src="{{asset('storage/' . $item->image)}}" class="card-img-top" alt="Popular Book 1">
                     <div class="card-body">
                     @if($item->hasDiscount())

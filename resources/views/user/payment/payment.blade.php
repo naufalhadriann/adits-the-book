@@ -95,7 +95,7 @@
                         <button type="submit" class="btn btn-dark mb-4">Bayar</button>
                     </form>
 
-                    <p>Anda memiliki waktu hingga <strong id="deadline">{{ $orders->first()->created_at->addMinutes(120) }}</strong> untuk menyelesaikan pembayaran.</p>
+                    <p>Anda memiliki waktu hingga <strong id="deadline">{{ $orders->first()->created_at->addMinutes(60) }}</strong> untuk menyelesaikan pembayaran.</p>
 
                     <div class="mt-1">
                         <p>Jika Anda mengalami masalah, jangan ragu untuk menghubungi kami di:</p>

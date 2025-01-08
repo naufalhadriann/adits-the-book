@@ -28,8 +28,7 @@ class CartController extends Controller
 
         $totalAmount = $totalValue - $totalDiscountAmount  ;
    
-        $totalBooks = $cart->pluck('book_id')->unique()->count();
-
+        $totalBooks = $cart->where('stock', '>=', 0)->pluck('book_id')->unique()->count();
         return view('user.cart.cart', [
             'cart' => $cart,
             'totalPrice' => $totalPrice,

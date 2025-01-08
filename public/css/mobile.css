@@ -1,0 +1,193 @@
+@media (min-width: 768px) {
+    .navbar.fixed-bottom {
+        display: none;
+    }
+}
+
+/* Styling untuk tampilan mobile */
+@media (max-width: 768px) {
+    :root {
+        --maroon: #650f2c;
+    }
+
+    body,
+    nav,
+    .mobile-container {
+        max-width: 425px;
+        align-items: center;
+        margin: auto;
+    }
+    .greetings img {
+        width: 100%;
+        height: 15rem;
+        object-fit: contain;
+        margin-top: 10px;
+    }
+    .navbar-nav {
+        padding: 0;
+        margin: 0;
+        gap: 20px;
+    }
+    .buku {
+        width: 100%;
+    }
+    .img-fluid {
+        width: 100%;
+        height: 11rem;
+        object-fit: contain;
+    }
+    .book-card {
+        flex: 0 0 auto; /* Membuat kartu memiliki lebar tetap, tidak ikut memperbesar */
+        width: 100%; /* Lebar default untuk ukuran besar */
+        height: 9rem; /* Tinggi tetap */
+        background-color: #f4f4f4; /* Warna latar belakang untuk kartu */
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    }
+    .book-card img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 10rem;
+        width: 100%;
+        object-fit: cover;
+    }
+    .discount-title,
+    h2 {
+        font-size: 10px;
+    }
+    .book-title {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        position: relative;
+    }
+    .book-title,
+    .popular-book-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .logo {
+        display: none;
+    }
+    .nav-item.auth {
+        display: none;
+    }
+    .menu-item {
+        display: none;
+    }
+    .nav-item .profile {
+        display: none;
+    }
+
+    .navbar .inputs {
+        flex: 2;
+        text-align: center;
+    }
+
+    .icon-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar .logo,
+    .navbar .inputs,
+    .icon-container {
+        padding: 10px 0;
+        text-align: center;
+    }
+    .inputs {
+        position: relative;
+        margin: 0;
+    }
+    .search {
+        background-color: white;
+        border: none;
+        color: #333;
+        padding: 0.5rem 1rem;
+        text-indent: 15px;
+        border-radius: 20px;
+        width: 100%;
+        padding-right: 100px;
+        margin: 0;
+        outline: 2px solid #ccc;
+    }
+
+    .search:focus {
+        outline: 2px solid #ccc;
+        box-shadow: none;
+    }
+
+    .search:focus {
+        color: black;
+    }
+
+    .inputs i {
+        position: absolute;
+        top: 22px;
+        left: 10px;
+        color: black;
+    }
+    /* Sembunyikan profil pengguna di mobile */
+    .navbar .profile {
+        display: none;
+    }
+
+    /* Navbar bawah hanya tampil di layar mobile */
+    .navbar.fixed-bottom {
+        display: flex;
+        align-items: center;
+        padding: 2px;
+    }
+    .nav-item-bottom {
+        display: flex;
+        flex-direction: column; /* Menyusun ikon/gambar dan teks secara vertikal */
+        align-items: center; /* Menjaga posisi gambar dan teks di tengah secara horizontal */
+        justify-content: center; /* Menjaga posisi gambar dan teks di tengah secara vertikal */
+        text-align: center; /* Menyusun teks agar berada di tengah */
+    }
+
+    .nav-item-bottom a {
+        display: flex;
+        flex-direction: column; /* Menyusun gambar dan teks secara vertikal */
+        justify-content: center; /* Memastikan gambar dan teks berada di tengah secara vertikal */
+        align-items: center; /* Memastikan gambar dan teks berada di tengah secara horizontal */
+        text-decoration: none; /* Menghilangkan underline pada link */
+        font-size: 1.1rem; /* Ukuran font untuk teks */
+    }
+    .nav-item-bottom i {
+        font-size: 1.5rem;
+    }
+
+    .nav-item-bottom img {
+        width: 1.7rem; /* Menyesuaikan ukuran gambar */
+        height: auto; /* Menjaga proporsi gambar */
+        margin-top: 5px;
+        margin-bottom: 1px;
+        object-fit: contain; /* Menjaga gambar agar tidak terdistorsi */
+    }
+
+    .nav-item-bottom span {
+        font-size: 1.1rem; /* Ukuran teks di bawah gambar */
+        font-weight: normal;
+    }
+    .mobile-profile {
+        display: none;
+    }
+
+    .main-body {
+        margin-top: 0;
+    }
+    .history-filter {
+        display: flex;
+        gap: 0;
+        align-items: center;
+        flex-wrap: wrap; /* Agar elemen dapat dipindahkan ke baris baru pada layar kecil */
+        align-items: flex-start;
+    }
+
+    .search-history {
+        width: 250px;
+    }
+}
